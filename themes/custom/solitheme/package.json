@@ -1,0 +1,30 @@
+{
+  "name": "solitheme",
+  "version": "1.0.0",
+  "description": "Custom Drupal theme using ESBuild",
+  "author": "Solicon",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node esbuild.js --dev",
+    "production": "node esbuild.js --prod",
+    "watch": "node esbuild.js --dev --watch"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%"
+  ],
+  "dependencies": {
+    "@midzer/tobii": "^3.0.0",
+    "autoprefixer": "^10.4.13",
+    "chalk": "^5.2.0",
+    "chokidar": "^3.5.3",
+    "esbuild": "^0.23.1",
+    "esbuild-plugin-clean": "^1.0.1",
+    "esbuild-sass-plugin": "^2.4.5",
+    "postcss": "^8.4.21",
+    "resolve-glob": "^1.0.0",
+    "stylelint": "^14.16.1",
+    "stylelint-config-standard-scss": "^6.1.0"
+  }
+}

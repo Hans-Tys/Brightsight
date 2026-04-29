@@ -1,0 +1,48 @@
+solitheme.xs:
+  label: xs
+  mediaQuery: 'all and (min-width: 0px)'
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+  group: solitheme
+solitheme.sm:
+  label: sm
+  mediaQuery: 'all and (min-width: 576px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+  group: solitheme
+solitheme.md:
+  label: md
+  mediaQuery: 'all and (min-width: 768px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+  group: solitheme
+solitheme.lg:
+  label: lg
+  mediaQuery: 'all and (min-width: 992px)'
+  weight: 3
+  multipliers:
+    - 1x
+    - 2x
+  group: solitheme
+solitheme.xl:
+  label: xl
+  mediaQuery: 'all and (min-width: 1200px)'
+  weight: 4
+  multipliers:
+    - 1x
+    - 2x
+  group: solitheme
+solitheme.xxl:
+  label: xxl
+  mediaQuery: 'all and (min-width: 1440px)'
+  weight: 5
+  multipliers:
+    - 1x
+    - 2x
+  group: solitheme
