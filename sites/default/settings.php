@@ -252,7 +252,7 @@ $databases = [];
  * directory in the public files path. The setting below allows you to set
  * its location.
  */
-# $settings['config_sync_directory'] = '/directory/outside/webroot';
+ $settings['config_sync_directory'] = '/var/www/html/config/sync';
 /**
  * Settings:
  *
@@ -816,3 +816,8 @@ $databases['default']['default'] = array('database' => 'ID497036_280841', 'usern
 $databases['default']['default'] = array('database' => 'ID497036_280841', 'username' => 'ID497036_280841', 'password' => 'Flikkerenmetlampjes1', 'prefix' => 'ded2377278', 'host' => 'com-linweb1000.srv.combell-ops.net', 'port' => 3306, 'isolation_level' => 'READ COMMITTED', 'driver' => 'mysql', 'namespace' => 'Drupal\mysql\Driver\Database\mysql', 'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/');
 $settings['config_sync_directory'] = 'sites/default/files/config_JeGAedwvAYp95khz2d96brXXecOnecfmtCOBL5cMzWo0syiMP5KAFipJpg081jP2KZBSogswfw/sync';
 $settings['trusted_host_patterns'] = [0 => '^(www\.)?brightsight\.studio$'];
+// Automatically generated include for settings managed by ddev.
+$ddev_settings = __DIR__ . '/settings.ddev.php';
+if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
+  require $ddev_settings;
+}

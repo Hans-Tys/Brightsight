@@ -1,0 +1,7 @@
+@mixin textBefore($content, $fontSize, $color) {
+  &::before {
+    content: $content;
+    font-size: $fontSize;
+    color: $color;
+  }
+}

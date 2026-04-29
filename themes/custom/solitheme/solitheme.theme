@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the placebo theme.
+ */
+
+/**
+ * Implements template_preprocess_HOOK() for the HTML template.
+ */

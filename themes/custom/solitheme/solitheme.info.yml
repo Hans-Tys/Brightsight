@@ -1,0 +1,27 @@
+name: Solitheme
+type: theme
+base theme: FALSE
+description: Solicon custom theme.
+package: Custom
+
+ckeditor_stylesheets:
+  - dist/css/wysiwyg.scss
+
+libraries:
+  - solitheme/normalize
+  - solitheme/main
+
+
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  footer: 'Footer'
+
+core: '11.x'
+core_version_requirement: ^10 || ^11

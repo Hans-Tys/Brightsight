@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div class="local-tasks">
+    <span class="local-task-trigger">{{ 'Local tasks'|t }}</span>
+    {{ content }}
+    </div>
+  {% endblock %}
+</div>

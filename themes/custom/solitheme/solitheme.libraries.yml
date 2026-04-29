@@ -1,0 +1,26 @@
+main:
+  version: 1
+  css:
+    base: 
+      dist/css/global.css: {}
+      /libraries/tobii/dist/tobii.min.css: {}
+  js:
+    dist/js/global.js: {}
+    /libraries/tobii/dist/tobii.umd.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+
+normalize:
+  remote: https://github.com/necolas/normalize.css
+  version: "8.0.1"
+  license:
+    name: MIT
+    url: https://github.com/necolas/normalize.css/blob/master/LICENSE.md
+    gpl-compatible: true
+  css:
+    base:
+      //cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css: { type: external, minified: true }

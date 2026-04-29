@@ -1,0 +1,12 @@
+@mixin materialIconBefore($iconCode, $fontSize, $color) {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+  &::before {
+    font-family: "material icons";
+    content: $iconCode;
+    font-size: $fontSize;
+    color: $color;
+    margin-right: 0.2rem;
+  }
+}

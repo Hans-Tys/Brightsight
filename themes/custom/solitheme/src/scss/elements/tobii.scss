@@ -1,0 +1,10 @@
+.tobii-zoom__icon {
+  background-color: #0009 !important;
+  border-radius: .25rem;
+  opacity: .8;
+  display: none !important;
+}
+
+.tobii-zoom:hover .tobii-zoom__icon {
+    display: flex !important;
+  }
