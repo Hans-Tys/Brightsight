@@ -1,0 +1,13 @@
+uuid: 803635e4-7a81-4bbd-8b1d-ecfdc9f3112a
+langcode: nl
+status: false
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: r_A0T3aTqGDwLyvoH7wLps-0PM--RHlS8UsiJe_Ac64
+id: node.search_index
+label: Zoekindex
+description: ''
+targetEntityType: node
+cache: true
