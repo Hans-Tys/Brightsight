@@ -1,0 +1,85 @@
+.local-tasks {
+  background-color: rgb(255, 255, 255);
+  width: fit-content;
+  min-width: 200px;
+  position: fixed;
+  bottom: 0;
+  left: 2rem;
+  z-index: 20;
+  transform: translateY(calc(100% - 60px));
+  transition: 0.5s transform ease-in-out;
+  border-radius: 0.5rem 0.5rem 0 0;
+  -webkit-box-shadow: 8px 8px 22px -26px rgba(46, 46, 173, 1);
+  -moz-box-shadow: 8px 8px 22px -26px rgba(46, 46, 173, 1);
+  box-shadow: 8px 8px 22px -26px rgba(46, 46, 173, 1);
+
+  span {
+    background: #ffffff;
+    padding: 1rem;
+    width: 200px;
+    display: inline-block;
+    color: #212121;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300 !important;
+    font-size: 20px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    justify-content: space-between;
+
+    &::after {
+      content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%23212121"><path d="M708-136 448-396q-21 9-45 14.5t-49 5.5q-96 0-163-68t-67-164q0-31 7-57.5t21-50.5l146 144 92-92-144-144q24-14 50.5-22t57.5-8q96 0 164 67t68 163q0 26-5 49.5T566-514l260 260q11 11 11 25t-11 25l-68 70q-11 11-25 10t-25-12Z"/></svg>');
+      transition: 0.5s transform ease-in-out;
+      transform: rotateZ(0deg);
+    }
+
+    &:hover {
+      background-color: var(--gin-bg-item-hover);
+      color: var(--gin-color-primary-active);
+    }
+  }
+  > ul {
+    list-style: none;
+    overflow: hidden;
+    min-width: 150px;
+    margin: 0;
+    padding-left: 0;
+
+    li {
+      &:hover {
+        background-color: var(--gin-bg-item-hover);
+        a {
+          color: var(--gin-color-primary-active);
+        }
+      }
+    }
+    a {
+      font-family: "Poppins", sans-serif;
+      font-weight: 300 !important;
+      font-size: 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: black;
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  .local-task-trigger {
+    cursor: pointer;
+  }
+}
+
+.local-tasks.open-tasks {
+  transform: translateY(0);
+  transition: 0.5s transform ease-in-out;
+
+  span::after {
+    transition: 0.5s transform ease-in-out;
+    transform: rotateZ(90deg);
+  }
+}

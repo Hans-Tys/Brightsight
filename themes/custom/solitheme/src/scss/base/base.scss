@@ -1,0 +1,14 @@
+body {
+  background-color: #141414;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  width: 100vw !important;
+  overflow-x: hidden !important;
+  max-width: 100vw;
+}
+
+body.locked {
+  height: 100vh;
+  overflow: hidden;
+}
+
