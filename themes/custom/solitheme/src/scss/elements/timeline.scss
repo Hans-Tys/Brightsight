@@ -1,0 +1,268 @@
+// ============================================================
+//  Timeline — full-screen horizontal event timeline
+//  Drupal 11 / solitheme
+// ============================================================
+
+// ── Variables ────────────────────────────────────────────────
+$tl-bg:             #1a1a1c;
+$tl-line:           rgba(255, 255, 255, 0.2);
+$tl-dot:            #ffffff;
+$tl-dot-size:       10px;
+$tl-connector-h:    80px;     // vertical distance from center line to image top/bottom
+$tl-item-width:     clamp(340px, 38vw, 560px);  // wider = more spacing between events
+$tl-item-gap:       80px;     // explicit gap between each item
+$tl-image-radius:   12px;
+$tl-ring-color:     rgba(255, 255, 255, 0.06);
+$tl-title-color:    #ffffff;
+$tl-date-color:     rgba(255, 255, 255, 0.45);
+$tl-nav-size:       36px;
+
+
+// ── Wrapper — fixed full screen ──────────────────────────────
+.timeline-wrapper {
+  position: fixed;
+  inset: 0;
+  background: $tl-bg;
+  overflow: hidden;
+  z-index: 0;
+}
+
+
+// ── Decorative background rings ──────────────────────────────
+.timeline-circles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  &__ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid $tl-ring-color;
+    top: 50%;
+
+    &--lg {
+      width: 600px;
+      height: 600px;
+      left: 20%;
+      transform: translate(-50%, -50%);
+    }
+
+    &--md {
+      width: 380px;
+      height: 380px;
+      left: 32%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+
+// ── Scrollable track ─────────────────────────────────────────
+.timeline-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: $tl-item-gap;
+  height: 100%;
+  padding: 0 8vw;             // generous side padding so first/last items breathe
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  z-index: 1;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+// ── Center line (sized by JS to match full scrollWidth) ───────
+.timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 100%;                // JS overrides this after layout
+  background: $tl-line;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+// ── Individual item ───────────────────────────────────────────
+.timeline-item {
+  flex: 0 0 $tl-item-width;
+  position: relative;
+  height: 100%;
+  scroll-snap-align: start;
+}
+
+
+// ── Dot on the line ───────────────────────────────────────────
+.timeline-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: $tl-dot-size;
+  height: $tl-dot-size;
+  background: $tl-dot;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+
+// ── Vertical connector (dot to image) ────────────────────────
+.timeline-connector {
+  position: absolute;
+  left: calc(50% + (#{$tl-dot-size} / 2 - 1px));
+  width: 1px;
+  height: $tl-connector-h;
+  background: $tl-line;
+  z-index: 2;
+}
+
+
+// ── Article wrapper — display:contents so children can
+//    position themselves against .timeline-item directly ───────
+.timeline-card {
+  display: contents;
+}
+
+
+// ── Title label ───────────────────────────────────────────────
+.timeline-card__label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  right: 0;
+}
+
+.timeline-card__title {
+  margin: 0;
+  font-size: clamp(0.7rem, 0.9vw, 0.875rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $tl-title-color;
+  line-height: 1.4;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.55;
+    }
+  }
+}
+
+
+// ── Media block (date + image) ────────────────────────────────
+.timeline-card__media {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  right: 0;
+}
+
+.timeline-card__date {
+  display: block;
+  font-size: 0.75rem;
+  color: $tl-date-color;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.6rem;
+}
+
+.timeline-card__image {
+  border-radius: $tl-image-radius;
+  overflow: hidden;
+  line-height: 0;
+
+  img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
+}
+
+
+// ── Alternating layout: below / above ────────────────────────
+
+// Below — title above the line, image below
+.timeline-item--below {
+  .timeline-connector {
+    top: 50%;
+  }
+
+  .timeline-card__label {
+    bottom: calc(50% + 1.5rem);
+  }
+
+  .timeline-card__media {
+    top: calc(50% + #{$tl-connector-h});
+  }
+}
+
+// Above — image above the line, title below
+.timeline-item--above {
+  .timeline-connector {
+    bottom: 50%;
+  }
+
+  .timeline-card__label {
+    top: calc(50% + 1.5rem);
+  }
+
+  .timeline-card__media {
+    bottom: calc(50% + #{$tl-connector-h});
+  }
+}
+
+
+// ── Navigation buttons ────────────────────────────────────────
+.timeline-nav {
+  position: absolute;
+  bottom: 1.75rem;
+  right: 2.5rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.timeline-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $tl-nav-size;
+  height: $tl-nav-size;
+  background: transparent;
+  border: 1px solid $tl-line;
+  border-radius: 50%;
+  color: $tl-title-color;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+}
