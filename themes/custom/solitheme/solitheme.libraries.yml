@@ -6,6 +6,7 @@ main:
       /libraries/tobii/dist/tobii.min.css: {}
   js:
     dist/js/global.js: {}
+    js/timeline.js: {}
     /libraries/tobii/dist/tobii.umd.js: {}
 
   dependencies:

@@ -1,0 +1,8 @@
+{#
+  Template: views-view-unformatted--events-timeline.html.twig
+#}
+{% for row in rows %}
+  <div class="timeline-item {{ loop.index is odd ? 'timeline-item--below' : 'timeline-item--above' }}">
+    {{ row.content }}
+  </div>
+{% endfor %}
