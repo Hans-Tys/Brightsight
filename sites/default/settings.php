@@ -814,7 +814,6 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # }
 $databases['default']['default'] = array('database' => 'ID497036_280841', 'username' => 'ID497036_280841', 'password' => 'Flikkerenmetlampjes1', 'prefix' => 'ded2377278', 'host' => 'com-linweb1000.srv.combell-ops.net', 'port' => 3306, 'isolation_level' => 'READ COMMITTED', 'driver' => 'pdo_mysql', 'namespace' => 'Drupal\mysql\Driver\Database\mysql', 'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/');
 $databases['default']['default'] = array('database' => 'ID497036_280841', 'username' => 'ID497036_280841', 'password' => 'Flikkerenmetlampjes1', 'prefix' => 'ded2377278', 'host' => 'com-linweb1000.srv.combell-ops.net', 'port' => 3306, 'isolation_level' => 'READ COMMITTED', 'driver' => 'mysql', 'namespace' => 'Drupal\mysql\Driver\Database\mysql', 'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/');
-$settings['config_sync_directory'] = 'sites/default/files/config_JeGAedwvAYp95khz2d96brXXecOnecfmtCOBL5cMzWo0syiMP5KAFipJpg081jP2KZBSogswfw/sync';
 $settings['trusted_host_patterns'] = [0 => '^(www\.)?brightsight\.studio$'];
 // Automatically generated include for settings managed by ddev.
 $ddev_settings = __DIR__ . '/settings.ddev.php';

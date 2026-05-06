@@ -1,0 +1,20 @@
+uuid: 4d45a472-3c3c-42d0-9016-279148f6a2c8
+langcode: nl
+status: true
+dependencies:
+  theme:
+    - solitheme
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: solitheme_primary_admin_actions
+theme: solitheme
+region: highlighted
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primaire beheeracties'
+  label_display: '0'
+  provider: core
+visibility: {  }

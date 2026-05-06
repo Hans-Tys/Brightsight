@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
+langcode: nl
+uuid: fb442829-7ab4-4283-825a-53f84a5ced4d
+name: Brightsight
+mail: yannick.stevens1@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node/3
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: nl
+mail_notification: null

@@ -1,0 +1,20 @@
+uuid: 4fecadaa-c432-488a-b8fd-6214361c52e5
+langcode: nl
+status: false
+dependencies:
+  theme:
+    - solitheme
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: solitheme_page_title
+theme: solitheme
+region: header
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: Paginatitel
+  label_display: '0'
+  provider: core
+visibility: {  }

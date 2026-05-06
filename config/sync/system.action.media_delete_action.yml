@@ -1,0 +1,13 @@
+uuid: 1e9566e9-b4fd-46a6-af6d-dc40d28f27ac
+langcode: nl
+status: true
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: FrZy1tmuXJcOxhXlBoI1Hsnen5TT-9OCC1iolWH84go
+id: media_delete_action
+label: 'Media verwijderen'
+type: media
+plugin: 'entity:delete_action:media'
+configuration: {  }

@@ -1,0 +1,22 @@
+uuid: 217c0650-5973-4ca0-ac2c-5148930e3bbb
+langcode: nl
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - solitheme
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: solitheme_content
+theme: solitheme
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Primaire inhoud van de pagina'
+  label_display: '0'
+  provider: system
+visibility: {  }
