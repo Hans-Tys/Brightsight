@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Template for an Event node (full view mode).
+ *
+ * Fields used:
+ *  - field_main_image    : Main hero image (Entity ref → Media/Image, Single)
+ *  - field_date          : Event date (Date, Single)
+ *  - field_title         : Event title (Plain text, Single)
+ *  - field_location      : Location label (plain text – add this field if needed)
+ *  - field_attendees     : Attendees count (plain text – add this field if needed)
+ *  - field_description   : About text (Long formatted text, Single)
+ *  - field_extra_images  : Extra images (Entity ref → Media/Image, Unlimited)
+ *  - field_paragraphs    : Paragraph components (Entity ref revisions, Unlimited)
+ */
+#}
+
+{{ attach_library('your_theme/event') }}
+
+<article{{ attributes.addClass('event-detail') }}>
+
+  {# ── HERO IMAGE ────────────────────────────────────────────────────── #}
+  {% if content.field_main_image %}
+    <div class="event-detail__hero">
+      {{ content.field_main_image }}
+    </div>
+  {% endif %}
+
+  {# ── HEADER BLOCK ─────────────────────────────────────────────────── #}
+  <div class="event-detail__header">
+
+    {% if content.field_date %}
+      <div class="event-detail__date">
+        {{ content.field_date }}
+      </div>
+    {% endif %}
+
+    <h1 class="event-detail__title">
+      {{ content.field_title|render|striptags|trim ?: node.title.value }}
+    </h1>
+
+  </div>
+
+  {# ── META GRID (location + attendees) ─────────────────────────────── #}
+  <div class="event-detail__meta">
+
+    {% if content.field_location %}
+      <div class="event-detail__meta-item">
+        <span class="event-detail__meta-label">{{ 'Location'|t }}</span>
+        <span class="event-detail__meta-value">{{ content.field_location }}</span>
+      </div>
+    {% endif %}
+
+    {% if content.field_attendees %}
+      <div class="event-detail__meta-item">
+        <span class="event-detail__meta-label">{{ 'Attendees'|t }}</span>
+        <span class="event-detail__meta-value">{{ content.field_attendees }}</span>
+      </div>
+    {% endif %}
+
+  </div>
+
+  {# ── ABOUT / DESCRIPTION ───────────────────────────────────────────── #}
+  {% if content.field_description %}
+    <div class="event-detail__about">
+      <p class="event-detail__about-label">{{ 'About this event'|t }}</p>
+      <div class="event-detail__description">
+        {{ content.field_description }}
+      </div>
+    </div>
+  {% endif %}
+
+  {# ── EXTRA IMAGES ─────────────────────────────────────────────────── #}
+  {% if content.field_extra_images %}
+    <div class="event-detail__extra-images">
+      {{ content.field_extra_images }}
+    </div>
+  {% endif %}
+
+  {# ── PARAGRAPHS ───────────────────────────────────────────────────── #}
+  {% if content.field_paragraphs %}
+    <div class="event-detail__paragraphs">
+      {{ content.field_paragraphs }}
+    </div>
+  {% endif %}
+
+</article>

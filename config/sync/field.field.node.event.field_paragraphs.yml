@@ -1,0 +1,29 @@
+uuid: 19274ee2-e4a2-4a64-a1ca-a8ffaca98b9a
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paragraphs
+    - node.type.event
+  module:
+    - entity_reference_revisions
+id: node.event.field_paragraphs
+field_name: field_paragraphs
+entity_type: node
+bundle: event
+label: paragraphs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop:
+      hero_banner:
+        weight: 2
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,13 @@
+uuid: 1a7b2bbf-5e24-49a7-99a6-456def20a45d
+langcode: nl
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: sOb26JSy3fGpWkvR0WYN6_hMqj_6d1rvbvrkzp1yya0
+id: node_make_sticky_action
+label: 'Inhoud vastgeplakt bovenaan de lijst maken'
+type: node
+plugin: node_make_sticky_action
+configuration: {  }

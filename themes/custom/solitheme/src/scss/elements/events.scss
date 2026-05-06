@@ -1,0 +1,253 @@
+// =============================================================================
+// Event Detail  –  node--event--full.scss
+// Matches the dark-themed event detail design.
+// =============================================================================
+
+// ── Variables ─────────────────────────────────────────────────────────────────
+
+$event-bg:            #1e1e1e;
+$event-surface:       #252525;
+$event-border:        rgba(255, 255, 255, 0.08);
+
+$event-text-primary:  #ffffff;
+$event-text-secondary:#a0a0a0;
+$event-text-muted:    #6b6b6b;
+
+$event-radius-hero:   12px;
+$event-radius-card:   8px;
+
+$event-font-display:  'Helvetica Neue', Helvetica, Arial, sans-serif;
+$event-font-body:     'Georgia', serif;
+
+$event-max-width:     820px;
+$event-gutter:        32px;
+
+// ── Base wrapper ──────────────────────────────────────────────────────────────
+
+.event-detail {
+  background-color: $event-bg;
+  color: $event-text-primary;
+  font-family: $event-font-display;
+  max-width: $event-max-width;
+  margin: 0 auto;
+  padding: 0 0 64px;
+
+  // Remove default Drupal field wrappers' extra spacing
+  .field {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// ── Hero image ────────────────────────────────────────────────────────────────
+
+.event-detail__hero {
+  width: 100%;
+  border-radius: $event-radius-hero;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background-color: $event-surface;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  // Drupal wraps media in a <div class="field__item"> etc.
+  .field,
+  .field__item,
+  .media,
+  .media--type-image {
+    height: 100%;
+  }
+}
+
+// ── Header (date + title) ─────────────────────────────────────────────────────
+
+.event-detail__header {
+  padding: 36px $event-gutter 0;
+}
+
+.event-detail__date {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: $event-text-secondary;
+  margin-bottom: 10px;
+
+  // Drupal date field renders a <time> element
+  time {
+    color: inherit;
+  }
+}
+
+.event-detail__title {
+  font-family: $event-font-display;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin: 0;
+  color: $event-text-primary;
+}
+
+// ── Meta grid (location / attendees) ─────────────────────────────────────────
+
+.event-detail__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 32px $event-gutter 0;
+  padding-top: 24px;
+  border-top: 1px solid $event-border;
+}
+
+.event-detail__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 24px;
+}
+
+.event-detail__meta-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $event-text-muted;
+}
+
+.event-detail__meta-value {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: $event-text-primary;
+
+  // Strip Drupal field markup
+  .field,
+  .field__item {
+    font-size: inherit;
+    color: inherit;
+  }
+}
+
+// ── About / Description ───────────────────────────────────────────────────────
+
+.event-detail__about {
+  margin: 8px $event-gutter 0;
+  padding-top: 24px;
+  border-top: 1px solid $event-border;
+}
+
+.event-detail__about-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $event-text-muted;
+  margin: 0 0 16px;
+}
+
+.event-detail__description {
+  font-family: $event-font-body;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: $event-text-primary;
+  max-width: 720px;
+
+  p {
+    margin: 0 0 1em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $event-text-primary;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $event-text-secondary;
+    }
+  }
+}
+
+// ── Extra images ──────────────────────────────────────────────────────────────
+
+.event-detail__extra-images {
+  margin: 40px $event-gutter 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+
+  .field__item {
+    border-radius: $event-radius-card;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background-color: $event-surface;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+
+    &:hover {
+      transform: scale(1.04);
+      opacity: 0.9;
+    }
+  }
+}
+
+// ── Paragraphs ────────────────────────────────────────────────────────────────
+
+.event-detail__paragraphs {
+  margin: 48px $event-gutter 0;
+
+  > .field > .field__item {
+    margin-bottom: 32px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
+
+@media (max-width: 600px) {
+  $gutter-sm: 20px;
+
+  .event-detail__header,
+  .event-detail__meta,
+  .event-detail__about,
+  .event-detail__extra-images,
+  .event-detail__paragraphs {
+    padding-left: $gutter-sm;
+    padding-right: $gutter-sm;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .event-detail__title {
+    font-size: 1.9rem;
+    letter-spacing: 0.08em;
+  }
+
+  .event-detail__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .event-detail__extra-images {
+    grid-template-columns: 1fr 1fr;
+  }
+}

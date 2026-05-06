@@ -1,0 +1,22 @@
+uuid: ff52d82c-3192-46b8-8ce8-08e59ddd3dba
+langcode: nl
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - solitheme
+_core:
+  default_config_hash: BZ5tpW7H8X4PVGRm3MImTIHd2tN0eF7zOtp4SpRYUA0
+id: solitheme_messages
+theme: solitheme
+region: highlighted
+weight: -5
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Statusberichten
+  label_display: '0'
+  provider: system
+visibility: {  }

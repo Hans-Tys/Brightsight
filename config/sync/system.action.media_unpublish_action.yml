@@ -1,0 +1,13 @@
+uuid: 71b69784-1831-48ad-97f2-348761a8f843
+langcode: nl
+status: true
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: CsK6TseQ2DatEbZgbd30swOlZ28_HHwAESU2LvEnWq0
+id: media_unpublish_action
+label: 'Media depubliceren'
+type: media
+plugin: 'entity:unpublish_action:media'
+configuration: {  }
