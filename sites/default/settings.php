@@ -252,7 +252,7 @@ $databases = [];
  * directory in the public files path. The setting below allows you to set
  * its location.
  */
- $settings['config_sync_directory'] = '/var/www/html/config/sync';
+ $settings['config_sync_directory'] = '/data/sites/web/brightsightstudio/www/config/sync';
 /**
  * Settings:
  *
