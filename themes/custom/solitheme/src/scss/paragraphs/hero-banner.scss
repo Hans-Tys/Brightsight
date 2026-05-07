@@ -1,0 +1,19 @@
+.hero-banner {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #fff;
+  align-items: center;
+  .hero-text {
+    padding: 1rem;
+  }
+  .hero-image {
+    width: 100%;
+    height: 600px;
+    border-bottom: 1px solid #fff;
+    img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+    }
+  }
+}

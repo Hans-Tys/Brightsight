@@ -1,0 +1,34 @@
+uuid: 55da5739-0ae0-44fa-a511-1d88d98c8737
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_banner.field_body
+    - field.field.paragraph.hero_banner.field_hero_image
+    - paragraphs.paragraphs_type.hero_banner
+  module:
+    - media_library
+    - text
+id: paragraph.hero_banner.default
+targetEntityType: paragraph
+bundle: hero_banner
+mode: default
+content:
+  field_body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_hero_image:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

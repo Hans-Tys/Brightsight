@@ -1,0 +1,22 @@
+uuid: 2d730aeb-692e-4d8e-854a-01f139a3f16a
+langcode: nl
+status: true
+dependencies:
+  theme:
+    - solitheme
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: solitheme_primary_local_tasks
+theme: solitheme
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primaire tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

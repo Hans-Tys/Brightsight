@@ -1,0 +1,13 @@
+uuid: 18940028-36a6-4f64-aae4-b94f0ce4b2c8
+langcode: nl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Fe3N1uqaAyyKJbVkqT-btXy3t98puW8GCRD822xjl10
+name: Artikel
+type: article
+description: 'Gebruik <em>artikelen</em> voor tijdsgebonden inhoud zoals nieuws, persberichten of blog-berichten.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

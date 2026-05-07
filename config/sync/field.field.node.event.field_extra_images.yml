@@ -1,0 +1,29 @@
+uuid: 001072c1-4c79-4d2a-9c90-01f3c6f63adc
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_extra_images
+    - media.type.image
+    - node.type.event
+id: node.event.field_extra_images
+field_name: field_extra_images
+entity_type: node
+bundle: event
+label: 'Extra images'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

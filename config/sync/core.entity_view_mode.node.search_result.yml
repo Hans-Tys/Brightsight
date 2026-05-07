@@ -1,0 +1,13 @@
+uuid: 842d2fea-f8fe-43bd-90c3-36eac09172e4
+langcode: nl
+status: false
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: d8wBEm7XvJ6H3S0IneDD9PfTBklPIH7GMpxElVemPf8
+id: node.search_result
+label: 'Zoekresultaat uitlichten-invoer'
+description: ''
+targetEntityType: node
+cache: true

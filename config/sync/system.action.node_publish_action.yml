@@ -1,0 +1,13 @@
+uuid: e8e5964e-8d9e-49d2-ad0d-cf0f396a7d59
+langcode: nl
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: 2B9uF8NL5gutNKSdPRAhhAsDWFZZG1PJOBmx0aBGd_0
+id: node_publish_action
+label: 'Inhoud publiceren'
+type: node
+plugin: 'entity:publish_action:node'
+configuration: {  }

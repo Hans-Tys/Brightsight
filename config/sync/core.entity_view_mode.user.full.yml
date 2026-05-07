@@ -1,0 +1,13 @@
+uuid: c54a42d1-32ca-4e9a-b06a-e3dfbdf9d823
+langcode: nl
+status: false
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: ZbXunWS_xAvMZXFfinyvClDAb_RCVLt7gAzE3v16E-Q
+id: user.full
+label: Gebruikersaccount
+description: ''
+targetEntityType: user
+cache: true
