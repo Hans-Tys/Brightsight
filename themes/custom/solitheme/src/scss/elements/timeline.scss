@@ -4,19 +4,22 @@
 // ============================================================
 
 // ── Variables ────────────────────────────────────────────────
-$tl-bg:             #1a1a1c;
-$tl-line:           rgba(255, 255, 255, 0.2);
-$tl-dot:            #ffffff;
-$tl-dot-size:       10px;
-$tl-connector-h:    80px;     // vertical distance from center line to image top/bottom
-$tl-item-width:     clamp(340px, 38vw, 560px);  // wider = more spacing between events
-$tl-item-gap:       80px;     // explicit gap between each item
-$tl-image-radius:   12px;
-$tl-ring-color:     rgba(255, 255, 255, 0.06);
-$tl-title-color:    #ffffff;
-$tl-date-color:     rgba(255, 255, 255, 0.45);
-$tl-nav-size:       36px;
-
+$tl-bg: #1a1a1c;
+$tl-line: rgba(255, 255, 255, 0.499);
+$tl-dot: #ffffff;
+$tl-dot-size: 10px;
+$tl-connector-h: 80px; // vertical distance from center line to image top/bottom
+$tl-item-width: clamp(
+  340px,
+  38vw,
+  560px
+); // wider = more spacing between events
+$tl-item-gap: 80px; // explicit gap between each item
+$tl-image-radius: 12px;
+$tl-ring-color: rgba(255, 255, 255, 0.06);
+$tl-title-color: #ffffff;
+$tl-date-color: rgba(255, 255, 255, 0.45);
+$tl-nav-size: 36px;
 
 // ── Wrapper — fixed full screen ──────────────────────────────
 .timeline-wrapper {
@@ -26,7 +29,6 @@ $tl-nav-size:       36px;
   overflow: hidden;
   z-index: 0;
 }
-
 
 // ── Decorative background rings ──────────────────────────────
 .timeline-circles {
@@ -57,7 +59,6 @@ $tl-nav-size:       36px;
   }
 }
 
-
 // ── Scrollable track ─────────────────────────────────────────
 .timeline-track {
   position: relative;
@@ -65,7 +66,7 @@ $tl-nav-size:       36px;
   align-items: center;
   gap: $tl-item-gap;
   height: 100%;
-  padding: 0 8vw;             // generous side padding so first/last items breathe
+  padding: 0 8vw; // generous side padding so first/last items breathe
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -79,19 +80,17 @@ $tl-nav-size:       36px;
   }
 }
 
-
 // ── Center line (sized by JS to match full scrollWidth) ───────
 .timeline-line {
   position: absolute;
   top: 50%;
   left: 0;
   height: 1px;
-  width: 100%;                // JS overrides this after layout
+  width: 100%; // JS overrides this after layout
   background: $tl-line;
   pointer-events: none;
   z-index: 0;
 }
-
 
 // ── Individual item ───────────────────────────────────────────
 .timeline-item {
@@ -100,7 +99,6 @@ $tl-nav-size:       36px;
   height: 100%;
   scroll-snap-align: start;
 }
-
 
 // ── Dot on the line ───────────────────────────────────────────
 .timeline-dot {
@@ -115,7 +113,6 @@ $tl-nav-size:       36px;
   z-index: 3;
 }
 
-
 // ── Vertical connector (dot to image) ────────────────────────
 .timeline-connector {
   position: absolute;
@@ -126,63 +123,43 @@ $tl-nav-size:       36px;
   z-index: 2;
 }
 
-
 // ── Article wrapper — display:contents so children can
 //    position themselves against .timeline-item directly ───────
-.timeline-card {
-  display: contents;
-}
 
-
-// ── Title label ───────────────────────────────────────────────
-.timeline-card__label {
+.event-card {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  right: 0;
+  .card-link {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    top: 0;
+  }
 }
 
-.timeline-card__title {
-  margin: 0;
-  font-size: clamp(0.7rem, 0.9vw, 0.875rem);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: $tl-title-color;
-  line-height: 1.4;
-
+.timeline-card__label {
   a {
-    color: inherit;
+    color: #FFF;
     text-decoration: none;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      opacity: 0.55;
-    }
   }
 }
 
 
 // ── Media block (date + image) ────────────────────────────────
 .timeline-card__media {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  right: 0;
 }
 
 .timeline-card__date {
-  display: block;
-  font-size: 0.75rem;
-  color: $tl-date-color;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.6rem;
+
 }
 
 .timeline-card__image {
   border-radius: $tl-image-radius;
   overflow: hidden;
   line-height: 0;
+  width: 300px;
+  height: 200px;
 
   img {
     width: 300px;
@@ -197,39 +174,26 @@ $tl-nav-size:       36px;
   }
 }
 
-
 // ── Alternating layout: below / above ────────────────────────
-
-// Below — title above the line, image below
 .timeline-item--below {
   .timeline-connector {
     top: 50%;
   }
-
-  .timeline-card__label {
-    bottom: calc(50% + 1.5rem);
-  }
-
-  .timeline-card__media {
-    top: calc(50% + #{$tl-connector-h});
+  .event-card {
+    top: calc(50% + $tl-connector-h);
   }
 }
 
-// Above — image above the line, title below
 .timeline-item--above {
   .timeline-connector {
-    bottom: 50%;
+    top: 50%;
+    transform: translateY(-100%) translateX(-50%);
   }
-
-  .timeline-card__label {
-    top: calc(50% + 1.5rem);
-  }
-
-  .timeline-card__media {
-    bottom: calc(50% + #{$tl-connector-h});
+  .event-card {
+    top: 50%;
+    transform: translateY(calc(-100% - $tl-connector-h)) translateX(-50%);
   }
 }
-
 
 // ── Navigation buttons ────────────────────────────────────────
 .timeline-nav {

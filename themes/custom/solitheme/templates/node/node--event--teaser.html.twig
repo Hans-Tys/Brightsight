@@ -1,24 +1,26 @@
 <article class="timeline-card">
   <div class="timeline-dot"></div>
   <div class="timeline-connector"></div>
-
-  <div class="timeline-card__label">
-    <h3 class="timeline-card__title">
-      <a href="{{ url }}">{{ label }}</a>
-    </h3>
-  </div>
-
-  <div class="timeline-card__media">
-    {% if node.field_date.value %}
-      <time class="timeline-card__date" datetime="{{ node.field_date.value }}">
-        {{ node.field_date.value|date("d/m/Y") }}
-      </time>
-    {% endif %}
-
-    {% if content.field_main_image %}
-      <div class="timeline-card__image">
-        {{ content.field_main_image }}
+  <div class="event-card">
+      <div class="timeline-card__label">
+        <h3 class="timeline-card__title">
+          <a href="{{ url }}">{{ label }}</a>
+        </h3>
       </div>
-    {% endif %}
+
+      <div class="timeline-card__media">
+        {% if node.field_date.value %}
+          <time class="timeline-card__date" datetime="{{ node.field_date.value }}">
+            {{ node.field_date.value|date("M Y") }}    
+          </time>
+        {% endif %}
+
+        {% if content.field_main_image %}
+          <div class="timeline-card__image">
+            {{ content.field_main_image }}
+          </div>
+        {% endif %}
+      </div>
+      <a class="card-link" href="{{ url }}"></a>
   </div>
 </article>
