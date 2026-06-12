@@ -1,2 +1,83 @@
-(function(i,d,m){d.behaviors.solitheme={attach:function(u,f){m("solitheme","html").forEach(function(){let v=new Tobii;i("body").addClass("path-"+window.location.pathname.split("/")[1]);let a=document.querySelector("#block-solitheme-content form");a&&a.querySelectorAll(".js-form-item input").forEach(function(e){let o=e.closest(".js-form-item"),t="not_empty";e.value?o.classList.add(t):o.classList.remove(t),e.addEventListener("input",function(s){this.value?o.classList.add(t):o.classList.remove(t)}),e.addEventListener("focus",function(s){o.classList.add(t)}),e.addEventListener("blur",function(s){this.value?o.classList.add(t):o.classList.remove(t)})});let r=document.querySelector("header > div");var h=i(window).scrollTop();window.onscroll=function(e){var e=i(window).scrollTop();e==0&&r.classList.contains("moveUp")?r.classList.remove("moveUp"):r.classList.add("moveUp")};var p=document.getElementById("backgroundMedia");if(i(".s-slider-image").length!=0){let e=function(s){t(l+=s)},o=function(s){t(l=s)},t=function(s){let c,n=document.getElementsByClassName("s-slider-image");for(s>n.length&&(l=1),s<1&&(l=n.length),c=0;c<n.length;c++)n[c].style.display="none";n[l-1].style.display="block"},l=1;t(l),i(".next").on("click",function(){e(1)}),i(".previous").on("click",function(){e(-1)})}})}}})(jQuery,Drupal,once);
+// src/js/partials/custom.js
+(function($, Drupal2, once2) {
+  Drupal2.behaviors.solitheme = {
+    attach: function(context, settings) {
+      once2("solitheme", "html").forEach(
+        function() {
+          const tobii = new Tobii();
+          $("body").addClass("path-" + window.location.pathname.split("/")[1]);
+          let form = document.querySelector("#block-solitheme-content form");
+          if (form) {
+            let formElements = form.querySelectorAll(".js-form-item input");
+            formElements.forEach(function(_fe_input) {
+              let _fe = _fe_input.closest(".js-form-item");
+              let _not_empty_class = "not_empty";
+              if (_fe_input.value) {
+                _fe.classList.add(_not_empty_class);
+              } else {
+                _fe.classList.remove(_not_empty_class);
+              }
+              _fe_input.addEventListener("input", function(ev) {
+                if (this.value) {
+                  _fe.classList.add(_not_empty_class);
+                } else {
+                  _fe.classList.remove(_not_empty_class);
+                }
+              });
+              _fe_input.addEventListener("focus", function(ev) {
+                _fe.classList.add(_not_empty_class);
+              });
+              _fe_input.addEventListener("blur", function(ev) {
+                if (this.value) {
+                  _fe.classList.add(_not_empty_class);
+                } else {
+                  _fe.classList.remove(_not_empty_class);
+                }
+              });
+            });
+          }
+          const headerDiv = document.querySelector("header > div");
+          var currentScrollPos = $(window).scrollTop();
+          window.onscroll = function(currentScrollPos2) {
+            var currentScrollPos2 = $(window).scrollTop();
+            if (currentScrollPos2 == 0 && headerDiv.classList.contains("moveUp")) {
+              headerDiv.classList.remove("moveUp");
+            } else {
+              headerDiv.classList.add("moveUp");
+            }
+          };
+          var vid = document.getElementById("backgroundMedia");
+          if ($(".s-slider-image").length != 0) {
+            let plusSlides = function(n) {
+              showSlides(slideIndex += n);
+            }, currentSlide = function(n) {
+              showSlides(slideIndex = n);
+            }, showSlides = function(n) {
+              let i;
+              let slides = document.getElementsByClassName("s-slider-image");
+              if (n > slides.length) {
+                slideIndex = 1;
+              }
+              if (n < 1) {
+                slideIndex = slides.length;
+              }
+              for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+              }
+              slides[slideIndex - 1].style.display = "block";
+            };
+            let slideIndex = 1;
+            showSlides(slideIndex);
+            $(".next").on("click", function() {
+              plusSlides(1);
+            });
+            $(".previous").on("click", function() {
+              plusSlides(-1);
+            });
+          }
+        }
+      );
+    }
+  };
+})(jQuery, Drupal, once);
 //# sourceMappingURL=global.js.map

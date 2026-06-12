@@ -1,0 +1,143 @@
+// event-hero — detail-page hero with top bar and full-width image.
+.event-hero {
+  --event-hero-accent: #ff9500;
+  --event-hero-fg: #e8e8ec;
+  --event-hero-faint: #4a4a5a;
+
+  background: #000;
+
+  &__bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--event-hero-fg);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--event-hero-accent);
+    }
+  }
+
+  &__context {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--event-hero-faint);
+  }
+
+  &__stage {
+    position: relative;
+    // Fill the viewport below the site header and top bar.
+    height: calc(100svh - 180px);
+    min-height: 480px;
+    overflow: hidden;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.85));
+  }
+
+  &__content {
+    position: absolute;
+    left: 32px;
+    right: 32px;
+    bottom: 36px;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &__badge {
+    padding: 4px 11px;
+    border: 1px solid color-mix(in srgb, var(--event-hero-accent) 40%, transparent);
+    background: rgba(0, 0, 0, 0.55);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--event-hero-accent);
+  }
+
+  &__meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #9a9aaa;
+  }
+
+  &__dot {
+    color: var(--event-hero-faint);
+  }
+
+  &__title {
+    margin: 14px 0 0;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--event-hero-fg);
+  }
+
+  &__where {
+    margin: 14px 0 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.1px;
+    color: #9a9aaa;
+  }
+
+  @media (max-width: 640px) {
+    &__bar {
+      padding: 14px 20px;
+    }
+
+    &__context {
+      display: none;
+    }
+
+    &__stage {
+      height: calc(100svh - 150px);
+      min-height: 420px;
+    }
+
+    &__content {
+      left: 20px;
+      right: 20px;
+      bottom: 24px;
+    }
+  }
+}

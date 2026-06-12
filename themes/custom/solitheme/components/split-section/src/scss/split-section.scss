@@ -1,0 +1,55 @@
+// split-section — section header left, body right.
+.split-section {
+  --split-section-accent: #ff9500;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 96px 32px;
+  background: #000;
+
+  // Detail pages use a smaller heading than landing sections.
+  .section-header__title {
+    font-size: clamp(32px, 4vw, 48px);
+  }
+
+  &__body {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #9a9aaa;
+
+    p {
+      margin: 0 0 20px;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.65px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--split-section-accent);
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+      transform: translateX(4px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 56px 20px;
+  }
+}

@@ -1,0 +1,19 @@
+uuid: 9f38b126-3d70-4c30-996a-ead226b678ef
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_edition
+    - node.type.event
+id: node.event.field_edition
+field_name: field_edition
+entity_type: node
+bundle: event
+label: Edition
+description: 'e.g. 26th Edition'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

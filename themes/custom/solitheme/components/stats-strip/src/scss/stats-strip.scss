@@ -1,0 +1,63 @@
+// stats-strip — bordered stat cells in a compact strip or accent cards.
+.stats-strip {
+  --stats-strip-accent: #ff9500;
+
+  display: grid;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: none;
+
+  &--strip {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  &--cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  &__cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 20px 24px;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  &__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.26px;
+    text-transform: uppercase;
+    color: #4a4a5a;
+  }
+
+  &__value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    color: #e8e8ec;
+  }
+
+  &--cards &__cell {
+    padding: 32px 24px;
+  }
+
+  &--cards &__value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--stats-strip-accent);
+  }
+
+  @media (max-width: 640px) {
+    &--strip {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &--strip &__cell {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 14px 16px;
+    }
+  }
+}

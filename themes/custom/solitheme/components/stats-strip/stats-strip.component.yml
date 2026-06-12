@@ -1,0 +1,27 @@
+name: Stats Strip
+description: Row of bordered stat cells. Strip variant for compact rows, cards variant for big accent-colored numbers.
+status: experimental
+
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Stats
+      items:
+        type: object
+        properties:
+          label:
+            type: string
+          value:
+            type: string
+          color:
+            type: string
+            title: Accent color (cards variant)
+    variant:
+      type: string
+      title: Variant
+      default: strip
+      enum:
+        - strip
+        - cards

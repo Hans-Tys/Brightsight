@@ -44,6 +44,7 @@ function solitheme_preprocess_views_view__event_timeline(&$variables) {
     }
 
     $events[] = [
+      'url' => $node->toUrl()->toString(),
       'name' => $node->get('field_title')->value ?: $node->label(),
       'category' => $date_label,
       'image_url' => $image_url,

@@ -41,3 +41,13 @@ props:
     attributes:
       type: Drupal\Core\Template\Attribute
       title: Attributes
+    tactile:
+      type: boolean
+      title: Tactile
+      description: Key-travel press effect with a soft click sound. Default on.
+      default: true
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

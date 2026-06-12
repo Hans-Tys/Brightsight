@@ -1,0 +1,51 @@
+{#
+  @component event-hero
+  Event detail hero: top bar + full-width image with title block.
+
+  @prop string back_url      - Back link URL
+  @prop string back_text     - Back link label (default: "Back to Events")
+  @prop string context_label - Small center label (default: "Event Detail")
+  @prop string image         - Hero image URL
+  @prop string badge         - Bordered badge, e.g. "FLAGSHIP"
+  @prop array  meta          - Meta items after the badge (edition, genre…)
+  @prop string title         - Event title
+  @prop string venue         - Venue line
+  @prop string dates         - Dates text
+#}
+
+<header class="event-hero">
+  <div class="event-hero__bar">
+    {% if back_url %}
+      <a class="event-hero__back" href="{{ back_url }}">
+        <svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true"><path d="M9 2L4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        {{ back_text|default('Back to Events'|t) }}
+      </a>
+    {% endif %}
+    <span class="event-hero__context">&#9670; {{ context_label|default('Event Detail'|t) }}</span>
+  </div>
+
+  <div class="event-hero__stage">
+    {% if image %}
+      <img class="event-hero__image" src="{{ image }}" alt="" />
+    {% endif %}
+    <div class="event-hero__scrim" aria-hidden="true"></div>
+
+    <div class="event-hero__content">
+      <div class="event-hero__meta">
+        {% if badge %}<span class="event-hero__badge">{{ badge }}</span>{% endif %}
+        {% for item in meta|default([]) %}
+          {% if not loop.first or badge %}<span class="event-hero__dot" aria-hidden="true">&middot;</span>{% endif %}
+          <span class="event-hero__meta-item">{{ item }}</span>
+        {% endfor %}
+      </div>
+      <h1 class="event-hero__title">{{ title }}</h1>
+      {% if venue or dates %}
+        <p class="event-hero__where">
+          {% if venue %}{{ venue }}{% endif %}
+          {%- if venue and dates %} <span class="event-hero__dot" aria-hidden="true">&middot;</span> {% endif %}
+          {%- if dates %}{{ dates }}{% endif %}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</header>

@@ -1,2 +1,15 @@
-(function(t,a,o){a.behaviors.localTasks={attach:function(c,s){o("localTasks","html").forEach(function(){t(".local-task-trigger").on("click",function(){t(".local-tasks").toggleClass("open-tasks")})})}}})(jQuery,Drupal,once);
+// components/local-tasks/src/js/local-tasks.js
+(function($, Drupal2, once2) {
+  Drupal2.behaviors.localTasks = {
+    attach: function(context, settings) {
+      once2("localTasks", "html").forEach(
+        function() {
+          $(".local-task-trigger").on("click", function() {
+            $(".local-tasks").toggleClass("open-tasks");
+          });
+        }
+      );
+    }
+  };
+})(jQuery, Drupal, once);
 //# sourceMappingURL=local-tasks.js.map

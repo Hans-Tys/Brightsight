@@ -1,0 +1,19 @@
+{#
+  @component stats-strip
+  Row of bordered stat cells.
+
+  @prop array  items   - Stats: { label, value, color }
+  @prop string variant - 'strip' (compact, default) or 'cards' (big colored numbers)
+
+  Usage:
+    {{ include('solitheme:stats-strip', { items: [{ label: 'CAPACITY', value: '125K' }] }) }}
+#}
+
+<div class="stats-strip stats-strip--{{ variant|default('strip') }}">
+  {% for item in items %}
+    <div class="stats-strip__cell" {% if item.color %}style="--stats-strip-accent: {{ item.color }}"{% endif %}>
+      <span class="stats-strip__label">{{ item.label }}</span>
+      <span class="stats-strip__value">{{ item.value }}</span>
+    </div>
+  {% endfor %}
+</div>

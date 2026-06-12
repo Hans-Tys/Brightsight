@@ -17,6 +17,7 @@
   'bs-button',
   'bs-button--' ~ (variant|default('primary')),
   full_width ? 'bs-button--full',
+  tactile is defined and tactile == false ? 'bs-button--flat',
 ] | filter(c => c) | join(' ') %}
 
 {% set label %}{{ text }}{% if arrow %}&nbsp;&#8594;{% endif %}{% endset %}

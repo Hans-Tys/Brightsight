@@ -1,0 +1,41 @@
+name: Event Hero
+description: Detail-page hero with top bar, full-width image, badge row, big title and venue/date line.
+status: experimental
+
+props:
+  type: object
+  properties:
+    back_url:
+      type: string
+      title: Back link URL
+    back_text:
+      type: string
+      title: Back link label
+      default: "Back to Events"
+    context_label:
+      type: string
+      title: Center label
+      default: "Event Detail"
+    image:
+      type: string
+      title: Hero image URL
+    badge:
+      type: string
+      title: Badge
+      examples:
+        - "FLAGSHIP"
+    meta:
+      type: array
+      title: Meta items
+      description: Shown after the badge, separated by dots, e.g. edition and genre.
+      items:
+        type: string
+    title:
+      type: string
+      title: Event title
+    venue:
+      type: string
+      title: Venue
+    dates:
+      type: string
+      title: Dates text

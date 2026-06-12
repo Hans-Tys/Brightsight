@@ -1,0 +1,19 @@
+uuid: f07632d9-e7bd-4ccc-85a6-9b188ca028e6
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dates_text
+    - node.type.event
+id: node.event.field_dates_text
+field_name: field_dates_text
+entity_type: node
+bundle: event
+label: 'Dates (display text)'
+description: 'e.g. April 11–13 & 18–20, 2025. Falls back to the date field when empty.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

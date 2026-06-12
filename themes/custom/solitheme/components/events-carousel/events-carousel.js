@@ -1,21 +1,256 @@
-(function(m,O){"use strict";m.behaviors.eventsCarousel={attach(a){O("events-carousel",".carousel-section",a).forEach(c=>N(c))}};function N(a){let c=JSON.parse(a.dataset.events||"[]");if(!c.length)return;let h=340,x=h+180,p=3,R=8e-5,l=c.length,i=0,d=0,b=!1,$=0,E=null,L=-1,f="A",q=-1,v=Object.fromEntries(c.map((t,e)=>[e,{x:0,y:0}])),H=a.querySelector("#stageInner"),Y=a.querySelector("#headerCounter"),G=a.querySelector("#dots"),j=a.querySelector("#btnPrev"),z=a.querySelector("#btnNext"),S=a.querySelector("#bgBlurA"),w=a.querySelector("#bgBlurB"),_=(t,e)=>(t%e+e)%e,u=(t,e,r)=>t+(e-t)*r,J=t=>{let e=Math.max(0,Math.min(1,t));return e*e*(3-2*e)},U=(t,e,r)=>{let n=_(e-t,r);return n>r/2?n-r:n},o=c.map((t,e)=>{let r=document.createElement("div");return r.className="card",r.setAttribute("role","tab"),r.setAttribute("aria-label",t.name),r.innerHTML=`
+// components/events-carousel/src/js/events-carousel.js
+(function(Drupal2, once2) {
+  "use strict";
+  Drupal2.behaviors.eventsCarousel = {
+    attach(context) {
+      once2("events-carousel", ".carousel-section", context).forEach((section) => init(section));
+    }
+  };
+  function init(section) {
+    const APPS = JSON.parse(section.dataset.events || "[]");
+    if (!APPS.length) return;
+    const CARD_WIDTH = 340;
+    const CARD_GAP = 180;
+    const STEP = CARD_WIDTH + CARD_GAP;
+    const VISIBLE_SPREAD = 3;
+    const AUTO_SPEED = 8e-5;
+    const TOTAL = Math.max(parseInt(section.dataset.total || "0", 10), APPS.length);
+    const PREFETCH_AHEAD = 5;
+    let N = APPS.length;
+    let position = 0;
+    let velocity = 0;
+    let isDragging = false;
+    let lastPointerX = 0;
+    let lastFrameTime = null;
+    let lastDisplayIndex = -1;
+    let bgActive = "A";
+    let bgPending = -1;
+    let nextPage = 1;
+    let loadingPage = false;
+    const mousePositions = {};
+    const stageInner = section.querySelector("#stageInner");
+    const headerCounter = section.querySelector("#headerCounter");
+    const dotsContainer = section.querySelector("#dots");
+    const btnPrev = section.querySelector("#btnPrev");
+    const btnNext = section.querySelector("#btnNext");
+    const bgBlurA = section.querySelector("#bgBlurA");
+    const bgBlurB = section.querySelector("#bgBlurB");
+    const mod = (n, m) => (n % m + m) % m;
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const smoothstep = (x) => {
+      const t = Math.max(0, Math.min(1, x));
+      return t * t * (3 - 2 * t);
+    };
+    const wrapOff = (from, to, len) => {
+      const d = mod(to - from, len);
+      return d > len / 2 ? d - len : d;
+    };
+    function createCard(app, i) {
+      mousePositions[i] = { x: 0, y: 0 };
+      const root = document.createElement("div");
+      root.className = "card";
+      root.setAttribute("role", "tab");
+      root.setAttribute("aria-label", app.name);
+      root.style.display = "none";
+      root.innerHTML = `
         <div class="card__inner">
-          <img class="card__image" src="${t.image_url}" alt="${t.name}" draggable="false" />
+          <img class="card__image" src="${app.image_url}" alt="${app.name}" draggable="false" loading="lazy" />
           <div class="card__glare"></div>
           <div class="card__overlay"></div>
-          ${t.is_hot?'<div class="card__badge">HOT</div>':""}
+          ${app.is_hot ? '<div class="card__badge">HOT</div>' : ""}
           <div class="card__body">
-            <div class="card__category">${t.category}</div>
-            <div class="card__title">${t.name}</div>
-            <p class="card__desc">${t.description}</p>
+            <div class="card__category">${app.category}</div>
+            <div class="card__title">${app.name}</div>
+            <p class="card__desc">${app.description}</p>
             <div class="card__footer">
-              <div class="card__attendees">${t.attendees} ${m.t("attendees")}</div>
-              <button class="card__btn">${m.t("Show More")}</button>
+              <div class="card__attendees">${app.attendees} ${Drupal2.t("attendees")}</div>
+              <button class="card__btn">${Drupal2.t("Show More")}</button>
             </div>
           </div>
           <div class="card__glow-line"></div>
         </div>
         <div class="card__reflection">
-          <img src="${t.image_url}" alt="" draggable="false" />
-        </div>`,r.addEventListener("click",()=>F(e)),r.addEventListener("mousemove",n=>{let y=r.getBoundingClientRect();v[e].x=((n.clientX-y.left)/y.width-.5)*2,v[e].y=((n.clientY-y.top)/y.height-.5)*2}),r.addEventListener("mouseleave",()=>{v[e].x=0,v[e].y=0}),H.appendChild(r),r}),V=c.map((t,e)=>{let r=document.createElement("button");return r.className="controls__dot",r.style.width="6px",r.setAttribute("role","tab"),r.setAttribute("aria-label",m.t("Go to event @n",{"@n":e+1})),r.addEventListener("click",()=>F(e)),G.appendChild(r),r});function W(t){if(q===t)return;q=t;let e=f==="A"?w:S,r=f==="A"?S:w;e.querySelector("img").src=c[t].image_url,e.classList.remove("hidden"),e.classList.add("visible"),r.classList.remove("visible"),r.classList.add("hidden"),f=f==="A"?"B":"A"}function Z(t){let e=_(Math.round(t),l);e!==L&&(L=e,Y.textContent=`${e+1} / ${l}`,V.forEach((r,n)=>{r.classList.toggle("active",n===e),r.style.width=n===e?"24px":"6px"}),W(e)),c.forEach((r,n)=>{let y=n-t,A=_(y+l/2,l)-l/2,g=Math.abs(A);if(g>p){o[n].style.display="none";return}o[n].style.display="";let s=J(1-Math.min(g,1)),k=v[n].x,X=v[n].y,K=`0 0 0 1px rgba(232,255,87,${(.25*s).toFixed(3)}), 0 0 80px rgba(232,255,87,${(.07*s).toFixed(3)})`,Q=`0 ${u(20,60,s).toFixed(1)}px ${u(60,120,s).toFixed(1)}px rgba(0,0,0,${u(.7,.9,s).toFixed(3)})`;Object.assign(o[n].style,{width:`${h}px`,marginLeft:`${-h/2}px`,marginTop:`${-u(170,210,s)}px`,transform:`translateX(${A*x}px) translateZ(${u(-g*60-20,80,s)}px) rotateY(${A*38+k*10*s}deg) rotateX(${-X*8*s}deg) scale(${Math.max(.65,1-g*.12)})`,opacity:Math.max(0,1-g*.25),zIndex:g<.5?20:p+1-Math.floor(g),pointerEvents:g>p?"none":"auto"}),o[n].querySelector(".card__inner").style.boxShadow=`${Q}, ${K}`;let D=o[n].querySelector(".card__image");D.style.height=`${u(340,420,s)}px`,D.style.filter=`brightness(${u(.55,1,s).toFixed(3)})`,o[n].querySelector(".card__glare").style.background=`radial-gradient(circle at ${50+k*35}% ${50+X*35}%, rgba(232,255,87,${(.1*s).toFixed(3)}) 0%, transparent 55%)`,o[n].querySelector(".card__title").style.fontSize=`${u(1.3,1.75,s).toFixed(3)}rem`;let I=o[n].querySelector(".card__desc");I.style.opacity=s.toFixed(3),I.style.maxHeight=`${s*80}px`;let T=o[n].querySelector(".card__btn");T.style.opacity=s.toFixed(3),T.style.pointerEvents=s>.5?"auto":"none",o[n].querySelector(".card__glow-line").style.opacity=s.toFixed(3),o[n].querySelector(".card__reflection").style.opacity=(.15*s).toFixed(3)})}function F(t){d=U(i,t,l)*.04}function C(){d-=.15}function M(){d+=.15}function P(t){let e=E===null?16:t-E;E=t,b||(d*=.92,i=_(i+R*e+d,l)),Z(i),requestAnimationFrame(P)}a.addEventListener("pointerdown",t=>{b=!0,$=t.clientX,d=0,a.setPointerCapture(t.pointerId),a.classList.add("is-dragging")}),a.addEventListener("pointermove",t=>{if(!b)return;let e=t.clientX-$;$=t.clientX;let r=-e/x;i=_(i+r,l),d=r/16});let B=()=>{b=!1,a.classList.remove("is-dragging")};a.addEventListener("pointerup",B),a.addEventListener("pointercancel",B),a.addEventListener("wheel",t=>{if(Math.abs(t.deltaX)<Math.abs(t.deltaY)*.5)return;t.preventDefault();let e=t.deltaX/x*.4;d=e,i=_(i+e,l)},{passive:!1}),a.addEventListener("keydown",t=>{t.key==="ArrowLeft"&&C(),t.key==="ArrowRight"&&M()}),j.addEventListener("click",C),z.addEventListener("click",M),S.querySelector("img").src=c[0].image_url,requestAnimationFrame(P)}})(Drupal,once);
+          <img src="${app.image_url}" alt="" draggable="false" loading="lazy" />
+        </div>`;
+      root.addEventListener("click", () => goTo(i));
+      const showMoreBtn = root.querySelector(".card__btn");
+      showMoreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (app.url) {
+          window.location.href = app.url;
+        }
+      });
+      root.addEventListener("mousemove", (e) => {
+        const r = root.getBoundingClientRect();
+        mousePositions[i].x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        mousePositions[i].y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      });
+      root.addEventListener("mouseleave", () => {
+        mousePositions[i].x = 0;
+        mousePositions[i].y = 0;
+      });
+      stageInner.appendChild(root);
+      return root;
+    }
+    function createDot(i) {
+      const btn = document.createElement("button");
+      btn.className = "controls__dot";
+      btn.style.width = "6px";
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-label", Drupal2.t("Go to event @n", { "@n": i + 1 }));
+      btn.addEventListener("click", () => goTo(i));
+      dotsContainer.appendChild(btn);
+      return btn;
+    }
+    const cardEls = APPS.map(createCard);
+    const dotEls = APPS.map((_, i) => createDot(i));
+    function loadNextPage() {
+      if (loadingPage || APPS.length >= TOTAL) {
+        return;
+      }
+      loadingPage = true;
+      const url = new URL(window.location.href);
+      url.searchParams.set("page", String(nextPage));
+      fetch(url.toString(), { headers: { "X-Requested-With": "XMLHttpRequest" } }).then((response) => response.text()).then((html) => {
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const source = doc.querySelector(".carousel-section");
+        const more = source ? JSON.parse(source.dataset.events || "[]") : [];
+        more.forEach((app) => {
+          const i = APPS.length;
+          APPS.push(app);
+          cardEls.push(createCard(app, i));
+          dotEls.push(createDot(i));
+        });
+        if (more.length) {
+          N = APPS.length;
+          nextPage++;
+          lastDisplayIndex = -1;
+        }
+        loadingPage = false;
+      }).catch(() => {
+        loadingPage = false;
+      });
+    }
+    function triggerBg(index) {
+      if (bgPending === index) return;
+      bgPending = index;
+      const incoming = bgActive === "A" ? bgBlurB : bgBlurA;
+      const outgoing = bgActive === "A" ? bgBlurA : bgBlurB;
+      incoming.querySelector("img").src = APPS[index].image_url;
+      incoming.classList.remove("hidden");
+      incoming.classList.add("visible");
+      outgoing.classList.remove("visible");
+      outgoing.classList.add("hidden");
+      bgActive = bgActive === "A" ? "B" : "A";
+    }
+    function updateCards(renderPos) {
+      const ri = mod(Math.round(renderPos), N);
+      if (ri !== lastDisplayIndex) {
+        lastDisplayIndex = ri;
+        headerCounter.textContent = `${ri + 1} / ${TOTAL}`;
+        dotEls.forEach((d, i) => {
+          d.classList.toggle("active", i === ri);
+          d.style.width = i === ri ? "24px" : "6px";
+        });
+        triggerBg(ri);
+        if (APPS.length < TOTAL && APPS.length - ri <= PREFETCH_AHEAD) {
+          loadNextPage();
+        }
+      }
+      APPS.forEach((_, i) => {
+        const raw = i - renderPos;
+        const offset = mod(raw + N / 2, N) - N / 2;
+        const absOff = Math.abs(offset);
+        if (absOff > VISIBLE_SPREAD) {
+          cardEls[i].style.display = "none";
+          return;
+        }
+        cardEls[i].style.display = "";
+        const c = smoothstep(1 - Math.min(absOff, 1));
+        const mx = mousePositions[i].x;
+        const my = mousePositions[i].y;
+        const shadowYellow = `0 0 0 1px rgba(232,255,87,${(0.25 * c).toFixed(3)}), 0 0 80px rgba(232,255,87,${(0.07 * c).toFixed(3)})`;
+        const shadowBase = `0 ${lerp(20, 60, c).toFixed(1)}px ${lerp(60, 120, c).toFixed(1)}px rgba(0,0,0,${lerp(0.7, 0.9, c).toFixed(3)})`;
+        Object.assign(cardEls[i].style, {
+          width: `${CARD_WIDTH}px`,
+          marginLeft: `${-CARD_WIDTH / 2}px`,
+          marginTop: `${-lerp(170, 210, c)}px`,
+          transform: `translateX(${offset * STEP}px) translateZ(${lerp(-absOff * 60 - 20, 80, c)}px) rotateY(${offset * 38 + mx * 10 * c}deg) rotateX(${-my * 8 * c}deg) scale(${Math.max(0.65, 1 - absOff * 0.12)})`,
+          opacity: Math.max(0, 1 - absOff * 0.25),
+          zIndex: absOff < 0.5 ? 20 : VISIBLE_SPREAD + 1 - Math.floor(absOff),
+          pointerEvents: absOff > VISIBLE_SPREAD ? "none" : "auto"
+        });
+        cardEls[i].querySelector(".card__inner").style.boxShadow = `${shadowBase}, ${shadowYellow}`;
+        const img = cardEls[i].querySelector(".card__image");
+        img.style.height = `${lerp(340, 420, c)}px`;
+        img.style.filter = `brightness(${lerp(0.55, 1, c).toFixed(3)})`;
+        cardEls[i].querySelector(".card__glare").style.background = `radial-gradient(circle at ${50 + mx * 35}% ${50 + my * 35}%, rgba(232,255,87,${(0.1 * c).toFixed(3)}) 0%, transparent 55%)`;
+        cardEls[i].querySelector(".card__title").style.fontSize = `${lerp(1.3, 1.75, c).toFixed(3)}rem`;
+        const desc = cardEls[i].querySelector(".card__desc");
+        desc.style.opacity = c.toFixed(3);
+        desc.style.maxHeight = `${c * 80}px`;
+        const btn = cardEls[i].querySelector(".card__btn");
+        btn.style.opacity = c.toFixed(3);
+        btn.style.pointerEvents = c > 0.5 ? "auto" : "none";
+        cardEls[i].querySelector(".card__glow-line").style.opacity = c.toFixed(3);
+        cardEls[i].querySelector(".card__reflection").style.opacity = (0.15 * c).toFixed(3);
+      });
+    }
+    function goTo(targetIndex) {
+      velocity = wrapOff(position, targetIndex, N) * 0.04;
+    }
+    function prev() {
+      velocity -= 0.15;
+    }
+    function next() {
+      velocity += 0.15;
+    }
+    function tick(timestamp) {
+      const delta = lastFrameTime === null ? 16 : timestamp - lastFrameTime;
+      lastFrameTime = timestamp;
+      if (!isDragging) {
+        velocity *= 0.92;
+        position = mod(position + AUTO_SPEED * delta + velocity, N);
+      }
+      updateCards(position);
+      requestAnimationFrame(tick);
+    }
+    section.addEventListener("pointerdown", (e) => {
+      isDragging = true;
+      lastPointerX = e.clientX;
+      velocity = 0;
+      section.setPointerCapture(e.pointerId);
+      section.classList.add("is-dragging");
+    });
+    section.addEventListener("pointermove", (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - lastPointerX;
+      lastPointerX = e.clientX;
+      const delta = -dx / STEP;
+      position = mod(position + delta, N);
+      velocity = delta / 16;
+    });
+    const endDrag = () => {
+      isDragging = false;
+      section.classList.remove("is-dragging");
+    };
+    section.addEventListener("pointerup", endDrag);
+    section.addEventListener("pointercancel", endDrag);
+    section.addEventListener("wheel", (e) => {
+      if (Math.abs(e.deltaX) < Math.abs(e.deltaY) * 0.5) return;
+      e.preventDefault();
+      const delta = e.deltaX / STEP * 0.4;
+      velocity = delta;
+      position = mod(position + delta, N);
+    }, { passive: false });
+    section.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    });
+    btnPrev.addEventListener("click", prev);
+    btnNext.addEventListener("click", next);
+    bgBlurA.querySelector("img").src = APPS[0].image_url;
+    requestAnimationFrame(tick);
+  }
+})(Drupal, once);
 //# sourceMappingURL=events-carousel.js.map

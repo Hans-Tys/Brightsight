@@ -1,0 +1,32 @@
+{#
+  @component split-section
+  Section header left, body content right.
+
+  @prop string eyebrow      - Section eyebrow label
+  @prop string title        - Heading first part
+  @prop string title_accent - Heading accented part
+  @prop string accent       - Accent color (default: #ff9500)
+  @prop string link_text    - Optional arrow link under the body
+  @prop string link_url     - Link URL
+  @slot body                - Right-column content
+#}
+
+<section class="split-section">
+  <div class="split-section__header">
+    {{ include('solitheme:section-header', {
+      eyebrow: eyebrow,
+      title: title,
+      title_accent: title_accent,
+      accent: accent|default('#ff9500'),
+    }) }}
+  </div>
+  <div class="split-section__body">
+    {% block body %}{% endblock %}
+    {% if link_url %}
+      <a class="split-section__link" href="{{ link_url }}">
+        {{ link_text }}
+        <svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true"><path d="M0 4h14m-4-3.5L14 4l-4 3.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      </a>
+    {% endif %}
+  </div>
+</section>

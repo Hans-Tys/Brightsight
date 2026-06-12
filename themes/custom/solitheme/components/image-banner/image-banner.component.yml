@@ -1,0 +1,29 @@
+name: Image Banner
+description: Full-width image band with an eyebrow and stacked heading lines overlaid bottom-left.
+status: experimental
+
+props:
+  type: object
+  properties:
+    image:
+      type: string
+      title: Image URL
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      examples:
+        - "Production"
+    lines:
+      type: array
+      title: Heading lines
+      items:
+        type: string
+    accent_line:
+      type: integer
+      title: Accented line index
+      description: Zero-based. Defaults to the second line.
+      default: 1
+    accent:
+      type: string
+      title: Accent color
+      default: "#ff9500"

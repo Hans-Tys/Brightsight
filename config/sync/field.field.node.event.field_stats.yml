@@ -1,0 +1,19 @@
+uuid: bb3f675f-1ade-4e16-8cd6-e2a21a521131
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stats
+    - node.type.event
+id: node.event.field_stats
+field_name: field_stats
+entity_type: node
+bundle: event
+label: 'Stats strip'
+description: 'One per value as LABEL|VALUE, e.g. CAPACITY|125K'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

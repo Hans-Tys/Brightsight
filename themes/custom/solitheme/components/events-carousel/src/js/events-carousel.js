@@ -1,6 +1,10 @@
 /**
  * @file events-carousel.js
  * Drupal behavior for the 3D events carousel SDC.
+ *
+ * Events are lazy-loaded in pages: the carousel starts with the first page
+ * and fetches the next one (same URL, ?page=n) when the user gets within a
+ * few cards of the last loaded event.
  */
 
 (function (Drupal, once) {
@@ -24,9 +28,11 @@
     const STEP           = CARD_WIDTH + CARD_GAP;
     const VISIBLE_SPREAD = 3;
     const AUTO_SPEED     = 0.00008; // index units per ms
-    const N              = APPS.length;
+    const TOTAL          = Math.max(parseInt(section.dataset.total || '0', 10), APPS.length);
+    const PREFETCH_AHEAD = 5; // start loading when this close to the last loaded card
 
     // ── State ────────────────────────────────────────────
+    let N                = APPS.length;
     let position         = 0;
     let velocity         = 0;
     let isDragging       = false;
@@ -35,10 +41,10 @@
     let lastDisplayIndex = -1;
     let bgActive         = 'A';
     let bgPending        = -1;
+    let nextPage         = 1;
+    let loadingPage      = false;
 
-    const mousePositions = Object.fromEntries(
-      APPS.map((_, i) => [i, { x: 0, y: 0 }])
-    );
+    const mousePositions = {};
 
     // ── DOM refs (scoped inside this section) ────────────
     const stageInner    = section.querySelector('#stageInner');
@@ -55,16 +61,19 @@
     const smoothstep = x => { const t = Math.max(0, Math.min(1, x)); return t * t * (3 - 2 * t); };
     const wrapOff    = (from, to, len) => { const d = mod(to - from, len); return d > len / 2 ? d - len : d; };
 
-    // ── Build card elements ──────────────────────────────
-    const cardEls = APPS.map((app, i) => {
+    // ── Card factory ─────────────────────────────────────
+    function createCard(app, i) {
+      mousePositions[i] = { x: 0, y: 0 };
+
       const root = document.createElement('div');
       root.className = 'card';
       root.setAttribute('role', 'tab');
       root.setAttribute('aria-label', app.name);
+      root.style.display = 'none';
 
       root.innerHTML = `
         <div class="card__inner">
-          <img class="card__image" src="${app.image_url}" alt="${app.name}" draggable="false" />
+          <img class="card__image" src="${app.image_url}" alt="${app.name}" draggable="false" loading="lazy" />
           <div class="card__glare"></div>
           <div class="card__overlay"></div>
           ${app.is_hot ? '<div class="card__badge">HOT</div>' : ''}
@@ -80,10 +89,18 @@
           <div class="card__glow-line"></div>
         </div>
         <div class="card__reflection">
-          <img src="${app.image_url}" alt="" draggable="false" />
+          <img src="${app.image_url}" alt="" draggable="false" loading="lazy" />
         </div>`;
 
       root.addEventListener('click', () => goTo(i));
+      // Show More on the focused card navigates to the event detail page.
+      const showMoreBtn = root.querySelector('.card__btn');
+      showMoreBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (app.url) {
+          window.location.href = app.url;
+        }
+      });
       root.addEventListener('mousemove', e => {
         const r = root.getBoundingClientRect();
         mousePositions[i].x = ((e.clientX - r.left) / r.width  - 0.5) * 2;
@@ -96,10 +113,9 @@
 
       stageInner.appendChild(root);
       return root;
-    });
+    }
 
-    // ── Build dot nav buttons ────────────────────────────
-    const dotEls = APPS.map((_, i) => {
+    function createDot(i) {
       const btn = document.createElement('button');
       btn.className = 'controls__dot';
       btn.style.width = '6px';
@@ -108,7 +124,44 @@
       btn.addEventListener('click', () => goTo(i));
       dotsContainer.appendChild(btn);
       return btn;
-    });
+    }
+
+    const cardEls = APPS.map(createCard);
+    const dotEls  = APPS.map((_, i) => createDot(i));
+
+    // ── Lazy page loading ────────────────────────────────
+    function loadNextPage() {
+      if (loadingPage || APPS.length >= TOTAL) {
+        return;
+      }
+      loadingPage = true;
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('page', String(nextPage));
+
+      fetch(url.toString(), { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(response => response.text())
+        .then(html => {
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const source = doc.querySelector('.carousel-section');
+          const more = source ? JSON.parse(source.dataset.events || '[]') : [];
+          more.forEach(app => {
+            const i = APPS.length;
+            APPS.push(app);
+            cardEls.push(createCard(app, i));
+            dotEls.push(createDot(i));
+          });
+          if (more.length) {
+            N = APPS.length;
+            nextPage++;
+            lastDisplayIndex = -1; // refresh counter/dots on next frame
+          }
+          loadingPage = false;
+        })
+        .catch(() => {
+          loadingPage = false;
+        });
+    }
 
     // ── Background crossfade ─────────────────────────────
     function triggerBg(index) {
@@ -130,12 +183,17 @@
 
       if (ri !== lastDisplayIndex) {
         lastDisplayIndex = ri;
-        headerCounter.textContent = `${ri + 1} / ${N}`;
+        headerCounter.textContent = `${ri + 1} / ${TOTAL}`;
         dotEls.forEach((d, i) => {
           d.classList.toggle('active', i === ri);
           d.style.width = i === ri ? '24px' : '6px';
         });
         triggerBg(ri);
+
+        // Fetch the next page when the user nears the last loaded card.
+        if (APPS.length < TOTAL && APPS.length - ri <= PREFETCH_AHEAD) {
+          loadNextPage();
+        }
       }
 
       APPS.forEach((_, i) => {

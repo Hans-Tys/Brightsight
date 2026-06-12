@@ -3,12 +3,21 @@ langcode: nl
 status: true
 dependencies:
   config:
+    - field.field.node.event.field_badge
+    - field.field.node.event.field_banner_image
+    - field.field.node.event.field_banner_lines
     - field.field.node.event.field_date
+    - field.field.node.event.field_dates_text
     - field.field.node.event.field_description
+    - field.field.node.event.field_edition
     - field.field.node.event.field_extra_images
+    - field.field.node.event.field_genre
+    - field.field.node.event.field_highlight_stats
     - field.field.node.event.field_main_image
     - field.field.node.event.field_paragraphs
+    - field.field.node.event.field_stats
     - field.field.node.event.field_title
+    - field.field.node.event.field_venue
     - node.type.event
   module:
     - datetime
@@ -27,9 +36,33 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_badge:
+    type: string_textfield
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_banner_image:
+    type: media_library_widget
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_banner_lines:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_date:
     type: datetime_default
     weight: 124
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_dates_text:
+    type: string_textfield
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -41,12 +74,30 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_edition:
+    type: string_textfield
+    weight: 21
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_extra_images:
     type: media_library_widget
     weight: 123
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_genre:
+    type: string_textfield
+    weight: 22
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_highlight_stats:
+    type: string_textfield
+    weight: 28
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_main_image:
     type: media_library_widget
@@ -73,6 +124,12 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
+  field_stats:
+    type: string_textfield
+    weight: 25
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_title:
     type: string_textfield
     weight: 125
@@ -80,6 +137,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_venue:
+    type: string_textfield
+    weight: 23
+    region: content
+    settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select

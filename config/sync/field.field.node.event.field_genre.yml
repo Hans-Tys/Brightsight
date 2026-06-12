@@ -1,0 +1,19 @@
+uuid: ac667c8b-4469-459d-a452-3a2c8f56bd74
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_genre
+    - node.type.event
+id: node.event.field_genre
+field_name: field_genre
+entity_type: node
+bundle: event
+label: Genre
+description: 'e.g. Multi-Genre'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

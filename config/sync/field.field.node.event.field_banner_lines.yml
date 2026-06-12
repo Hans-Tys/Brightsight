@@ -1,0 +1,19 @@
+uuid: 954cbdd3-62bb-489a-9ab3-aa4a8b8fd4de
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_banner_lines
+    - node.type.event
+id: node.event.field_banner_lines
+field_name: field_banner_lines
+entity_type: node
+bundle: event
+label: 'Production banner lines'
+description: 'Heading lines over the banner image, e.g. LIGHTS ARE / LANGUAGE. / WE SPEAK IT.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

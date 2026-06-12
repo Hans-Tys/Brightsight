@@ -1,0 +1,31 @@
+name: Split Section
+description: Two-column section with a section header on the left and body content (slot) on the right.
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+    title:
+      type: string
+      title: Heading first part
+    title_accent:
+      type: string
+      title: Heading accented part
+    accent:
+      type: string
+      title: Accent color
+      default: "#ff9500"
+    link_text:
+      type: string
+      title: Link label
+    link_url:
+      type: string
+      title: Link URL
+
+slots:
+  body:
+    title: Body
+    description: Right-column content, e.g. paragraphs.

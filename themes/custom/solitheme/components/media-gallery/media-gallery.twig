@@ -1,0 +1,30 @@
+{#
+  @component media-gallery
+  Mosaic gallery: first image tall on the left, the rest in a grid.
+
+  @prop string eyebrow - Section label (default: "Visual Archive")
+  @prop array  images  - Items: { url, alt, caption, label }
+#}
+
+{% set total = images|length %}
+
+<section class="media-gallery">
+  {% if eyebrow %}
+    <p class="media-gallery__eyebrow">&#9670; {{ eyebrow|default('Visual Archive'|t) }}</p>
+  {% endif %}
+
+  <div class="media-gallery__grid">
+    {% for image in images %}
+      <figure class="media-gallery__item{{ loop.first ? ' media-gallery__item--feature' }}">
+        <img class="media-gallery__image" src="{{ image.url }}" alt="{{ image.alt|default(image.caption) }}" loading="lazy" />
+        <figcaption class="media-gallery__caption">
+          <span class="media-gallery__caption-text">
+            {% if image.label %}<span class="media-gallery__label">{{ image.label }}</span>{% endif %}
+            {{ image.caption }}
+          </span>
+          <span class="media-gallery__counter">{{ '%02d'|format(loop.index) }} / {{ '%02d'|format(total) }}</span>
+        </figcaption>
+      </figure>
+    {% endfor %}
+  </div>
+</section>

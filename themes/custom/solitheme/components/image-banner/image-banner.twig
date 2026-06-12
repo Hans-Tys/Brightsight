@@ -1,0 +1,29 @@
+{#
+  @component image-banner
+  Full-width image band with overlaid stacked heading.
+
+  @prop string  image       - Image URL
+  @prop string  eyebrow     - Small label above the heading
+  @prop array   lines       - Heading lines
+  @prop integer accent_line - Zero-based accented line (default: 1)
+  @prop string  accent      - Accent color (default: #ff9500)
+#}
+
+<section class="image-banner" {% if accent|default('#ff9500') != '#ff9500' %}style="--image-banner-accent: {{ accent }}"{% endif %}>
+  {% if image %}
+    <img class="image-banner__image" src="{{ image }}" alt="" loading="lazy" />
+  {% endif %}
+  <div class="image-banner__scrim" aria-hidden="true"></div>
+  <div class="image-banner__content">
+    {% if eyebrow %}
+      <p class="image-banner__eyebrow">&#9670; {{ eyebrow }}</p>
+    {% endif %}
+    {% if lines %}
+      <p class="image-banner__heading">
+        {% for line in lines %}
+          <span class="image-banner__line{{ loop.index0 == accent_line|default(1) ? ' image-banner__line--accent' }}">{{ line }}</span>
+        {% endfor %}
+      </p>
+    {% endif %}
+  </div>
+</section>

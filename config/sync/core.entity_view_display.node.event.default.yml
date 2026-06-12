@@ -3,11 +3,21 @@ langcode: nl
 status: true
 dependencies:
   config:
+    - field.field.node.event.field_badge
+    - field.field.node.event.field_banner_image
+    - field.field.node.event.field_banner_lines
     - field.field.node.event.field_date
+    - field.field.node.event.field_dates_text
     - field.field.node.event.field_description
+    - field.field.node.event.field_edition
     - field.field.node.event.field_extra_images
+    - field.field.node.event.field_genre
+    - field.field.node.event.field_highlight_stats
     - field.field.node.event.field_main_image
     - field.field.node.event.field_paragraphs
+    - field.field.node.event.field_stats
+    - field.field.node.event.field_title
+    - field.field.node.event.field_venue
     - node.type.event
   module:
     - datetime
@@ -76,4 +86,13 @@ content:
     weight: 0
     region: content
 hidden:
+  field_badge: true
+  field_banner_image: true
+  field_banner_lines: true
+  field_dates_text: true
+  field_edition: true
+  field_genre: true
+  field_highlight_stats: true
+  field_stats: true
+  field_venue: true
   langcode: true

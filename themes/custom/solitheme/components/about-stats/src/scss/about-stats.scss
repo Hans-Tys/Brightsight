@@ -249,4 +249,17 @@
       margin-top: 56px;
     }
   }
+
+  // Stacked counters: side dividers become top dividers.
+  @media (max-width: 560px) {
+    &__counters .stat-counter {
+      padding-left: 0;
+      border-right: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    &__counters .stat-counter:first-child {
+      border-top: none;
+    }
+  }
 }

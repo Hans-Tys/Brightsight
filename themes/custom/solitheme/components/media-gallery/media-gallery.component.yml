@@ -1,0 +1,26 @@
+name: Media Gallery
+description: Mosaic image gallery with captions and counters. First image renders tall, the rest fill a two-column grid.
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      default: "Visual Archive"
+    images:
+      type: array
+      title: Images
+      items:
+        type: object
+        properties:
+          url:
+            type: string
+          alt:
+            type: string
+          caption:
+            type: string
+          label:
+            type: string
+            title: Small label above the caption (first image only)

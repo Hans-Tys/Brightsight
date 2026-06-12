@@ -62,6 +62,12 @@
     letter-spacing: 3.3px;
     text-transform: uppercase;
     color: var(--hero-accent);
+
+    // Tighten on narrow screens so the diamonds stay on one line.
+    @media (max-width: 480px) {
+      font-size: 10px;
+      letter-spacing: 1.8px;
+    }
   }
 
   &__title {

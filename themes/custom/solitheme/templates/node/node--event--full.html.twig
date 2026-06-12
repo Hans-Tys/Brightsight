@@ -1,87 +1,126 @@
 {#
 /**
  * @file
- * Template for an Event node (full view mode).
+ * Event detail page (full view mode) — assembles the event-detail SDCs.
  *
- * Fields used:
- *  - field_main_image    : Main hero image (Entity ref → Media/Image, Single)
- *  - field_date          : Event date (Date, Single)
- *  - field_title         : Event title (Plain text, Single)
- *  - field_location      : Location label (plain text – add this field if needed)
- *  - field_attendees     : Attendees count (plain text – add this field if needed)
- *  - field_description   : About text (Long formatted text, Single)
- *  - field_extra_images  : Extra images (Entity ref → Media/Image, Unlimited)
- *  - field_paragraphs    : Paragraph components (Entity ref revisions, Unlimited)
+ * Fields:
+ *  - field_main_image      : Hero image (media)
+ *  - field_title           : Display title (falls back to node title)
+ *  - field_badge           : Hero badge, e.g. FLAGSHIP
+ *  - field_edition         : Meta, e.g. 26th Edition
+ *  - field_genre           : Meta, e.g. Multi-Genre
+ *  - field_venue           : Venue line
+ *  - field_dates_text      : Display dates (falls back to field_date)
+ *  - field_stats           : Stats strip, LABEL|VALUE per value
+ *  - field_description     : About text (paragraphs split on blank lines)
+ *  - field_extra_images    : Gallery (media, unlimited)
+ *  - field_banner_image    : Production banner image (media)
+ *  - field_banner_lines    : Banner heading lines
+ *  - field_highlight_stats : Bottom cards, LABEL|VALUE|#color per value
  */
 #}
 
-{{ attach_library('your_theme/event') }}
+{% macro media_url(field) %}
+  {%- if field.entity and field.entity.field_media_image.entity -%}
+    {{- file_url(field.entity.field_media_image.entity.uri.value) -}}
+  {%- endif -%}
+{% endmacro %}
+
+{% import _self as helpers %}
+
+{% set meta = [] %}
+{% if node.field_edition.value %}{% set meta = meta|merge([node.field_edition.value]) %}{% endif %}
+{% if node.field_genre.value %}{% set meta = meta|merge([node.field_genre.value]) %}{% endif %}
+
+{% set dates = node.field_dates_text.value %}
+{% if not dates and node.field_date.value %}
+  {% set dates = node.field_date.date|date('j F Y') %}
+{% endif %}
 
 <article{{ attributes.addClass('event-detail') }}>
 
-  {# ── HERO IMAGE ────────────────────────────────────────────────────── #}
-  {% if content.field_main_image %}
-    <div class="event-detail__hero">
-      {{ content.field_main_image }}
+  {{ include('solitheme:event-hero', {
+    back_url: path('<front>'),
+    back_text: 'Back to Events'|t,
+    image: helpers.media_url(node.field_main_image)|trim,
+    badge: node.field_badge.value,
+    meta: meta,
+    title: node.field_title.value|default(node.label),
+    venue: node.field_venue.value,
+    dates: dates,
+  }) }}
+
+  {% set stats = [] %}
+  {% for item in node.field_stats %}
+    {% set parts = item.value|split('|') %}
+    {% set stats = stats|merge([{ label: parts[0], value: parts[1]|default('') }]) %}
+  {% endfor %}
+  {% if stats|length %}
+    {{ include('solitheme:stats-strip', { items: stats }) }}
+  {% endif %}
+
+  {% set about_paragraphs = node.field_description.value
+    ? node.field_description.value|striptags|split("\n")|map(l => l|trim)|filter(l => l)
+    : [] %}
+  {% if about_paragraphs|length %}
+    {% embed 'solitheme:split-section' with {
+      eyebrow: 'About the Event'|t,
+      title: 'ABOUT'|t,
+      title_accent: (node.field_title.value|default(node.label))|upper,
+      about_paragraphs: about_paragraphs,
+    } %}
+      {% block body %}
+        {% for paragraph_text in about_paragraphs %}
+          <p>{{ paragraph_text }}</p>
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endif %}
+
+  {% set gallery = [] %}
+  {% for item in node.field_extra_images %}
+    {% if item.entity and item.entity.field_media_image.entity %}
+      {% set gallery = gallery|merge([{
+        url: file_url(item.entity.field_media_image.entity.uri.value),
+        alt: item.entity.label,
+        caption: item.entity.label,
+      }]) %}
+    {% endif %}
+  {% endfor %}
+  {% if gallery|length %}
+    {{ include('solitheme:media-gallery', { eyebrow: 'Visual Archive'|t, images: gallery }) }}
+  {% endif %}
+
+  {% set banner_lines = [] %}
+  {% for line in node.field_banner_lines %}
+    {% set banner_lines = banner_lines|merge([line.value]) %}
+  {% endfor %}
+  {% set banner_image = helpers.media_url(node.field_banner_image)|trim %}
+  {% if banner_image or banner_lines|length %}
+    {{ include('solitheme:image-banner', {
+      image: banner_image,
+      eyebrow: 'Production'|t,
+      lines: banner_lines,
+    }) }}
+  {% endif %}
+
+  {% set highlights = [] %}
+  {% for item in node.field_highlight_stats %}
+    {% set parts = item.value|split('|') %}
+    {% set highlights = highlights|merge([{
+      label: parts[0],
+      value: parts[1]|default(''),
+      color: parts[2]|default(''),
+    }]) %}
+  {% endfor %}
+  {% if highlights|length %}
+    <div class="event-detail__highlights">
+      {{ include('solitheme:stats-strip', { items: highlights, variant: 'cards' }) }}
     </div>
   {% endif %}
 
-  {# ── HEADER BLOCK ─────────────────────────────────────────────────── #}
-  <div class="event-detail__header">
-
-    {% if content.field_date %}
-      <div class="event-detail__date">
-        {{ content.field_date }}
-      </div>
-    {% endif %}
-
-    <h1 class="event-detail__title">
-      {{ content.field_title|render|striptags|trim ?: node.title.value }}
-    </h1>
-
-  </div>
-
-  {# ── META GRID (location + attendees) ─────────────────────────────── #}
-  <div class="event-detail__meta">
-
-    {% if content.field_location %}
-      <div class="event-detail__meta-item">
-        <span class="event-detail__meta-label">{{ 'Location'|t }}</span>
-        <span class="event-detail__meta-value">{{ content.field_location }}</span>
-      </div>
-    {% endif %}
-
-    {% if content.field_attendees %}
-      <div class="event-detail__meta-item">
-        <span class="event-detail__meta-label">{{ 'Attendees'|t }}</span>
-        <span class="event-detail__meta-value">{{ content.field_attendees }}</span>
-      </div>
-    {% endif %}
-
-  </div>
-
-  {# ── ABOUT / DESCRIPTION ───────────────────────────────────────────── #}
-  {% if content.field_description %}
-    <div class="event-detail__about">
-      <p class="event-detail__about-label">{{ 'About this event'|t }}</p>
-      <div class="event-detail__description">
-        {{ content.field_description }}
-      </div>
-    </div>
-  {% endif %}
-
-  {# ── EXTRA IMAGES ─────────────────────────────────────────────────── #}
-  {% if content.field_extra_images %}
-    <div class="event-detail__extra-images">
-      {{ content.field_extra_images }}
-    </div>
-  {% endif %}
-
-  {# ── PARAGRAPHS ───────────────────────────────────────────────────── #}
-  {% if content.field_paragraphs %}
-    <div class="event-detail__paragraphs">
-      {{ content.field_paragraphs }}
-    </div>
+  {% if content.field_paragraphs|render %}
+    {{ content.field_paragraphs }}
   {% endif %}
 
 </article>
