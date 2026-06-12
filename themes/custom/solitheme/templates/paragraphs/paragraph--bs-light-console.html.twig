@@ -1,0 +1,13 @@
+{# Maps the BS Light Console paragraph onto solitheme:light-console. #}
+{% set palette = [] %}
+{% for color in paragraph.field_tags %}
+  {% set palette = palette|merge([color.value]) %}
+{% endfor %}
+
+{{ include('solitheme:light-console', {
+  eyebrow: paragraph.field_eyebrow.value|default('HANDS ON'),
+  title: paragraph.field_heading.value,
+  title_accent: paragraph.field_heading_accent.value,
+  fixtures: paragraph.field_value.0.value|default(6),
+  colors: palette|length ? palette : null,
+}) }}

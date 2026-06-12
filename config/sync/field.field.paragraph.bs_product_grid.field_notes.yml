@@ -1,0 +1,19 @@
+uuid: e344b207-f490-49b7-828f-eb7a94b44657
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_notes
+    - paragraphs.paragraphs_type.bs_product_grid
+id: paragraph.bs_product_grid.field_notes
+field_name: field_notes
+entity_type: paragraph
+bundle: bs_product_grid
+label: 'Assurance notes'
+description: 'e.g. 5-YEAR WARRANTY'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

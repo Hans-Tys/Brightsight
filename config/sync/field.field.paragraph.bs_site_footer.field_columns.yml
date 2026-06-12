@@ -1,0 +1,27 @@
+uuid: dfc5bc5e-2858-4a28-90bb-5ed9edd29fa3
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_columns
+    - paragraphs.paragraphs_type.bs_footer_column
+    - paragraphs.paragraphs_type.bs_site_footer
+  module:
+    - entity_reference_revisions
+id: paragraph.bs_site_footer.field_columns
+field_name: field_columns
+entity_type: paragraph
+bundle: bs_site_footer
+label: 'Link columns'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      bs_footer_column: bs_footer_column
+    negate: 0
+field_type: entity_reference_revisions

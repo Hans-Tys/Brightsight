@@ -1,0 +1,19 @@
+uuid: 154fde0a-3a05-49eb-b71c-7da3fe783dd4
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_eyebrow
+    - paragraphs.paragraphs_type.bs_about_stats
+id: paragraph.bs_about_stats.field_eyebrow
+field_name: field_eyebrow
+entity_type: paragraph
+bundle: bs_about_stats
+label: Eyebrow
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

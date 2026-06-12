@@ -1,0 +1,28 @@
+uuid: 91d83d2d-84d8-497e-acf1-5ee83e13dcea
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_footer_column.field_heading
+    - field.field.paragraph.bs_footer_column.field_links
+    - paragraphs.paragraphs_type.bs_footer_column
+id: paragraph.bs_footer_column.default
+targetEntityType: paragraph
+bundle: bs_footer_column
+mode: default
+content:
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_links:
+    type: link_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,40 @@
+uuid: e35cf684-c96e-471e-bcc7-2401d684f63e
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_carousel_image
+    - node.type.carousel_item
+  module:
+    - image
+_core:
+  default_config_hash: V0yaG8f6SP6ENbUaCjLeZhkll4r0uOHthpcYrAnkE4o
+id: node.carousel_item.field_carousel_image
+field_name: field_carousel_image
+entity_type: node
+bundle: carousel_item
+label: Afbeelding
+description: 'Card background image. Recommended size: 600×400px.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: carousel-items
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: null
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

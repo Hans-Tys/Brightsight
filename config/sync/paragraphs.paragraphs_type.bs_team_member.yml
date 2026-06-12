@@ -1,0 +1,10 @@
+uuid: 9a1b9ddc-c89a-43d9-b451-dba49f82b441
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_team_member
+label: 'BS Team Member'
+icon_uuid: null
+icon_default: null
+description: 'One team card in the about section.'
+behavior_plugins: {  }

@@ -1,0 +1,19 @@
+uuid: f7725c9b-9396-4f57-a46c-1960193e36e4
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label
+    - paragraphs.paragraphs_type.bs_stat
+id: paragraph.bs_stat.field_label
+field_name: field_label
+entity_type: paragraph
+bundle: bs_stat
+label: Label
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,43 +1,15 @@
 body {
-  background-color: #1d1d1d;
+  background-color: #000000;
   color: white;
-  .layout-container {
-    max-width: 1440px;
-    margin: 0 auto;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
-    min-height: 100vh;
-  }
 }
 
 header {
-  background: #1d1d1d;
-  border-bottom: 1px solid white;
-
+  background: #000000;
   #block-solitheme-site-branding {
     width: fit-content;
     padding: 1rem;
-    border-right: 1px solid #FFF;
     img {
       height: 50px;
     }
-  }
-}
-
-.corners {
-  width: 100%;
-  position: relative;
-  &::before {
-    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M-2.18557e-07 4.33008L7.5 -4.99189e-05L7.5 8.66021L-2.18557e-07 4.33008Z" fill="white"/></svg>');
-    position: absolute;
-    right: 0;
-    top: -14px;
-  }
-  &::after {
-    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M-2.18557e-07 4.33008L7.5 -4.99189e-05L7.5 8.66021L-2.18557e-07 4.33008Z" fill="white"/></svg>');
-    position: absolute;
-    left: 0;
-    top: -10px;
-    transform: rotateZ(180deg);
   }
 }

@@ -1,0 +1,21 @@
+uuid: 7161f885-3383-4218-aeb7-55574f75e862
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_carousel_attendees
+    - node.type.carousel_item
+_core:
+  default_config_hash: nTEgOfA09H9xs_pruS6HzYerWM6FGVjErETbJfHNXYM
+id: node.carousel_item.field_carousel_attendees
+field_name: field_carousel_attendees
+entity_type: node
+bundle: carousel_item
+label: 'Attendee Count'
+description: 'Display string shown on the card, e.g. "125K" or "2M+"'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

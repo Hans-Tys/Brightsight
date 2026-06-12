@@ -1,0 +1,21 @@
+uuid: 90047da7-2fe0-4e77-85d6-4927beb538a0
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_availability
+    - paragraphs.paragraphs_type.bs_product
+  module:
+    - options
+id: paragraph.bs_product.field_availability
+field_name: field_availability
+entity_type: paragraph
+bundle: bs_product
+label: Availability
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

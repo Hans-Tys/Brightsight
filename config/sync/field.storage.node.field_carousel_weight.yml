@@ -1,0 +1,22 @@
+uuid: befe22d2-c3f6-46fa-a5c5-e7bade7b55f9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: AEhag_kcKoGJnHEpOGcyGzh1iO6VOKJ9vJciH5DXX4k
+id: node.field_carousel_weight
+field_name: field_carousel_weight
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -6,5 +6,53 @@
  */
 
 /**
- * Implements template_preprocess_HOOK() for the HTML template.
+ * Implements template_preprocess_views_view() for the event timeline.
+ *
+ * Maps event nodes in the view result to the array shape expected by the
+ * solitheme:events-carousel component.
  */
+function solitheme_preprocess_views_view__event_timeline(&$variables) {
+  $events = [];
+  $file_url_generator = \Drupal::service('file_url_generator');
+  $date_formatter = \Drupal::service('date.formatter');
+
+  foreach ($variables['view']->result as $row) {
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $row->_entity;
+    if (!$node) {
+      continue;
+    }
+
+    $image_url = '';
+    if ($node->hasField('field_main_image') && !$node->get('field_main_image')->isEmpty()) {
+      /** @var \Drupal\media\MediaInterface $media */
+      $media = $node->get('field_main_image')->entity;
+      if ($media && !$media->get('field_media_image')->isEmpty()) {
+        $file = $media->get('field_media_image')->entity;
+        if ($file) {
+          $image_url = $file_url_generator->generateAbsoluteString($file->getFileUri());
+        }
+      }
+    }
+
+    $date_label = '';
+    if ($node->hasField('field_date') && !$node->get('field_date')->isEmpty()) {
+      $date = $node->get('field_date')->date;
+      if ($date) {
+        $date_label = $date_formatter->format($date->getTimestamp(), 'custom', 'd M Y');
+      }
+    }
+
+    $events[] = [
+      'name' => $node->get('field_title')->value ?: $node->label(),
+      'category' => $date_label,
+      'image_url' => $image_url,
+      'attendees' => '',
+      'is_hot' => FALSE,
+      'description' => text_summary(strip_tags($node->get('field_description')->value ?? ''), NULL, 200),
+    ];
+  }
+
+  $variables['carousel_events'] = $events;
+}
+

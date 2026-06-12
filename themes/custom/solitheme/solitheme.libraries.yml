@@ -14,6 +14,12 @@ main:
     - core/drupalSettings
     - core/once
 
+fonts:
+  version: 1
+  css:
+    base:
+      https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400&display=swap: { type: external }
+
 normalize:
   remote: https://github.com/necolas/normalize.css
   version: "8.0.1"

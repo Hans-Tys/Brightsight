@@ -1,0 +1,23 @@
+uuid: cb10f708-80f0-4f62-a142-d14fb5b15046
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_value
+    - paragraphs.paragraphs_type.bs_light_console
+id: paragraph.bs_light_console.field_value
+field_name: field_value
+entity_type: paragraph
+bundle: bs_light_console
+label: 'Number of fixtures'
+description: 'Light beams / fader channels, 2–8. Defaults to 6.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

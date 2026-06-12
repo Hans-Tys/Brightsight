@@ -1,0 +1,22 @@
+uuid: b5035955-57ce-494b-9983-eb3a9bbe141d
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body_text
+    - paragraphs.paragraphs_type.bs_about_stats
+  module:
+    - text
+id: paragraph.bs_about_stats.field_body_text
+field_name: field_body_text
+entity_type: paragraph
+bundle: bs_about_stats
+label: Text
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,32 @@
+{# Maps the BS Projects Showcase paragraph onto solitheme:projects-showcase. #}
+{% set projects = [] %}
+{% for item in paragraph.field_items %}
+  {% set p = item.entity %}
+
+  {% set image = '' %}
+  {% if p.field_image.entity and p.field_image.entity.field_media_image.entity %}
+    {% set image = file_url(p.field_image.entity.field_media_image.entity.uri.value) %}
+  {% endif %}
+
+  {% set stats = [] %}
+  {% for stat in p.field_specs %}
+    {% set parts = stat.value|split('|') %}
+    {% set stats = stats|merge([{ label: parts[0], value: parts[1]|default('') }]) %}
+  {% endfor %}
+
+  {% set projects = projects|merge([{
+    meta: p.field_meta.value,
+    title: p.field_heading.value,
+    tag: p.field_tag.value,
+    accent: p.field_accent.value|default('#ff9500'),
+    image: image,
+    stats: stats,
+  }]) %}
+{% endfor %}
+
+{{ include('solitheme:projects-showcase', {
+  eyebrow: paragraph.field_eyebrow.value,
+  title: paragraph.field_heading.value,
+  title_accent: paragraph.field_heading_accent.value,
+  projects: projects,
+}) }}

@@ -1,0 +1,10 @@
+uuid: 794bbd0d-7ef5-4308-98c8-6ba4232ddb11
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_stat
+label: 'BS Stat'
+icon_uuid: null
+icon_default: null
+description: 'One animated counter.'
+behavior_plugins: {  }

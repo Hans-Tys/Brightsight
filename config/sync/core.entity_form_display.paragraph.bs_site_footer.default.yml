@@ -1,0 +1,42 @@
+uuid: 48d0a498-ec05-49c8-9a0f-2eaabeba536a
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_site_footer.field_columns
+    - field.field.paragraph.bs_site_footer.field_copyright
+    - field.field.paragraph.bs_site_footer.field_legal_links
+    - field.field.paragraph.bs_site_footer.field_tagline
+    - paragraphs.paragraphs_type.bs_site_footer
+id: paragraph.bs_site_footer.default
+targetEntityType: paragraph
+bundle: bs_site_footer
+mode: default
+content:
+  field_columns:
+    type: paragraphs
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_copyright:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_legal_links:
+    type: link_default
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_tagline:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

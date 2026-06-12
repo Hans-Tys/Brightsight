@@ -1,0 +1,63 @@
+uuid: 2ccc4c86-b367-41c2-8aa3-0e326e819563
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_contact_cta.field_accent_line
+    - field.field.paragraph.bs_contact_cta.field_body_text
+    - field.field.paragraph.bs_contact_cta.field_details
+    - field.field.paragraph.bs_contact_cta.field_eyebrow
+    - field.field.paragraph.bs_contact_cta.field_heading_lines
+    - field.field.paragraph.bs_contact_cta.field_partners
+    - field.field.paragraph.bs_contact_cta.field_project_types
+    - paragraphs.paragraphs_type.bs_contact_cta
+id: paragraph.bs_contact_cta.default
+targetEntityType: paragraph
+bundle: bs_contact_cta
+mode: default
+content:
+  field_accent_line:
+    type: number
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body_text:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_details:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_eyebrow:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading_lines:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_partners:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_project_types:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

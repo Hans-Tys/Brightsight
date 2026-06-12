@@ -1,0 +1,35 @@
+{# Maps the BS Contact CTA paragraph onto solitheme:contact-cta. #}
+{% set heading_lines = [] %}
+{% for line in paragraph.field_heading_lines %}
+  {% set heading_lines = heading_lines|merge([line.value]) %}
+{% endfor %}
+
+{% set details = [] %}
+{% for detail in paragraph.field_details %}
+  {% set parts = detail.value|split('|') %}
+  {% set details = details|merge([{
+    label: parts[0],
+    value: parts[1]|default(''),
+    url: parts[2]|default(''),
+  }]) %}
+{% endfor %}
+
+{% set partners = [] %}
+{% for partner in paragraph.field_partners %}
+  {% set partners = partners|merge([partner.value]) %}
+{% endfor %}
+
+{% set project_types = [] %}
+{% for type in paragraph.field_project_types %}
+  {% set project_types = project_types|merge([type.value]) %}
+{% endfor %}
+
+{{ include('solitheme:contact-cta', {
+  eyebrow: paragraph.field_eyebrow.value|default('GET IN TOUCH'),
+  heading_lines: heading_lines,
+  accent_line: paragraph.field_accent_line.0.value is not null ? paragraph.field_accent_line.0.value : 1,
+  text: paragraph.field_body_text.0.value|default("")|striptags|trim,
+  details: details,
+  partners: partners,
+  project_types: project_types|length ? project_types : null,
+}) }}

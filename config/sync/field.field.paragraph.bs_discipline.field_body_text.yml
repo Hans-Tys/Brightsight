@@ -1,0 +1,22 @@
+uuid: 3f4be8f6-15a0-4675-a082-28ea028fd5ad
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body_text
+    - paragraphs.paragraphs_type.bs_discipline
+  module:
+    - text
+id: paragraph.bs_discipline.field_body_text
+field_name: field_body_text
+entity_type: paragraph
+bundle: bs_discipline
+label: Description
+description: 'Shown when the row is expanded.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

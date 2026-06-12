@@ -1,0 +1,23 @@
+uuid: 805f7e9b-ed82-4061-b3d6-41c83d08ea32
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_value
+    - paragraphs.paragraphs_type.bs_stat
+id: paragraph.bs_stat.field_value
+field_name: field_value
+entity_type: paragraph
+bundle: bs_stat
+label: Value
+description: 'The number to count up to.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

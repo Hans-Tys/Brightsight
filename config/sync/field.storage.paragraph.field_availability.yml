@@ -1,0 +1,30 @@
+uuid: 9a86d92d-a29a-4794-8340-1147111a27e3
+langcode: nl
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_availability
+field_name: field_availability
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: available
+      label: Available
+    -
+      value: limited
+      label: 'Limited stock'
+    -
+      value: rented
+      label: 'Out on tour'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

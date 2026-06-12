@@ -1,0 +1,19 @@
+uuid: d3db85d4-6a3b-454a-afc2-ebb32fe99766
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_price_period
+    - paragraphs.paragraphs_type.bs_product
+id: paragraph.bs_product.field_price_period
+field_name: field_price_period
+entity_type: paragraph
+bundle: bs_product
+label: 'Rate period'
+description: 'Defaults to / DAY'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

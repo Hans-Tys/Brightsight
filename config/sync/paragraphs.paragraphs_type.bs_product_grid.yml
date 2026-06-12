@@ -1,0 +1,10 @@
+uuid: 5239a831-d2a8-406d-8a89-694078975d66
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_product_grid
+label: 'BS Product Grid'
+icon_uuid: null
+icon_default: null
+description: '"The Arsenal" section: grid of rental equipment cards.'
+behavior_plugins: {  }

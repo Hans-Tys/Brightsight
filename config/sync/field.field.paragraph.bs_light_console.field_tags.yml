@@ -1,0 +1,19 @@
+uuid: 15a7d2c2-50d4-4d7d-a859-ac76f572c73d
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tags
+    - paragraphs.paragraphs_type.bs_light_console
+id: paragraph.bs_light_console.field_tags
+field_name: field_tags
+entity_type: paragraph
+bundle: bs_light_console
+label: 'Color palette'
+description: 'Hex colors the swatch buttons cycle through, one per value, e.g. #ff9500. Leave empty for the default palette.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

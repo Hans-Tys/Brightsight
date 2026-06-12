@@ -1,0 +1,93 @@
+name: About Stats
+description: '"Lights Are Language" about section: intro text beside a system-overview panel with colored sliders, a stat counter row, and team specialist cards.'
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      examples:
+        - "ABOUT BRIGHTSIGHT"
+    heading_lines:
+      type: array
+      title: Heading lines
+      description: Each entry is one line of the big heading.
+      items:
+        type: string
+      examples:
+        - ["LIGHTS ARE", "LANGUAGE.", "WE SPEAK IT."]
+    accent_line:
+      type: integer
+      title: Accented line index
+      description: Zero-based index of the heading line shown in the accent color.
+      default: 2
+    accent:
+      type: string
+      title: Accent color
+      default: "#ff9500"
+    paragraphs:
+      type: array
+      title: Paragraphs
+      items:
+        type: string
+    panel_title:
+      type: string
+      title: Panel title
+      default: "BRIGHTSIGHT — SYS OVERVIEW"
+    sliders:
+      type: array
+      title: Panel sliders
+      items:
+        type: object
+        properties:
+          label:
+            type: string
+          percent:
+            type: number
+          color:
+            type: string
+    panel_status:
+      type: string
+      title: Panel status line
+      default: "ALL SYSTEMS NOMINAL"
+    stats:
+      type: array
+      title: Stat counters
+      description: Forwarded to the stat-counter component.
+      items:
+        type: object
+        properties:
+          value:
+            type: number
+          suffix:
+            type: string
+          label:
+            type: string
+    team_label:
+      type: string
+      title: Team list label
+      examples:
+        - "CORE TEAM — SPECIALISTS"
+    team:
+      type: array
+      title: Team members
+      items:
+        type: object
+        properties:
+          initials:
+            type: string
+          name:
+            type: string
+          role:
+            type: string
+          cert:
+            type: string
+          accent:
+            type: string
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

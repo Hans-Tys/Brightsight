@@ -1,0 +1,22 @@
+uuid: ae3e7b76-1df8-4917-b711-59a0921dc9f1
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body_text
+    - paragraphs.paragraphs_type.bs_hero
+  module:
+    - text
+id: paragraph.bs_hero.field_body_text
+field_name: field_body_text
+entity_type: paragraph
+bundle: bs_hero
+label: 'Intro text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

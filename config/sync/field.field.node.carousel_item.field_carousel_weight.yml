@@ -1,0 +1,27 @@
+uuid: 65305c26-96e4-4b9d-ada1-4cc6840753b3
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_carousel_weight
+    - node.type.carousel_item
+_core:
+  default_config_hash: L9hoZGDXJMtqCg1-slFr9A4Se5JLDqRt5gwIoFbKDaI
+id: node.carousel_item.field_carousel_weight
+field_name: field_carousel_weight
+entity_type: node
+bundle: carousel_item
+label: 'Sort Weight'
+description: 'Lower numbers appear first. Use this to control card order in the carousel.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

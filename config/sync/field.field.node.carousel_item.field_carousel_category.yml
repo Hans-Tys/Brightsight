@@ -1,0 +1,21 @@
+uuid: 7464e456-4347-4894-b4e3-0ba9e59741a2
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_carousel_category
+    - node.type.carousel_item
+_core:
+  default_config_hash: vgGgyv-jwNlu_wMywrAqPQp-QI2QGFslFAWbvYzrESo
+id: node.carousel_item.field_carousel_category
+field_name: field_carousel_category
+entity_type: node
+bundle: carousel_item
+label: Categorie
+description: 'E.g. Music, Electronic, Arts, Rock'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

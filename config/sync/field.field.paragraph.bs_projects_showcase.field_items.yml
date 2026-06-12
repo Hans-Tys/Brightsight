@@ -1,0 +1,27 @@
+uuid: b3fb6f30-7c73-47be-982a-6d4001e9f8f6
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.bs_project
+    - paragraphs.paragraphs_type.bs_projects_showcase
+  module:
+    - entity_reference_revisions
+id: paragraph.bs_projects_showcase.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: bs_projects_showcase
+label: Projects
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      bs_project: bs_project
+    negate: 0
+field_type: entity_reference_revisions

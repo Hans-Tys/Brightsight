@@ -1,0 +1,51 @@
+{#
+  @component product-grid
+  "The Arsenal" section — header + responsive grid of product cards.
+
+  @prop string eyebrow      - Section eyebrow label
+  @prop string title        - Heading first part
+  @prop string title_accent - Heading accented part
+  @prop string accent       - Accent color (default: #28c8f0)
+  @prop array  notes        - Short assurance notes shown beside the header
+  @prop array  products     - Card objects forwarded to product-card
+  @slot cards               - Alternative card markup (e.g. a view)
+
+  Usage:
+    {{ include('solitheme:product-grid', {
+      eyebrow: 'OUR EQUIPMENT',
+      title: 'THE',
+      title_accent: 'ARSENAL',
+      notes: ['ALL SYSTEMS MA3 NATIVE', 'FIRMWARE UPDATES INCLUDED', '5-YEAR WARRANTY'],
+      products: products,
+    }) }}
+#}
+
+<section class="product-grid">
+  <div class="product-grid__container">
+    <div class="product-grid__head">
+      {{ include('solitheme:section-header', {
+        eyebrow: eyebrow,
+        title: title,
+        title_accent: title_accent,
+        accent: accent|default('#28c8f0'),
+        inline: true,
+      }) }}
+
+      {% if notes %}
+        <ul class="product-grid__notes">
+          {% for note in notes %}
+            <li class="product-grid__note">{{ note }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div class="product-grid__cards">
+      {% block cards %}
+        {% for product in products %}
+          {{ include('solitheme:product-card', product) }}
+        {% endfor %}
+      {% endblock %}
+    </div>
+  </div>
+</section>

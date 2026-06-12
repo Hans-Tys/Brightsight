@@ -1,0 +1,19 @@
+uuid: f034e038-f527-4f9d-a88d-815df24fbf3a
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.bs_event
+id: paragraph.bs_event.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: bs_event
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

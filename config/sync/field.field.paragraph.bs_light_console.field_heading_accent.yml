@@ -1,0 +1,19 @@
+uuid: 49d0bf56-f6b0-4ec3-885b-ffb60401f11a
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading_accent
+    - paragraphs.paragraphs_type.bs_light_console
+id: paragraph.bs_light_console.field_heading_accent
+field_name: field_heading_accent
+entity_type: paragraph
+bundle: bs_light_console
+label: 'Heading (accent part)'
+description: 'e.g. CONSOLE'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

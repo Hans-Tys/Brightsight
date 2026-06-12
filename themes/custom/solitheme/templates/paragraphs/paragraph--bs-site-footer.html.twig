@@ -1,0 +1,22 @@
+{# Maps the BS Site Footer paragraph onto solitheme:site-footer. #}
+{% set columns = [] %}
+{% for item in paragraph.field_columns %}
+  {% set col = item.entity %}
+  {% set links = [] %}
+  {% for link in col.field_links %}
+    {% set links = links|merge([{ text: link.title, url: link.url.toString() }]) %}
+  {% endfor %}
+  {% set columns = columns|merge([{ title: col.field_heading.value, links: links }]) %}
+{% endfor %}
+
+{% set legal_links = [] %}
+{% for link in paragraph.field_legal_links %}
+  {% set legal_links = legal_links|merge([{ text: link.title, url: link.url.toString() }]) %}
+{% endfor %}
+
+{{ include('solitheme:site-footer', {
+  tagline: paragraph.field_tagline.value,
+  columns: columns,
+  copyright: paragraph.field_copyright.value,
+  legal_links: legal_links,
+}) }}

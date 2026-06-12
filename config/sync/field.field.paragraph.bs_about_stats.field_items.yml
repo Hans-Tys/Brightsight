@@ -1,0 +1,27 @@
+uuid: 81934f15-a38d-432e-9314-557e525de285
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.bs_about_stats
+    - paragraphs.paragraphs_type.bs_stat
+  module:
+    - entity_reference_revisions
+id: paragraph.bs_about_stats.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: bs_about_stats
+label: Counters
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      bs_stat: bs_stat
+    negate: 0
+field_type: entity_reference_revisions

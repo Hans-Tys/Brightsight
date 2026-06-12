@@ -1,0 +1,23 @@
+uuid: 9ab6b356-5bc3-4570-9f8e-37c1e963f07c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: KuZgXMYF6FAp6tp4N2oD3-jeq_L-p9t47QBCSfPd9D0
+id: node.field_carousel_category
+field_name: field_carousel_category
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

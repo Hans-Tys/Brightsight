@@ -5,6 +5,15 @@ dependencies:
   config:
     - field.storage.node.field_paragraphs
     - node.type.page
+    - paragraphs.paragraphs_type.bs_about_stats
+    - paragraphs.paragraphs_type.bs_contact_cta
+    - paragraphs.paragraphs_type.bs_disciplines_list
+    - paragraphs.paragraphs_type.bs_events_carousel
+    - paragraphs.paragraphs_type.bs_hero
+    - paragraphs.paragraphs_type.bs_light_console
+    - paragraphs.paragraphs_type.bs_product_grid
+    - paragraphs.paragraphs_type.bs_projects_showcase
+    - paragraphs.paragraphs_type.bs_site_footer
   module:
     - entity_reference_revisions
 id: node.page.field_paragraphs
@@ -20,9 +29,45 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    target_bundles: null
+    target_bundles:
+      bs_hero: bs_hero
+      bs_disciplines_list: bs_disciplines_list
+      bs_product_grid: bs_product_grid
+      bs_projects_showcase: bs_projects_showcase
+      bs_about_stats: bs_about_stats
+      bs_contact_cta: bs_contact_cta
+      bs_site_footer: bs_site_footer
+      bs_events_carousel: bs_events_carousel
+      bs_light_console: bs_light_console
     negate: 0
     target_bundles_drag_drop:
+      bs_about_stats:
+        weight: 10
+        enabled: true
+      bs_contact_cta:
+        weight: 10
+        enabled: true
+      bs_disciplines_list:
+        weight: 10
+        enabled: true
+      bs_events_carousel:
+        weight: 10
+        enabled: true
+      bs_hero:
+        weight: 10
+        enabled: true
+      bs_light_console:
+        weight: 10
+        enabled: true
+      bs_product_grid:
+        weight: 10
+        enabled: true
+      bs_projects_showcase:
+        weight: 10
+        enabled: true
+      bs_site_footer:
+        weight: 10
+        enabled: true
       hero_banner:
         weight: 2
         enabled: false

@@ -1,0 +1,10 @@
+uuid: 4a973783-4f02-4090-8701-5dee7d616c87
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_disciplines_list
+label: 'BS Disciplines List'
+icon_uuid: null
+icon_default: null
+description: '"What We Control" section with numbered expandable rows.'
+behavior_plugins: {  }

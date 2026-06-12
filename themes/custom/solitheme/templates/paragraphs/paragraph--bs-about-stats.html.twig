@@ -1,0 +1,52 @@
+{# Maps the BS About + Stats paragraph onto solitheme:about-stats. #}
+{% set heading_lines = [] %}
+{% for line in paragraph.field_heading_lines %}
+  {% set heading_lines = heading_lines|merge([line.value]) %}
+{% endfor %}
+
+{% set paragraphs_text = [] %}
+{% if paragraph.field_body_text.0.value %}
+  {% set paragraphs_text = paragraph.field_body_text.0.value|default("")|striptags|trim|split("\n")|filter(l => l|trim) %}
+{% endif %}
+
+{% set sliders = [] %}
+{% for slider in paragraph.field_sliders %}
+  {% set parts = slider.value|split('|') %}
+  {% set sliders = sliders|merge([{
+    label: parts[0],
+    percent: parts[1]|default(50),
+    color: parts[2]|default('#ff9500'),
+  }]) %}
+{% endfor %}
+
+{% set stats = [] %}
+{% for item in paragraph.field_items %}
+  {% set s = item.entity %}
+  {% set stats = stats|merge([{
+    value: s.field_value.value,
+    suffix: s.field_suffix.value|default('+'),
+    label: s.field_label.value,
+  }]) %}
+{% endfor %}
+
+{% set team = [] %}
+{% for item in paragraph.field_team %}
+  {% set m = item.entity %}
+  {% set team = team|merge([{
+    initials: m.field_initials.value,
+    name: m.field_heading.value,
+    role: m.field_role.value,
+    cert: m.field_cert.value,
+    accent: m.field_accent.value|default('#ff9500'),
+  }]) %}
+{% endfor %}
+
+{{ include('solitheme:about-stats', {
+  eyebrow: paragraph.field_eyebrow.value,
+  heading_lines: heading_lines,
+  accent_line: paragraph.field_accent_line.0.value is not null ? paragraph.field_accent_line.0.value : (heading_lines|length - 1),
+  paragraphs: paragraphs_text,
+  sliders: sliders,
+  stats: stats,
+  team: team,
+}) }}

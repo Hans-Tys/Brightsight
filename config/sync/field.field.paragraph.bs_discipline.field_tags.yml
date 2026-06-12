@@ -1,0 +1,19 @@
+uuid: cf9cb1f8-a764-42bd-84fa-d496cf72a76b
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tags
+    - paragraphs.paragraphs_type.bs_discipline
+id: paragraph.bs_discipline.field_tags
+field_name: field_tags
+entity_type: paragraph
+bundle: bs_discipline
+label: Tags
+description: 'Short keywords, one per value.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

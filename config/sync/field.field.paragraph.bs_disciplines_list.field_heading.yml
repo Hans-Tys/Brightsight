@@ -1,0 +1,19 @@
+uuid: 9052e911-1c05-4045-a205-0fe26985b8dc
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.bs_disciplines_list
+id: paragraph.bs_disciplines_list.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: bs_disciplines_list
+label: 'Heading (light part)'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,43 @@
+// section-header — eyebrow + two-tone uppercase heading.
+
+.section-header {
+  --section-header-accent: #ff9500;
+  --section-header-fg: #e8e8ec;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__eyebrow {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 3.3px;
+    text-transform: uppercase;
+    color: var(--section-header-accent);
+  }
+
+  &__title {
+    margin: 0;
+    padding-top: 16px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--section-header-fg);
+
+    // Accent part drops to its own line by default.
+    .section-header__accent {
+      display: block;
+      color: var(--section-header-accent);
+    }
+
+    &--inline .section-header__accent {
+      display: inline;
+    }
+  }
+}

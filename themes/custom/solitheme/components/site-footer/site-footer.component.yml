@@ -1,0 +1,48 @@
+name: Site Footer
+description: Footer with two-tone brand, tagline, link columns and a legal bottom bar.
+status: experimental
+
+props:
+  type: object
+  properties:
+    brand:
+      type: string
+      title: Brand first part
+      default: "BRIGHT"
+    brand_accent:
+      type: string
+      title: Brand accented part
+      default: "SIGHT"
+    tagline:
+      type: string
+      title: Tagline
+    columns:
+      type: array
+      title: Link columns
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          links:
+            type: array
+            items:
+              type: object
+              properties:
+                text:
+                  type: string
+                url:
+                  type: string
+    copyright:
+      type: string
+      title: Copyright line
+    legal_links:
+      type: array
+      title: Legal links
+      items:
+        type: object
+        properties:
+          text:
+            type: string
+          url:
+            type: string

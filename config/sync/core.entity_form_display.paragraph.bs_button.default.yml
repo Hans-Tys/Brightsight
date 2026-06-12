@@ -1,0 +1,42 @@
+uuid: b05a4e1d-2f21-4a43-b93b-9d0ffc191771
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_button.field_arrow
+    - field.field.paragraph.bs_button.field_label
+    - field.field.paragraph.bs_button.field_url
+    - field.field.paragraph.bs_button.field_variant
+    - paragraphs.paragraphs_type.bs_button
+id: paragraph.bs_button.default
+targetEntityType: paragraph
+bundle: bs_button
+mode: default
+content:
+  field_arrow:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_url:
+    type: link_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_variant:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

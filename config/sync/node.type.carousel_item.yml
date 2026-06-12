@@ -1,0 +1,13 @@
+uuid: 903cd56c-1ec4-4a3e-8648-b1cb5c4099b7
+langcode: nl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: KhVTql6AHk6qljXyZIrlIjxHF3tAG0W5Au6v4HDRbEc
+name: 'Carousel Item'
+type: carousel_item
+description: 'A single card in the ApeChain 3D carousel. Add, edit, and unpublish cards to control what appears on the front end.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

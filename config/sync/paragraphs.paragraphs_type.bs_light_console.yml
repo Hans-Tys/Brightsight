@@ -1,0 +1,10 @@
+uuid: e6f655e7-f317-46c4-8100-f86ec66471b9
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_light_console
+label: 'BS Light Console'
+icon_uuid: null
+icon_default: null
+description: 'Interactive grandMA3-style light table: faders and buttons drive colored beams on a stage.'
+behavior_plugins: {  }

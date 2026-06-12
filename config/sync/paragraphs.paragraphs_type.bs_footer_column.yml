@@ -1,0 +1,10 @@
+uuid: 07d9e6d1-ea7e-4d56-a696-aac88c321699
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_footer_column
+label: 'BS Footer Column'
+icon_uuid: null
+icon_default: null
+description: 'One link column in the footer.'
+behavior_plugins: {  }

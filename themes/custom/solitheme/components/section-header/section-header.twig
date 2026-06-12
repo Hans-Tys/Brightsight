@@ -1,0 +1,30 @@
+{#
+  @component section-header
+  Eyebrow label + two-tone uppercase heading used at the top of each section.
+
+  @prop string  eyebrow       - Small mono label above the heading (diamond added automatically)
+  @prop string  title         - First (light) part of the heading
+  @prop string  title_accent  - Accented part of the heading
+  @prop string  accent        - CSS accent color (default: #ff9500)
+  @prop boolean inline        - Accent part on the same line instead of a new one
+  @prop integer heading_level - Heading tag level (default: 2)
+
+  Usage:
+    {{ include('solitheme:section-header', {
+      eyebrow: '06 DISCIPLINES',
+      title: 'WHAT WE',
+      title_accent: 'CONTROL',
+    }) }}
+#}
+
+{% set tag = 'h' ~ (heading_level|default(2)) %}
+
+<header class="section-header" {% if accent|default('#ff9500') != '#ff9500' %}style="--section-header-accent: {{ accent }}"{% endif %}>
+  {% if eyebrow %}
+    <p class="section-header__eyebrow">&#9670; {{ eyebrow }}</p>
+  {% endif %}
+  <{{ tag }} class="section-header__title{{ inline ? ' section-header__title--inline' }}">
+    {{ title }}
+    {%- if title_accent %} <span class="section-header__accent">{{ title_accent }}</span>{% endif %}
+  </{{ tag }}>
+</header>

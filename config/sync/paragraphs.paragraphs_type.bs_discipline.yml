@@ -1,0 +1,10 @@
+uuid: 5aedd4d7-d5fe-47fc-88f2-e078eb047e3b
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_discipline
+label: 'BS Discipline'
+icon_uuid: null
+icon_default: null
+description: 'One expandable row in the disciplines list. Numbers are automatic.'
+behavior_plugins: {  }

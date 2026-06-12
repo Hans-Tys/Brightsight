@@ -1,0 +1,10 @@
+uuid: 4aab3157-2557-4cb4-9b9c-da955c282a51
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_event
+label: 'BS Event'
+icon_uuid: null
+icon_default: null
+description: 'One card in the events carousel.'
+behavior_plugins: {  }

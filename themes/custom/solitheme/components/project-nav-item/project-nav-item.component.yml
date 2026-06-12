@@ -1,0 +1,39 @@
+name: Project Nav Item
+description: Side-navigation entry for the projects showcase, with per-project accent bar and active state.
+status: experimental
+
+props:
+  type: object
+  properties:
+    meta:
+      type: string
+      title: Meta line
+      description: Year and category, e.g. "2024 — Live Event".
+      examples:
+        - "2024 — Live Event"
+    title:
+      type: string
+      title: Project title
+      examples:
+        - "ELATION WORLD TOUR"
+    tag:
+      type: string
+      title: Tag
+      examples:
+        - "Arena"
+    accent:
+      type: string
+      title: Accent color
+      default: "#ff9500"
+    active:
+      type: boolean
+      title: Active
+      default: false
+    url:
+      type: string
+      title: Link URL
+      description: Renders an <a> when set, otherwise a <button> (for JS-driven showcases).
+    index:
+      type: integer
+      title: Index
+      description: Zero-based index exposed as a data attribute for showcase JS.

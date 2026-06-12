@@ -1,0 +1,23 @@
+uuid: d86494e2-7639-48fa-80b5-985f9f135b63
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accent_line
+    - paragraphs.paragraphs_type.bs_about_stats
+id: paragraph.bs_about_stats.field_accent_line
+field_name: field_accent_line
+entity_type: paragraph
+bundle: bs_about_stats
+label: 'Accented line'
+description: 'Zero-based index, defaults to the last line.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

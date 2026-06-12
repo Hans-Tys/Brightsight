@@ -1,0 +1,27 @@
+uuid: d58b3c0e-fcbd-433e-8cab-dbe6987e2846
+langcode: nl
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_variant
+field_name: field_variant
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: primary
+      label: 'Primary (solid)'
+    -
+      value: outline
+      label: 'Outline (ghost)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

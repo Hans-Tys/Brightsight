@@ -1,0 +1,123 @@
+// discipline-row — numbered expandable row in the disciplines list.
+
+.discipline-row {
+  --discipline-row-accent: #ff9500;
+  --discipline-row-fg: #e8e8ec;
+  --discipline-row-muted: #4a4a5a;
+  --discipline-row-border: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid var(--discipline-row-border);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  & + & {
+    margin-top: -1px;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  &__summary {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 32px;
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &--static {
+      cursor: default;
+    }
+  }
+
+  &__number {
+    flex: 0 0 80px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.65px;
+    color: var(--discipline-row-accent);
+    opacity: 0.8;
+  }
+
+  &__heading {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 24px;
+    min-width: 0;
+  }
+
+  &__title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.5;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--discipline-row-fg);
+  }
+
+  &__tags {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    color: var(--discipline-row-muted);
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--discipline-row-fg);
+    transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  &[open] &__toggle {
+    transform: rotate(45deg);
+    border-color: var(--discipline-row-accent);
+    color: var(--discipline-row-accent);
+  }
+
+  &__body {
+    padding: 0 32px 32px 136px;
+  }
+
+  &__description {
+    margin: 0;
+    max-width: 640px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #9a9aaa;
+  }
+
+  @media (max-width: 768px) {
+    &__summary {
+      padding: 20px;
+      gap: 16px;
+    }
+
+    &__number {
+      flex-basis: auto;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__body {
+      padding: 0 20px 20px;
+    }
+  }
+}

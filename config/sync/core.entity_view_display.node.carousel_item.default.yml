@@ -1,0 +1,71 @@
+uuid: 8945303d-a837-4d3b-96ce-3f5fd21d15ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.carousel_item.field_carousel_attendees
+    - field.field.node.carousel_item.field_carousel_category
+    - field.field.node.carousel_item.field_carousel_image
+    - field.field.node.carousel_item.field_carousel_is_hot
+    - field.field.node.carousel_item.field_carousel_weight
+    - image.style.large
+    - node.type.carousel_item
+  module:
+    - image
+    - user
+_core:
+  default_config_hash: 0JnDphgsJjbzIZwH3mB4zRH9SBx0cGYy-sKSE4ScAD8
+id: node.carousel_item.default
+targetEntityType: node
+bundle: carousel_item
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 2
+    region: content
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
+  field_carousel_attendees:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_carousel_category:
+    label: above
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_carousel_image:
+    label: hidden
+    type: image
+    weight: 1
+    region: content
+    settings:
+      image_style: large
+      image_link: ''
+      image_loading:
+        priority: lazy
+    third_party_settings: {  }
+  field_carousel_is_hot:
+    label: inline
+    type: boolean
+    weight: 4
+    region: content
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+hidden:
+  field_carousel_weight: true
+  langcode: true
+  links: true

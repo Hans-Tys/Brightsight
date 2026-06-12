@@ -1,0 +1,19 @@
+uuid: a4d66ecb-e5f0-42a1-b827-bfe5dc1f1524
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading_lines
+    - paragraphs.paragraphs_type.bs_contact_cta
+id: paragraph.bs_contact_cta.field_heading_lines
+field_name: field_heading_lines
+entity_type: paragraph
+bundle: bs_contact_cta
+label: 'Heading lines'
+description: 'One line per value.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

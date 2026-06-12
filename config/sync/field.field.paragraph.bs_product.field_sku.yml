@@ -1,0 +1,19 @@
+uuid: c7cf27ca-07a5-43a1-bb58-ee88df0788b3
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sku
+    - paragraphs.paragraphs_type.bs_product
+id: paragraph.bs_product.field_sku
+field_name: field_sku
+entity_type: paragraph
+bundle: bs_product
+label: SKU
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

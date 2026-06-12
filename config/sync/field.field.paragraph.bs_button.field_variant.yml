@@ -1,0 +1,21 @@
+uuid: 0825364a-daea-42c0-8803-b127fdaee31d
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_variant
+    - paragraphs.paragraphs_type.bs_button
+  module:
+    - options
+id: paragraph.bs_button.field_variant
+field_name: field_variant
+entity_type: paragraph
+bundle: bs_button
+label: Variant
+description: 'Defaults to Primary.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

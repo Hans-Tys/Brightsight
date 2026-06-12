@@ -1,0 +1,47 @@
+{# Maps the BS Product Grid paragraph onto solitheme:product-grid. #}
+{% set notes = [] %}
+{% for note in paragraph.field_notes %}
+  {% set notes = notes|merge([note.value]) %}
+{% endfor %}
+
+{% set products = [] %}
+{% for item in paragraph.field_items %}
+  {% set p = item.entity %}
+
+  {% set image = '' %}
+  {% if p.field_image.entity and p.field_image.entity.field_media_image.entity %}
+    {% set image = file_url(p.field_image.entity.field_media_image.entity.uri.value) %}
+  {% endif %}
+
+  {% set specs = [] %}
+  {% for spec in p.field_specs %}
+    {% set parts = spec.value|split('|') %}
+    {% set specs = specs|merge([{ label: parts[0], value: parts[1]|default('') }]) %}
+  {% endfor %}
+
+  {% set products = products|merge([{
+    image: image,
+    badge: p.field_badge.value,
+    sku: p.field_sku.value,
+    category: p.field_category.value,
+    name: p.field_heading.value,
+    subtitle: p.field_subtitle.value,
+    availability: p.field_availability.value|default('available'),
+    stock: p.field_stock.value,
+    specs: specs,
+    description: p.field_body_text.0.value|default("")|striptags|trim,
+    price: p.field_price.value,
+    price_period: p.field_price_period.value,
+    link_url: p.field_url.0 ? p.field_url.0.url.toString() : '',
+    accent: p.field_accent.value|default('#ff9500'),
+  }]) %}
+{% endfor %}
+
+{{ include('solitheme:product-grid', {
+  eyebrow: paragraph.field_eyebrow.value,
+  title: paragraph.field_heading.value,
+  title_accent: paragraph.field_heading_accent.value,
+  accent: paragraph.field_accent.value|default('#28c8f0'),
+  notes: notes,
+  products: products,
+}) }}

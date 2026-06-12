@@ -1,0 +1,50 @@
+{#
+  @component site-footer
+  Footer with brand, link columns and legal bar.
+
+  @prop string brand        - Brand first part (default: "BRIGHT")
+  @prop string brand_accent - Brand accented part (default: "SIGHT")
+  @prop string tagline      - Short paragraph under the brand
+  @prop array  columns      - Link columns: { title, links: [{ text, url }] }
+  @prop string copyright    - Copyright line
+  @prop array  legal_links  - Bottom-right links: { text, url }
+#}
+
+<footer class="site-footer">
+  <div class="site-footer__container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand-block">
+        <p class="site-footer__brand">
+          {{- brand|default('BRIGHT') }}<span class="site-footer__brand-accent">{{ brand_accent|default('SIGHT') }}</span>
+        </p>
+        {% if tagline %}
+          <p class="site-footer__tagline">{{ tagline }}</p>
+        {% endif %}
+      </div>
+
+      {% for column in columns|default([]) %}
+        <nav class="site-footer__column" aria-label="{{ column.title }}">
+          <p class="site-footer__column-title">{{ column.title }}</p>
+          <ul class="site-footer__links">
+            {% for link in column.links %}
+              <li><a class="site-footer__link" href="{{ link.url|default('#') }}">{{ link.text }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endfor %}
+    </div>
+
+    <div class="site-footer__bottom">
+      {% if copyright %}
+        <p class="site-footer__copyright">{{ copyright }}</p>
+      {% endif %}
+      {% if legal_links %}
+        <ul class="site-footer__legal">
+          {% for link in legal_links %}
+            <li><a class="site-footer__legal-link" href="{{ link.url|default('#') }}">{{ link.text }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</footer>

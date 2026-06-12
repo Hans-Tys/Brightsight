@@ -1,0 +1,63 @@
+uuid: 1906e728-999b-4c33-8019-f053aabd8275
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_about_stats.field_accent_line
+    - field.field.paragraph.bs_about_stats.field_body_text
+    - field.field.paragraph.bs_about_stats.field_eyebrow
+    - field.field.paragraph.bs_about_stats.field_heading_lines
+    - field.field.paragraph.bs_about_stats.field_items
+    - field.field.paragraph.bs_about_stats.field_sliders
+    - field.field.paragraph.bs_about_stats.field_team
+    - paragraphs.paragraphs_type.bs_about_stats
+id: paragraph.bs_about_stats.default
+targetEntityType: paragraph
+bundle: bs_about_stats
+mode: default
+content:
+  field_accent_line:
+    type: number
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body_text:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_eyebrow:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading_lines:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_items:
+    type: paragraphs
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_sliders:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_team:
+    type: paragraphs
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

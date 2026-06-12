@@ -1,0 +1,19 @@
+uuid: 2263239f-4ca2-4526-a628-e7ac7166cd40
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading_accent
+    - paragraphs.paragraphs_type.bs_product_grid
+id: paragraph.bs_product_grid.field_heading_accent
+field_name: field_heading_accent
+entity_type: paragraph
+bundle: bs_product_grid
+label: 'Heading (accent part)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

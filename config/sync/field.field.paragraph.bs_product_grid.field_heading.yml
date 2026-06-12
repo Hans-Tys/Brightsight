@@ -1,0 +1,19 @@
+uuid: 63f9fcfe-0005-4bf1-bd46-58788d5f1292
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.bs_product_grid
+id: paragraph.bs_product_grid.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: bs_product_grid
+label: 'Heading (light part)'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,35 @@
+name: Stat Counter
+description: Big accent number that counts up from 0 when scrolled into view, with a mono label below.
+status: experimental
+
+props:
+  type: object
+  properties:
+    value:
+      type: number
+      title: Target value
+      examples:
+        - 850
+    suffix:
+      type: string
+      title: Suffix
+      description: Appended after the number, e.g. "+" or "%".
+      default: "+"
+    label:
+      type: string
+      title: Label
+      examples:
+        - "SHOWS DELIVERED"
+    accent:
+      type: string
+      title: Accent color
+      default: "#ff9500"
+    duration:
+      type: integer
+      title: Animation duration (ms)
+      default: 1800
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

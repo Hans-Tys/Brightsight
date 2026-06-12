@@ -1,0 +1,22 @@
+uuid: 77797a1d-3412-4148-93a7-fb8077a6cf8d
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body_text
+    - paragraphs.paragraphs_type.bs_contact_cta
+  module:
+    - text
+id: paragraph.bs_contact_cta.field_body_text
+field_name: field_body_text
+entity_type: paragraph
+bundle: bs_contact_cta
+label: Text
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

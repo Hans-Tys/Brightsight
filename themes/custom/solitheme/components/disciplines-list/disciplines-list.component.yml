@@ -1,0 +1,48 @@
+name: Disciplines List
+description: '"What We Control" section: section header plus a stack of numbered discipline rows.'
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      examples:
+        - "06 DISCIPLINES"
+    title:
+      type: string
+      title: Heading first part
+      examples:
+        - "WHAT WE"
+    title_accent:
+      type: string
+      title: Heading accented part
+      examples:
+        - "CONTROL"
+    accent:
+      type: string
+      title: Accent color
+      default: "#ff9500"
+    items:
+      type: array
+      title: Discipline rows
+      description: Rendered with the discipline-row component. Numbers are auto-generated when omitted.
+      items:
+        type: object
+        properties:
+          number:
+            type: string
+          title:
+            type: string
+          tags:
+            type: array
+            items:
+              type: string
+          description:
+            type: string
+
+slots:
+  rows:
+    title: Rows
+    description: Alternative to the items prop, e.g. a rendered view of discipline rows.

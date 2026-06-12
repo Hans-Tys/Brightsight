@@ -1,0 +1,44 @@
+{#
+  @component discipline-row
+  Numbered row with title, tags and an expandable description.
+
+  @prop string  number      - Row number, e.g. "01"
+  @prop string  title       - Row title
+  @prop array   tags        - Keywords shown next to the title
+  @prop string  description - When set, the row expands via <details>
+  @prop boolean open        - Initially expanded
+
+  Usage:
+    {{ include('solitheme:discipline-row', {
+      number: '01',
+      title: 'LIVE EVENT CONTROL',
+      tags: ['Concert', 'Festival', 'Tour'],
+      description: 'Show control for arenas and festivals…',
+    }) }}
+#}
+
+{% set row_inner %}
+  <span class="discipline-row__number">{{ number }}</span>
+  <span class="discipline-row__heading">
+    <span class="discipline-row__title">{{ title }}</span>
+    {% if tags %}
+      <span class="discipline-row__tags">{{ tags|join(' • ') }}</span>
+    {% endif %}
+  </span>
+  <span class="discipline-row__toggle" aria-hidden="true">
+    <svg viewBox="0 0 12 12" width="12" height="12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5"/></svg>
+  </span>
+{% endset %}
+
+{% if description %}
+  <details class="discipline-row"{{ open ? ' open' }}>
+    <summary class="discipline-row__summary">{{ row_inner }}</summary>
+    <div class="discipline-row__body">
+      <p class="discipline-row__description">{{ description }}</p>
+    </div>
+  </details>
+{% else %}
+  <div class="discipline-row">
+    <div class="discipline-row__summary discipline-row__summary--static">{{ row_inner }}</div>
+  </div>
+{% endif %}

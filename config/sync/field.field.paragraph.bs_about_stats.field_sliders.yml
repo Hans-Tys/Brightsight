@@ -1,0 +1,19 @@
+uuid: 1510d422-52c8-4a1d-bdb7-261252d96533
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sliders
+    - paragraphs.paragraphs_type.bs_about_stats
+id: paragraph.bs_about_stats.field_sliders
+field_name: field_sliders
+entity_type: paragraph
+bundle: bs_about_stats
+label: 'Console sliders'
+description: 'One per value as LABEL|PERCENT|COLOR, e.g. MAIN DIMMER|92|#ff9500'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,68 @@
+name: Contact CTA
+description: '"Let''s Build Your Show" section: contact details and certified-partner list beside a project-brief form panel.'
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      default: "GET IN TOUCH"
+    heading_lines:
+      type: array
+      title: Heading lines
+      items:
+        type: string
+      examples:
+        - ["LET'S BUILD", "YOUR SHOW."]
+    accent_line:
+      type: integer
+      title: Accented line index
+      default: 1
+    accent:
+      type: string
+      title: Accent color
+      default: "#ff9500"
+    text:
+      type: string
+      title: Intro text
+    details:
+      type: array
+      title: Contact details
+      items:
+        type: object
+        properties:
+          label:
+            type: string
+          value:
+            type: string
+          url:
+            type: string
+    partners_label:
+      type: string
+      title: Partners label
+      default: "CERTIFIED PARTNER"
+    partners:
+      type: array
+      title: Partner names
+      items:
+        type: string
+    form_title:
+      type: string
+      title: Form panel title
+      default: "PROJECT BRIEF"
+    form_action:
+      type: string
+      title: Form action URL
+      description: Used by the built-in fallback form. Ignored when the form slot is filled.
+    project_types:
+      type: array
+      title: Project type options
+      items:
+        type: string
+
+slots:
+  form:
+    title: Form
+    description: Replaces the built-in fallback form, e.g. an embedded webform.

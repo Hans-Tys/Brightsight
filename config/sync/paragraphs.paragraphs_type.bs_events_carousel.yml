@@ -1,0 +1,10 @@
+uuid: 0df45609-a885-4887-a275-afc95e215651
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_events_carousel
+label: 'BS Events Carousel'
+icon_uuid: null
+icon_default: null
+description: '3D auto-scrolling carousel of event cards.'
+behavior_plugins: {  }

@@ -1,0 +1,243 @@
+// product-card — rental equipment card with per-category accent color.
+
+.product-card {
+  --product-card-accent: #ff9500;
+  --product-card-bg: #0d0d10;
+  --product-card-fg: #e8e8ec;
+  --product-card-muted: #7a7a8a;
+  --product-card-faint: #4a4a5a;
+  --product-card-available: #3ddc7a;
+  --product-card-limited: #ffc83d;
+  --product-card-rented: #f0506e;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--product-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s ease;
+
+  // Accent bar across the top edge.
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--product-card-accent);
+    opacity: 0.25;
+    z-index: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .product-card__image {
+      transform: scale(1.04);
+    }
+  }
+
+  &__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #101014;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 24px;
+    padding: 28px 33px 33px;
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &__badge {
+    padding: 3px 10px;
+    border: 1px solid color-mix(in srgb, var(--product-card-accent) 27%, transparent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.62px;
+    text-transform: uppercase;
+    color: var(--product-card-accent);
+
+    &--overlay {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(8, 8, 11, 0.85);
+    }
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.62px;
+    text-transform: uppercase;
+    color: var(--product-card-available);
+
+    &-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    &--limited {
+      color: var(--product-card-limited);
+    }
+
+    &--rented {
+      color: var(--product-card-rented);
+    }
+  }
+
+  &__sku {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.08px;
+    color: var(--product-card-faint);
+  }
+
+  &__category {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--product-card-faint);
+  }
+
+  &__name {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.05;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--product-card-fg);
+  }
+
+  &__category + &__name {
+    margin-top: -16px;
+    padding-top: 8px;
+  }
+
+  &__subtitle {
+    margin: -18px 0 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--product-card-muted);
+  }
+
+  &__specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 16px;
+    margin: 0;
+    padding: 16px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  &__spec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    color: var(--product-card-faint);
+  }
+
+  &__spec-value {
+    margin: 2px 0 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--product-card-accent);
+  }
+
+  &__description {
+    flex: 1;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--product-card-muted);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__price {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  &__price-amount {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--product-card-fg);
+  }
+
+  &__price-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.08px;
+    text-transform: uppercase;
+    color: var(--product-card-faint);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--product-card-accent);
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+      transform: translateX(4px);
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{#
+  @component hero
+  Full-viewport centered hero.
+
+  @prop string  eyebrow      - Mono label above the headline (diamonds added automatically)
+  @prop string  title        - First (light) part of the headline
+  @prop string  title_accent - Accented part of the headline (same line)
+  @prop string  tagline      - Wide-tracked subtitle
+  @prop string  text         - Intro paragraph
+  @prop array   buttons      - CTA buttons: { text, url, variant, arrow }
+  @prop boolean full_height  - Fill the viewport height (default: true)
+  @prop string  background_image - Optional image URL behind the content
+  @prop number  overlay_opacity  - Darkening overlay strength 0–1 (default: 0.7)
+  @slot extra                - Optional content below the buttons
+
+  Usage:
+    {{ include('solitheme:hero', {
+      eyebrow: 'PROFESSIONAL LIGHTING CONTROL',
+      title: 'BRIGHT',
+      title_accent: 'SIGHT',
+      tagline: 'LIGHTING AUTOMATION SYSTEMS',
+      text: 'Grand-scale lighting control solutions…',
+      buttons: [
+        { text: 'EXPLORE SYSTEMS', url: '#systems' },
+        { text: 'GET A QUOTE', url: '/contact', variant: 'outline' },
+      ],
+    }) }}
+#}
+
+<section class="hero{{ full_height is not defined or full_height ? ' hero--full' }}{{ background_image ? ' hero--has-image' }}">
+  {% if background_image %}
+    <div class="hero__bg" aria-hidden="true">
+      <img class="hero__bg-image" src="{{ background_image }}" alt="" loading="eager" />
+      <div class="hero__bg-overlay" style="--hero-overlay-opacity: {{ overlay_opacity|default(0.7) }}"></div>
+    </div>
+  {% endif %}
+  <div class="hero__inner">
+    {% if eyebrow %}
+      <p class="hero__eyebrow">&#9670; {{ eyebrow }} &#9670;</p>
+    {% endif %}
+
+    <h1 class="hero__title">
+      {{- title }}{% if title_accent %}<span class="hero__title-accent">{{ title_accent }}</span>{% endif -%}
+    </h1>
+
+    {% if tagline %}
+      <p class="hero__tagline">{{ tagline }}</p>
+    {% endif %}
+
+    {% if text %}
+      <p class="hero__text">{{ text }}</p>
+    {% endif %}
+
+    {% if buttons %}
+      <div class="hero__actions">
+        {% for btn in buttons %}
+          {{ include('solitheme:button', {
+            text: btn.text,
+            url: btn.url,
+            variant: btn.variant|default('primary'),
+            arrow: btn.arrow|default(false),
+          }) }}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% block extra %}{% endblock %}
+  </div>
+</section>

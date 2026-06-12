@@ -1,0 +1,10 @@
+uuid: 4934f724-31a3-42cb-80d4-bdeb61e02f05
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_site_footer
+label: 'BS Site Footer'
+icon_uuid: null
+icon_default: null
+description: 'Footer with brand, link columns and legal bar.'
+behavior_plugins: {  }

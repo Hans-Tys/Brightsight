@@ -1,0 +1,10 @@
+uuid: 2feed9b8-1c4c-4a4f-b94b-2d8e5a4ba417
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_hero
+label: 'BS Hero'
+icon_uuid: null
+icon_default: null
+description: 'Full-viewport hero with two-tone headline and CTAs.'
+behavior_plugins: {  }

@@ -1,0 +1,101 @@
+{#
+  @component contact-cta
+  "Let's Build Your Show" contact section.
+
+  @prop string  eyebrow       - Section eyebrow label (default: "GET IN TOUCH")
+  @prop array   heading_lines - Lines of the big heading
+  @prop integer accent_line   - Zero-based index of the accented line (default: 1)
+  @prop string  accent        - Accent color (default: #ff9500)
+  @prop string  text          - Intro paragraph
+  @prop array   details       - Contact rows: { label, value, url }
+  @prop string  partners_label- Label above the partner list
+  @prop array   partners      - Partner names
+  @prop string  form_title    - Form panel header (default: "PROJECT BRIEF")
+  @prop string  form_action   - Action URL for the fallback form
+  @prop array   project_types - Options for the project type dropdown
+  @slot form                  - Replaces the fallback form (e.g. a webform)
+#}
+
+<section class="contact-cta" id="contact">
+  <div class="contact-cta__container">
+    <div class="contact-cta__info">
+      {% if eyebrow|default('GET IN TOUCH') %}
+        <p class="contact-cta__eyebrow">&#9670; {{ eyebrow|default('GET IN TOUCH') }}</p>
+      {% endif %}
+      <h2 class="contact-cta__heading">
+        {% for line in heading_lines %}
+          <span class="contact-cta__heading-line{{ loop.index0 == accent_line|default(1) ? ' contact-cta__heading-line--accent' }}">{{ line }}</span>
+        {% endfor %}
+      </h2>
+      {% if text %}
+        <p class="contact-cta__text">{{ text }}</p>
+      {% endif %}
+
+      {% if details %}
+        <dl class="contact-cta__details">
+          {% for detail in details %}
+            <div class="contact-cta__detail">
+              <dt class="contact-cta__detail-label">{{ detail.label }}</dt>
+              <dd class="contact-cta__detail-value">
+                {% if detail.url %}
+                  <a href="{{ detail.url }}">{{ detail.value }}</a>
+                {% else %}
+                  {{ detail.value }}
+                {% endif %}
+              </dd>
+            </div>
+          {% endfor %}
+        </dl>
+      {% endif %}
+
+      {% if partners %}
+        <p class="contact-cta__partners-label">{{ partners_label|default('CERTIFIED PARTNER') }}</p>
+        <ul class="contact-cta__partners">
+          {% for partner in partners %}
+            <li class="contact-cta__partner">{{ partner }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div class="contact-cta__panel">
+      <p class="contact-cta__panel-title">{{ form_title|default('PROJECT BRIEF') }}</p>
+      {% block form %}
+        <form class="contact-cta__form" {% if form_action %}action="{{ form_action }}"{% endif %} method="post">
+          <div class="contact-cta__form-row">
+            <div class="contact-cta__field">
+              <label class="contact-cta__label" for="contact-cta-name">{{ 'Name'|t }}</label>
+              <input class="contact-cta__input" type="text" id="contact-cta-name" name="name" placeholder="Alex Morin" required />
+            </div>
+            <div class="contact-cta__field">
+              <label class="contact-cta__label" for="contact-cta-company">{{ 'Company'|t }}</label>
+              <input class="contact-cta__input" type="text" id="contact-cta-company" name="company" placeholder="Production Co." />
+            </div>
+          </div>
+          <div class="contact-cta__field">
+            <label class="contact-cta__label" for="contact-cta-email">{{ 'Email'|t }}</label>
+            <input class="contact-cta__input" type="email" id="contact-cta-email" name="email" placeholder="alex@production.com" required />
+          </div>
+          <div class="contact-cta__field">
+            <label class="contact-cta__label" for="contact-cta-type">{{ 'Project type'|t }}</label>
+            <select class="contact-cta__input contact-cta__select" id="contact-cta-type" name="project_type">
+              {% for type in project_types|default(['Live Event', 'Theatrical', 'Architectural', 'Broadcast', 'Other']) %}
+                <option value="{{ type }}">{{ type }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="contact-cta__field">
+            <label class="contact-cta__label" for="contact-cta-message">{{ 'Project details'|t }}</label>
+            <textarea class="contact-cta__input contact-cta__textarea" id="contact-cta-message" name="message" rows="5" placeholder="{{ 'Tell us about venue, dates, and scale…'|t }}"></textarea>
+          </div>
+          {{ include('solitheme:button', {
+            text: 'SUBMIT BRIEF'|t,
+            arrow: true,
+            button_type: 'submit',
+            full_width: true,
+          }) }}
+        </form>
+      {% endblock %}
+    </div>
+  </div>
+</section>

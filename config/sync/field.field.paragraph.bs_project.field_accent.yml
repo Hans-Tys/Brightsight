@@ -1,0 +1,19 @@
+uuid: e2345c4f-0cd0-4ab1-8da1-aee5dd30f792
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accent
+    - paragraphs.paragraphs_type.bs_project
+id: paragraph.bs_project.field_accent
+field_name: field_accent
+entity_type: paragraph
+bundle: bs_project
+label: 'Accent color'
+description: 'Hex, defaults to #ff9500'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

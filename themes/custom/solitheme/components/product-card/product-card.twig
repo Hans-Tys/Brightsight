@@ -1,0 +1,106 @@
+{#
+  @component product-card
+  Rental equipment card.
+
+  @prop string image        - Product photo URL
+  @prop string badge        - Small bordered badge, e.g. "FLAGSHIP"
+  @prop string sku          - Mono SKU shown top right
+  @prop string category     - Category label above the name
+  @prop string name         - Equipment name
+  @prop string subtitle     - One-line subtitle
+  @prop string availability - 'available' | 'limited' | 'rented'
+  @prop string stock        - Optional stock label, e.g. "3 UNITS"
+  @prop array  specs        - Spec grid items: { label, value }
+  @prop string description  - Body text
+  @prop string price        - Rate amount, e.g. "€450"
+  @prop string price_period - Rate period (default: "/ DAY")
+  @prop string link_text    - Link label (default: "ADD TO QUOTE")
+  @prop string link_url     - Link URL
+  @prop string accent       - Accent color (default: #ff9500)
+
+  Usage:
+    {{ include('solitheme:product-card', {
+      image: ma3_image_url,
+      badge: 'FLAGSHIP',
+      sku: 'BS-MA3-FS',
+      category: 'LIGHTING CONSOLE',
+      name: 'GRANDMA3 FULL-SIZE',
+      availability: 'available',
+      stock: '3 UNITS',
+      specs: [{ label: 'PARAMETERS', value: '12288' }],
+      price: '€450',
+      link_url: '/quote',
+    }) }}
+#}
+
+{% set availability = availability|default('available') %}
+{% set availability_labels = {
+  available: 'AVAILABLE'|t,
+  limited: 'LIMITED STOCK'|t,
+  rented: 'OUT ON TOUR'|t,
+} %}
+
+<article class="product-card" {% if accent|default('#ff9500') != '#ff9500' %}style="--product-card-accent: {{ accent }}"{% endif %}>
+  {% if image %}
+    <div class="product-card__media">
+      <img class="product-card__image" src="{{ image }}" alt="{{ name }}" loading="lazy" />
+      {% if badge %}
+        <span class="product-card__badge product-card__badge--overlay">{{ badge }}</span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="product-card__body">
+    <div class="product-card__top">
+      {% if not image and badge %}
+        <span class="product-card__badge">{{ badge }}</span>
+      {% else %}
+        <span class="product-card__status product-card__status--{{ availability }}">
+          <span class="product-card__status-dot" aria-hidden="true"></span>
+          {{ availability_labels[availability] }}{% if stock %} &middot; {{ stock }}{% endif %}
+        </span>
+      {% endif %}
+      {% if sku %}
+        <span class="product-card__sku">{{ sku }}</span>
+      {% endif %}
+    </div>
+
+    {% if category %}
+      <p class="product-card__category">{{ category }}</p>
+    {% endif %}
+    <h3 class="product-card__name">{{ name }}</h3>
+    {% if subtitle %}
+      <p class="product-card__subtitle">{{ subtitle }}</p>
+    {% endif %}
+
+    {% if specs %}
+      <dl class="product-card__specs">
+        {% for spec in specs %}
+          <div class="product-card__spec">
+            <dt class="product-card__spec-label">{{ spec.label }}</dt>
+            <dd class="product-card__spec-value">{{ spec.value }}</dd>
+          </div>
+        {% endfor %}
+      </dl>
+    {% endif %}
+
+    {% if description %}
+      <p class="product-card__description">{{ description }}</p>
+    {% endif %}
+
+    <div class="product-card__footer">
+      {% if price %}
+        <p class="product-card__price">
+          <span class="product-card__price-amount">{{ price }}</span>
+          <span class="product-card__price-period">{{ price_period|default('/ DAY'|t) }}</span>
+        </p>
+      {% endif %}
+      {% if link_url %}
+        <a class="product-card__link" href="{{ link_url }}">
+          {{ link_text|default('ADD TO QUOTE'|t) }}
+          <svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true"><path d="M0 4h14m-4-3.5L14 4l-4 3.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</article>

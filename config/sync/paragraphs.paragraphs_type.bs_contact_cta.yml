@@ -1,0 +1,10 @@
+uuid: 60448bdb-3e21-4a1d-9d48-4b380277d9a7
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_contact_cta
+label: 'BS Contact CTA'
+icon_uuid: null
+icon_default: null
+description: '"Let''s Build Your Show" contact section with project-brief form.'
+behavior_plugins: {  }

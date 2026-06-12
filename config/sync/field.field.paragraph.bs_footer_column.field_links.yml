@@ -1,0 +1,23 @@
+uuid: 7982a7a9-b1d9-412f-85e4-9a21324884f4
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_links
+    - paragraphs.paragraphs_type.bs_footer_column
+  module:
+    - link
+id: paragraph.bs_footer_column.field_links
+field_name: field_links
+entity_type: paragraph
+bundle: bs_footer_column
+label: Links
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

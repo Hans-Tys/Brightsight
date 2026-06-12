@@ -1,20 +1,12 @@
 {#
-  Template: views-view--events-timeline.html.twig
+  Template: views-view--event-timeline.html.twig
+
+  Renders the event timeline view as the events-carousel SDC.
+  The carousel_events variable is built in
+  solitheme_preprocess_views_view__event_timeline().
 #}
-{{ attach_library('solitheme/timeline') }}
-
-<div class="timeline-wrapper">
-  <div class="timeline-circles">
-    <div class="timeline-circles__ring timeline-circles__ring--lg"></div>
-    <div class="timeline-circles__ring timeline-circles__ring--md"></div>
-  </div>
-  <div class="timeline-line"></div>
-  <div class="timeline-track" id="timeline-track">
-    {{ rows }}
-  </div>
-
-  <div class="timeline-nav">
-    <button class="timeline-btn timeline-btn--prev" id="timeline-prev" aria-label="Previous">&#8592;</button>
-    <button class="timeline-btn timeline-btn--next" id="timeline-next" aria-label="Next">&#8594;</button>
-  </div>
-</div>
+{{ include('solitheme:events-carousel', {
+  heading: 'EVENTS',
+  eyebrow: 'Timeline',
+  events: carousel_events,
+}, with_context = false) }}

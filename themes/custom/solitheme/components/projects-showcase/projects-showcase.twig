@@ -1,0 +1,69 @@
+{#
+  @component projects-showcase
+  "Live Projects" section — featured project panel + switching side nav.
+
+  @prop string eyebrow      - Section eyebrow label
+  @prop string title        - Heading first part
+  @prop string title_accent - Heading accented part
+  @prop string accent       - Section accent color (default: #f0388c)
+  @prop array  projects     - Projects: { meta, title, tag, accent, image, stats: [{ label, value }] }
+
+  Usage:
+    {{ include('solitheme:projects-showcase', {
+      eyebrow: 'FIELD WORK',
+      title: 'LIVE',
+      title_accent: 'PROJECTS',
+      projects: projects,
+    }) }}
+#}
+
+{% set first = projects|first %}
+
+<section class="projects-showcase" data-projects="{{ projects|json_encode }}">
+  <div class="projects-showcase__container">
+    {{ include('solitheme:section-header', {
+      eyebrow: eyebrow,
+      title: title,
+      title_accent: title_accent,
+      accent: accent|default('#f0388c'),
+    }) }}
+
+    <div class="projects-showcase__layout">
+      <div
+        class="projects-showcase__featured"
+        data-showcase-featured
+        {% if first.accent %}style="--projects-showcase-accent: {{ first.accent }}"{% endif %}
+      >
+        <div class="projects-showcase__media">
+          {% if first.image %}
+            <img class="projects-showcase__image" data-showcase-image src="{{ first.image }}" alt="{{ first.title }}" loading="lazy" />
+          {% endif %}
+          <div class="projects-showcase__scrim" aria-hidden="true"></div>
+          <h3 class="projects-showcase__featured-title" data-showcase-title>{{ first.title }}</h3>
+          <div class="projects-showcase__bar" aria-hidden="true"></div>
+        </div>
+        <dl class="projects-showcase__stats" data-showcase-stats>
+          {% for stat in first.stats|default([]) %}
+            <div class="projects-showcase__stat">
+              <dt class="projects-showcase__stat-label">{{ stat.label }}</dt>
+              <dd class="projects-showcase__stat-value">{{ stat.value }}</dd>
+            </div>
+          {% endfor %}
+        </dl>
+      </div>
+
+      <nav class="projects-showcase__nav" aria-label="{{ 'Projects'|t }}">
+        {% for project in projects %}
+          {{ include('solitheme:project-nav-item', {
+            meta: project.meta,
+            title: project.title,
+            tag: project.tag,
+            accent: project.accent|default('#ff9500'),
+            active: loop.first,
+            index: loop.index0,
+          }) }}
+        {% endfor %}
+      </nav>
+    </div>
+  </div>
+</section>

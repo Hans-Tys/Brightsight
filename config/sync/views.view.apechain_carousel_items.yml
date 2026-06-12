@@ -1,0 +1,150 @@
+uuid: 7d07371c-7a4e-4288-b41c-1705da168a9d
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_carousel_attendees
+    - field.storage.node.field_carousel_category
+    - field.storage.node.field_carousel_image
+    - field.storage.node.field_carousel_is_hot
+    - node.type.carousel_item
+  module:
+    - image
+    - node
+    - text
+    - user
+_core:
+  default_config_hash: JoHFBQ9actcqI2aDQ8v0n-VQ3q5OR7rislKTIRq81iE
+id: apechain_carousel_items
+label: 'ApeChain Carousel Items'
+module: views
+description: 'Provides carousel_item nodes to the ApeChain Carousel block. Edit this view to change sort order, add filters, or limit results.'
+tag: apechain
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Standaard
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'ApeChain Carousel Items'
+      fields:
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          plugin_id: field
+          label: ''
+          exclude: true
+          element_label_colon: false
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          plugin_id: field
+          label: ''
+          element_label_colon: false
+          link_to_entity: false
+        field_carousel_category:
+          id: field_carousel_category
+          table: node__field_carousel_category
+          field: field_carousel_category
+          plugin_id: field
+          label: ''
+          element_label_colon: false
+        field_carousel_image:
+          id: field_carousel_image
+          table: node__field_carousel_image
+          field: field_carousel_image
+          plugin_id: field
+          label: ''
+          element_label_colon: false
+          settings:
+            image_style: ''
+            image_link: ''
+        field_carousel_attendees:
+          id: field_carousel_attendees
+          table: node__field_carousel_attendees
+          field: field_carousel_attendees
+          plugin_id: field
+          label: ''
+          element_label_colon: false
+        field_carousel_is_hot:
+          id: field_carousel_is_hot
+          table: node__field_carousel_is_hot
+          field: field_carousel_is_hot
+          plugin_id: field
+          label: ''
+          element_label_colon: false
+        body:
+          id: body
+          table: node__body
+          field: body
+          plugin_id: field
+          label: ''
+          element_label_colon: false
+          type: text_summary_or_trimmed
+          settings:
+            trim_length: 300
+      pager:
+        type: none
+        options:
+          offset: 0
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+      sorts:
+        field_carousel_weight:
+          id: field_carousel_weight
+          table: node__field_carousel_weight
+          field: field_carousel_weight_value
+          plugin_id: standard
+          order: ASC
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          plugin_id: date
+          order: ASC
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          plugin_id: bundle
+          value:
+            carousel_item: carousel_item
+          group: 1
+      style:
+        type: default
+      row:
+        type: fields
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          distinct: false
+          replica: false
+          query_tags: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - user.permissions
+      tags: {  }

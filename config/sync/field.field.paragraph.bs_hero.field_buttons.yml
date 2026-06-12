@@ -1,0 +1,27 @@
+uuid: 124346a9-cbc8-4dc1-9087-f8a2f81d84bb
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_buttons
+    - paragraphs.paragraphs_type.bs_button
+    - paragraphs.paragraphs_type.bs_hero
+  module:
+    - entity_reference_revisions
+id: paragraph.bs_hero.field_buttons
+field_name: field_buttons
+entity_type: paragraph
+bundle: bs_hero
+label: Buttons
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      bs_button: bs_button
+    negate: 0
+field_type: entity_reference_revisions

@@ -1,0 +1,19 @@
+uuid: b0fba749-9309-4d16-9ce4-afc7848d6e88
+langcode: nl
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.field_legal_links
+field_name: field_legal_links
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

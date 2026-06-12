@@ -1,0 +1,19 @@
+uuid: 14c6e299-3ebf-41d3-93b4-f6f20cbb626f
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading_lines
+    - paragraphs.paragraphs_type.bs_about_stats
+id: paragraph.bs_about_stats.field_heading_lines
+field_name: field_heading_lines
+entity_type: paragraph
+bundle: bs_about_stats
+label: 'Heading lines'
+description: 'One line per value.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

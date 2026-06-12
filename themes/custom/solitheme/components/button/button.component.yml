@@ -1,0 +1,43 @@
+name: Button
+description: CTA button. Solid accent primary or outlined ghost variant, mono uppercase label.
+status: experimental
+
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Label
+      examples:
+        - "GET A QUOTE"
+    url:
+      type: string
+      title: Link URL
+      description: Renders an <a> when set, otherwise a <button>.
+    variant:
+      type: string
+      title: Variant
+      default: primary
+      enum:
+        - primary
+        - outline
+    arrow:
+      type: boolean
+      title: Trailing arrow
+      description: Append a → after the label.
+      default: false
+    full_width:
+      type: boolean
+      title: Full width
+      default: false
+    button_type:
+      type: string
+      title: Button type attribute
+      description: Only used when no url is set.
+      default: button
+      enum:
+        - button
+        - submit
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes

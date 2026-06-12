@@ -1,0 +1,99 @@
+// project-nav-item — side-nav entry with per-project accent bar.
+
+.project-nav-item {
+  --project-nav-item-accent: #ff9500;
+  --project-nav-item-fg: #e8e8ec;
+  --project-nav-item-muted: #7a7a8a;
+  --project-nav-item-faint: #4a4a5a;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 21px 25px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  & + & {
+    margin-top: 2px;
+  }
+
+  &__bar {
+    flex: 0 0 3px;
+    align-self: stretch;
+    background: var(--project-nav-item-accent);
+    opacity: 0.2;
+    transition: opacity 0.2s ease;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__meta,
+  &__tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 1.26px;
+    text-transform: uppercase;
+    color: var(--project-nav-item-faint);
+  }
+
+  &__title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    color: var(--project-nav-item-muted);
+    transition: color 0.2s ease;
+  }
+
+  &__chevron {
+    flex: 0 0 8px;
+    color: var(--project-nav-item-accent);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+
+    .project-nav-item__bar {
+      opacity: 0.5;
+    }
+
+    .project-nav-item__title {
+      color: var(--project-nav-item-fg);
+    }
+  }
+
+  &.is-active {
+    background: #111116;
+    border-color: color-mix(in srgb, var(--project-nav-item-accent) 20%, transparent);
+
+    .project-nav-item__bar {
+      opacity: 0.8;
+    }
+
+    .project-nav-item__title {
+      color: var(--project-nav-item-fg);
+    }
+
+    .project-nav-item__chevron {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

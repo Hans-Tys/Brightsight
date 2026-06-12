@@ -1,0 +1,19 @@
+uuid: 582b5d63-d864-44d3-af71-06c6ef6cd17e
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accent
+    - paragraphs.paragraphs_type.bs_product_grid
+id: paragraph.bs_product_grid.field_accent
+field_name: field_accent
+entity_type: paragraph
+bundle: bs_product_grid
+label: 'Accent color'
+description: 'Hex, defaults to #28c8f0'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

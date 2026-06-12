@@ -1,0 +1,25 @@
+uuid: 78aaec02-b72f-4307-ab50-6ce53a228936
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_carousel_is_hot
+    - node.type.carousel_item
+_core:
+  default_config_hash: 39adDti58WusG-GvZYSVIa0Du0maI7qLSlBnvnm0bJE
+id: node.carousel_item.field_carousel_is_hot
+field_name: field_carousel_is_hot
+entity_type: node
+bundle: carousel_item
+label: 'Show "HOT" badge'
+description: 'When enabled, a yellow HOT badge appears in the top-left corner of the card.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Aan
+  off_label: Uit
+field_type: boolean

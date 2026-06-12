@@ -1,0 +1,19 @@
+uuid: 7c16c157-248a-409b-8e71-ec3c369eeb73
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_eyebrow
+    - paragraphs.paragraphs_type.bs_events_carousel
+id: paragraph.bs_events_carousel.field_eyebrow
+field_name: field_eyebrow
+entity_type: paragraph
+bundle: bs_events_carousel
+label: Eyebrow
+description: 'Defaults to Timeline.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

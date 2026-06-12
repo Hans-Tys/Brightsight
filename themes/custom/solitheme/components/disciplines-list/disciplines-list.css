@@ -1,0 +1,2 @@
+.disciplines-list{--disciplines-list-bg: #08080b;position:relative;padding:120px 32px;background:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px),var(--disciplines-list-bg);background-size:80px 80px,80px 80px,auto}.disciplines-list__container{max-width:1400px;margin:0 auto}.disciplines-list__rows{margin-top:72px}@media (max-width: 768px){.disciplines-list{padding:64px 20px}.disciplines-list__rows{margin-top:40px}}
+/*# sourceMappingURL=disciplines-list.css.map */

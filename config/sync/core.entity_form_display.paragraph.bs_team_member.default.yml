@@ -1,0 +1,49 @@
+uuid: 7d8305dc-3a8e-4529-b5d4-7a9036185b59
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_team_member.field_accent
+    - field.field.paragraph.bs_team_member.field_cert
+    - field.field.paragraph.bs_team_member.field_heading
+    - field.field.paragraph.bs_team_member.field_initials
+    - field.field.paragraph.bs_team_member.field_role
+    - paragraphs.paragraphs_type.bs_team_member
+id: paragraph.bs_team_member.default
+targetEntityType: paragraph
+bundle: bs_team_member
+mode: default
+content:
+  field_accent:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cert:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_initials:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_role:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,10 @@
+uuid: 54faa41a-1593-44cf-8801-571192281913
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_button
+label: 'BS Button'
+icon_uuid: null
+icon_default: null
+description: 'CTA button (solid or outline).'
+behavior_plugins: {  }

@@ -1,0 +1,25 @@
+{# Maps the BS Events Carousel paragraph onto solitheme:events-carousel. #}
+{% set events = [] %}
+{% for item in paragraph.field_items %}
+  {% set e = item.entity %}
+
+  {% set image = '' %}
+  {% if e.field_image.entity and e.field_image.entity.field_media_image.entity %}
+    {% set image = file_url(e.field_image.entity.field_media_image.entity.uri.value) %}
+  {% endif %}
+
+  {% set events = events|merge([{
+    name: e.field_heading.value,
+    category: e.field_category.value,
+    image_url: image,
+    attendees: e.field_attendees.value,
+    is_hot: e.field_is_hot.value == 1,
+    description: e.field_body_text.0.value|default('')|striptags|trim,
+  }]) %}
+{% endfor %}
+
+{{ include('solitheme:events-carousel', {
+  eyebrow: paragraph.field_eyebrow.value|default('Timeline'),
+  heading: paragraph.field_heading.value|default('EVENTS'),
+  events: events,
+}) }}

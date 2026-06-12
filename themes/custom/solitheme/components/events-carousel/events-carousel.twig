@@ -1,0 +1,68 @@
+{#
+  @component events-carousel
+  Renders a full-viewport 3D scrolling carousel.
+
+  @prop string heading     - Main heading text (default: "EVENTS")
+  @prop string eyebrow     - Small label above heading (default: "Timeline")
+  @prop array  events      - Array of event objects:
+    - name        (string)
+    - category    (string)
+    - image_url   (string)
+    - attendees   (string)
+    - is_hot      (boolean)
+    - description (string)
+
+  Usage:
+    {{ include('apechain_carousel:events-carousel', {
+      heading: 'EVENTS',
+      eyebrow: 'Timeline',
+      events: events
+    }) }}
+#}
+
+<section
+  class="carousel-section"
+  id="carouselSection"
+  tabindex="0"
+  aria-label="{{ 'Events carousel'|t }}"
+  data-events="{{ events|json_encode }}"
+>
+  {# Background blur layers — JS cross-fades between them #}
+  <div class="bg-blur visible" id="bgBlurA"><img alt="" aria-hidden="true" /></div>
+  <div class="bg-blur hidden"  id="bgBlurB"><img alt="" aria-hidden="true" /></div>
+
+  <div class="vignette-radial" aria-hidden="true"></div>
+  <div class="vignette-top"    aria-hidden="true"></div>
+  <div class="vignette-bottom" aria-hidden="true"></div>
+
+  <div class="scene-wrapper">
+    <header class="carousel-header">
+      <div>
+        <span class="header-eyebrow">{{ eyebrow|default('Timeline')|t }}</span>
+        <h2 class="header-title">{{ heading|default('EVENTS')|upper }}</h2>
+      </div>
+      <div class="header-counter" id="headerCounter">1 / {{ events|length }}</div>
+    </header>
+
+    <div class="stage" id="stage">
+      <div class="stage__inner" id="stageInner"></div>
+    </div>
+
+    <div class="controls">
+      <div class="controls__row">
+        <button class="controls__arrow" id="btnPrev" aria-label="{{ 'Previous'|t }}">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="controls__dots" id="dots" role="tablist"></div>
+        <button class="controls__arrow" id="btnNext" aria-label="{{ 'Next'|t }}">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="controls__hint" aria-hidden="true">
+        <kbd>←</kbd>
+        <span>{{ 'drag or arrow keys'|t }}</span>
+        <kbd>→</kbd>
+      </div>
+    </div>
+  </div>
+</section>

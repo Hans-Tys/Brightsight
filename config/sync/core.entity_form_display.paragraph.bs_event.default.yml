@@ -1,0 +1,56 @@
+uuid: ea70200a-71e2-4ac9-8497-95cdc1dbc291
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_event.field_attendees
+    - field.field.paragraph.bs_event.field_body_text
+    - field.field.paragraph.bs_event.field_category
+    - field.field.paragraph.bs_event.field_heading
+    - field.field.paragraph.bs_event.field_image
+    - field.field.paragraph.bs_event.field_is_hot
+    - paragraphs.paragraphs_type.bs_event
+id: paragraph.bs_event.default
+targetEntityType: paragraph
+bundle: bs_event
+mode: default
+content:
+  field_attendees:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body_text:
+    type: text_textarea
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_category:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_image:
+    type: media_library_widget
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_is_hot:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,35 @@
+uuid: 79a0966d-8704-4d79-8b4a-3458aa39a048
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_stat.field_label
+    - field.field.paragraph.bs_stat.field_suffix
+    - field.field.paragraph.bs_stat.field_value
+    - paragraphs.paragraphs_type.bs_stat
+id: paragraph.bs_stat.default
+targetEntityType: paragraph
+bundle: bs_stat
+mode: default
+content:
+  field_label:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_suffix:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_value:
+    type: number
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,28 @@
+{#
+  @component stat-counter
+  Accent number counting up from 0 on scroll into view.
+
+  @prop number  value    - Target value
+  @prop string  suffix   - Appended after the number (default: "+")
+  @prop string  label    - Mono label below the number
+  @prop string  accent   - Accent color (default: #ff9500)
+  @prop integer duration - Count-up duration in ms (default: 1800)
+
+  Usage:
+    {{ include('solitheme:stat-counter', { value: 850, label: 'SHOWS DELIVERED' }) }}
+#}
+
+<div
+  class="stat-counter"
+  data-value="{{ value }}"
+  data-duration="{{ duration|default(1800) }}"
+  {% if accent|default('#ff9500') != '#ff9500' %}style="--stat-counter-accent: {{ accent }}"{% endif %}
+>
+  <p class="stat-counter__number">
+    {# Real value rendered for no-JS; JS resets to 0 and counts up. #}
+    <span class="stat-counter__value" data-counter-value>{{ value }}</span>{{ suffix|default('+') }}
+  </p>
+  {% if label %}
+    <p class="stat-counter__label">{{ label }}</p>
+  {% endif %}
+</div>

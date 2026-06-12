@@ -1,0 +1,33 @@
+name: Discipline Row
+description: Numbered expandable row with title, tag list and a plus toggle. Used in the "What We Control" list.
+status: experimental
+
+props:
+  type: object
+  properties:
+    number:
+      type: string
+      title: Row number
+      examples:
+        - "01"
+    title:
+      type: string
+      title: Title
+      examples:
+        - "LIVE EVENT CONTROL"
+    tags:
+      type: array
+      title: Tags
+      description: Short keywords shown next to the title, separated by diamonds.
+      items:
+        type: string
+      examples:
+        - ["Concert", "Festival", "Tour"]
+    description:
+      type: string
+      title: Expanded description
+      description: When set, the row becomes expandable.
+    open:
+      type: boolean
+      title: Initially expanded
+      default: false

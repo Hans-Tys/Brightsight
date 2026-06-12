@@ -1,0 +1,10 @@
+uuid: b1484913-654c-426f-8824-289718facf0c
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_product
+label: 'BS Product'
+icon_uuid: null
+icon_default: null
+description: 'Rental equipment card.'
+behavior_plugins: {  }

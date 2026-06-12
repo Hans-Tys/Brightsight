@@ -1,0 +1,117 @@
+uuid: fce61631-eb3e-4878-a44c-ff2b04d7a8c5
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.node.carousel_item.field_carousel_attendees
+    - field.field.node.carousel_item.field_carousel_category
+    - field.field.node.carousel_item.field_carousel_image
+    - field.field.node.carousel_item.field_carousel_is_hot
+    - field.field.node.carousel_item.field_carousel_weight
+    - image.style.thumbnail
+    - node.type.carousel_item
+  module:
+    - image
+    - path
+_core:
+  default_config_hash: CaKsQtK3F8ctlKOjK8BFRSQ1L6J6J02oCU339jVfJug
+id: node.carousel_item.default
+targetEntityType: node
+bundle: carousel_item
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    region: content
+    settings:
+      rows: 4
+      summary_rows: 2
+      placeholder: 'Short description shown on the card when it is centred.'
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_carousel_attendees:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 20
+      placeholder: 'E.g. 125K'
+    third_party_settings: {  }
+  field_carousel_category:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: 'E.g. Music, Electronic, Arts'
+    third_party_settings: {  }
+  field_carousel_image:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_carousel_is_hot:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_carousel_weight:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: '0'
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: 'Event name, e.g. Tomorrowland'
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

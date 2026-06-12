@@ -1,0 +1,21 @@
+uuid: de7458bc-7e96-4fd2-b62e-6f115a2c54c6
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_is_hot
+    - paragraphs.paragraphs_type.bs_event
+id: paragraph.bs_event.field_is_hot
+field_name: field_is_hot
+entity_type: paragraph
+bundle: bs_event
+label: Hot
+description: 'Show the “hot” marker on the card.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Aan
+  off_label: Uit
+field_type: boolean

@@ -1,0 +1,23 @@
+uuid: 79a8029d-72e7-4e9f-81e5-02cb40d9c676
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accent_line
+    - paragraphs.paragraphs_type.bs_contact_cta
+id: paragraph.bs_contact_cta.field_accent_line
+field_name: field_accent_line
+entity_type: paragraph
+bundle: bs_contact_cta
+label: 'Accented line'
+description: 'Zero-based index, defaults to 1.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

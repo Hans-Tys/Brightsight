@@ -1,0 +1,10 @@
+uuid: 3f3c5bf8-92be-49f5-b46f-3b9b5b1d3ec3
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_project
+label: 'BS Project'
+icon_uuid: null
+icon_default: null
+description: 'One project in the showcase.'
+behavior_plugins: {  }

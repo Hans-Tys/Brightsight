@@ -1,0 +1,32 @@
+uuid: 41710bbc-0798-4387-a1dc-c6019334e06c
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - node
+_core:
+  default_config_hash: Uq1bdJqeFmNtOPRyv27glnlixeNiTtqKP9F6q1T3fyA
+id: node.field_carousel_image
+field_name: field_carousel_image
+entity_type: node
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: null
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  display_default: true
+  target_type: file
+  display_field: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

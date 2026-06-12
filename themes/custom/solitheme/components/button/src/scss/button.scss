@@ -1,0 +1,53 @@
+// button — CTA in solid accent or outlined ghost variant.
+// Square corners and mono uppercase label per the Brightsight design.
+
+.bs-button {
+  --bs-button-accent: #ff9500;
+  --bs-button-on-accent: #08080b;
+  --bs-button-fg: #e8e8ec;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 32px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 1.92px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &--primary {
+    background: var(--bs-button-accent);
+    color: var(--bs-button-on-accent);
+    font-weight: 700;
+
+    &:hover,
+    &:focus-visible {
+      background: #ffb340;
+      color: var(--bs-button-on-accent);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+    color: var(--bs-button-fg);
+    font-weight: 400;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--bs-button-accent);
+      color: var(--bs-button-accent);
+    }
+  }
+
+  &--full {
+    display: flex;
+    width: 100%;
+  }
+}

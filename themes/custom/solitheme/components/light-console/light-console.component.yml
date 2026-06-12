@@ -1,0 +1,44 @@
+name: Light Console
+description: Interactive grandMA3-style light table. Faders and buttons drive colored light beams on a stage viewport above the console.
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      default: "HANDS ON"
+    title:
+      type: string
+      title: Heading first part
+      examples:
+        - "TRY THE"
+    title_accent:
+      type: string
+      title: Heading accented part
+      examples:
+        - "CONSOLE"
+    fixtures:
+      type: integer
+      title: Number of fixtures
+      description: Light beams / fader channels (2–8).
+      default: 6
+    colors:
+      type: array
+      title: Color palette
+      description: Colors offered by the per-channel color buttons.
+      items:
+        type: string
+      default:
+        - "#ff9500"
+        - "#ff3d9a"
+        - "#00c8ff"
+        - "#bf5fff"
+        - "#39ff14"
+        - "#ffffff"
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

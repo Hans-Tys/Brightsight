@@ -1,0 +1,68 @@
+name: Hero
+description: Full-viewport centered hero with eyebrow, two-tone headline, tagline, intro text and CTA buttons.
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      description: Mono label above the headline, wrapped in diamonds automatically.
+      examples:
+        - "PROFESSIONAL LIGHTING CONTROL"
+    title:
+      type: string
+      title: Headline first part
+      examples:
+        - "BRIGHT"
+    title_accent:
+      type: string
+      title: Headline accented part
+      description: Rendered in the accent color, on the same line.
+      examples:
+        - "SIGHT"
+    tagline:
+      type: string
+      title: Tagline
+      description: Wide-tracked subtitle under the headline.
+      examples:
+        - "LIGHTING AUTOMATION SYSTEMS"
+    text:
+      type: string
+      title: Intro text
+    buttons:
+      type: array
+      title: CTA buttons
+      items:
+        type: object
+        properties:
+          text:
+            type: string
+          url:
+            type: string
+          variant:
+            type: string
+            enum:
+              - primary
+              - outline
+          arrow:
+            type: boolean
+    full_height:
+      type: boolean
+      title: Fill viewport height
+      default: true
+    background_image:
+      type: string
+      title: Background image URL
+      description: Shown behind the content with a darkening overlay.
+    overlay_opacity:
+      type: number
+      title: Overlay opacity
+      description: 0 (image fully visible) to 1 (fully dark). Default 0.7.
+      default: 0.7
+
+slots:
+  extra:
+    title: Extra content
+    description: Optional content below the buttons (e.g. HUD stats, scroll hint).

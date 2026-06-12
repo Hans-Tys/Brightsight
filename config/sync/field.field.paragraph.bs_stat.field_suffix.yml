@@ -1,0 +1,19 @@
+uuid: c67b230c-c644-491d-9c5b-17f601a444be
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_suffix
+    - paragraphs.paragraphs_type.bs_stat
+id: paragraph.bs_stat.field_suffix
+field_name: field_suffix
+entity_type: paragraph
+bundle: bs_stat
+label: Suffix
+description: 'Defaults to +'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

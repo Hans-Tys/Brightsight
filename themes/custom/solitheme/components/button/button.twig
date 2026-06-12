@@ -1,0 +1,28 @@
+{#
+  @component button
+  CTA button — solid accent or outlined ghost.
+
+  @prop string  text        - Label (rendered uppercase)
+  @prop string  url         - Renders an <a> when set, otherwise a <button>
+  @prop string  variant     - 'primary' (default) or 'outline'
+  @prop boolean arrow       - Append a trailing →
+  @prop boolean full_width  - Stretch to container width
+  @prop string  button_type - type attribute when rendered as <button>
+
+  Usage:
+    {{ include('solitheme:button', { text: 'GET A QUOTE', url: '/contact', variant: 'outline' }) }}
+#}
+
+{% set classes = [
+  'bs-button',
+  'bs-button--' ~ (variant|default('primary')),
+  full_width ? 'bs-button--full',
+] | filter(c => c) | join(' ') %}
+
+{% set label %}{{ text }}{% if arrow %}&nbsp;&#8594;{% endif %}{% endset %}
+
+{% if url %}
+  <a href="{{ url }}" class="{{ classes }}"{{ attributes }}>{{ label }}</a>
+{% else %}
+  <button type="{{ button_type|default('button') }}" class="{{ classes }}"{{ attributes }}>{{ label }}</button>
+{% endif %}

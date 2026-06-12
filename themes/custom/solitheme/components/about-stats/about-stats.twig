@@ -1,0 +1,91 @@
+{#
+  @component about-stats
+  "Lights Are Language" about section.
+
+  @prop string  eyebrow       - Section eyebrow label
+  @prop array   heading_lines - Lines of the big heading
+  @prop integer accent_line   - Zero-based index of the accented line (default: 2)
+  @prop string  accent        - Accent color (default: #ff9500)
+  @prop array   paragraphs    - Intro paragraphs
+  @prop string  panel_title   - Console panel header
+  @prop array   sliders       - Panel sliders: { label, percent, color }
+  @prop string  panel_status  - Green status line in the panel footer
+  @prop array   stats         - Stat counters: { value, suffix, label }
+  @prop string  team_label    - Label above the team cards
+  @prop array   team          - Members: { initials, name, role, cert, accent }
+#}
+
+<section class="about-stats">
+  <div class="about-stats__container">
+    <div class="about-stats__top">
+      <div class="about-stats__intro">
+        {% if eyebrow %}
+          <p class="about-stats__eyebrow">&#9670; {{ eyebrow }}</p>
+        {% endif %}
+        <h2 class="about-stats__heading">
+          {% for line in heading_lines %}
+            <span class="about-stats__heading-line{{ loop.index0 == accent_line|default(2) ? ' about-stats__heading-line--accent' }}">{{ line }}</span>
+          {% endfor %}
+        </h2>
+        {% for paragraph in paragraphs|default([]) %}
+          <p class="about-stats__paragraph">{{ paragraph }}</p>
+        {% endfor %}
+      </div>
+
+      {% if sliders %}
+        <div class="about-stats__panel" data-sys-panel>
+          <p class="about-stats__panel-title">{{ panel_title|default('BRIGHTSIGHT — SYS OVERVIEW') }}</p>
+          {% for slider in sliders %}
+            <div class="about-stats__slider">
+              <div class="about-stats__slider-head">
+                <span class="about-stats__slider-label">{{ slider.label }}</span>
+                <span class="about-stats__slider-percent" style="color: {{ slider.color|default('#ff9500') }}">{{ slider.percent }}%</span>
+              </div>
+              <div class="about-stats__slider-track">
+                <div class="about-stats__slider-fill" data-percent="{{ slider.percent }}" style="background: {{ slider.color|default('#ff9500') }}"></div>
+              </div>
+            </div>
+          {% endfor %}
+          <div class="about-stats__panel-footer">
+            <span class="about-stats__panel-status">
+              <span class="about-stats__panel-dot" aria-hidden="true"></span>
+              {{ panel_status|default('ALL SYSTEMS NOMINAL') }}
+            </span>
+            <span class="about-stats__panel-clock" data-sys-clock></span>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if stats %}
+      <div class="about-stats__counters">
+        {% for stat in stats %}
+          {{ include('solitheme:stat-counter', {
+            value: stat.value,
+            suffix: stat.suffix|default('+'),
+            label: stat.label,
+            accent: accent|default('#ff9500'),
+          }) }}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if team %}
+      {% if team_label %}
+        <p class="about-stats__team-label">{{ team_label }}</p>
+      {% endif %}
+      <ul class="about-stats__team">
+        {% for member in team %}
+          <li class="about-stats__member" {% if member.accent %}style="--about-stats-member-accent: {{ member.accent }}"{% endif %}>
+            <span class="about-stats__member-avatar" aria-hidden="true">{{ member.initials }}</span>
+            <span class="about-stats__member-name">{{ member.name }}</span>
+            <span class="about-stats__member-role">{{ member.role }}</span>
+            {% if member.cert %}
+              <span class="about-stats__member-cert">&#9670; {{ member.cert }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>

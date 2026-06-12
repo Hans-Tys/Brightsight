@@ -1,0 +1,22 @@
+uuid: f0899a7d-0f1b-41f8-9aac-c5dcf79de99e
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body_text
+    - paragraphs.paragraphs_type.bs_event
+  module:
+    - text
+id: paragraph.bs_event.field_body_text
+field_name: field_body_text
+entity_type: paragraph
+bundle: bs_event
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

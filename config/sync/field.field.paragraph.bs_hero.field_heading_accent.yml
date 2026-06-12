@@ -1,0 +1,19 @@
+uuid: 68ef3b0a-6845-44e6-898c-7d21c49d6f26
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading_accent
+    - paragraphs.paragraphs_type.bs_hero
+id: paragraph.bs_hero.field_heading_accent
+field_name: field_heading_accent
+entity_type: paragraph
+bundle: bs_hero
+label: 'Headline (accent part)'
+description: 'e.g. SIGHT'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: 6adcd85f-aab0-4816-b4c4-ba8e74ab3d86
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.bs_footer_column
+id: paragraph.bs_footer_column.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: bs_footer_column
+label: 'Column title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

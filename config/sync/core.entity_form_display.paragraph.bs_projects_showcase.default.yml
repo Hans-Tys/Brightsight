@@ -1,0 +1,42 @@
+uuid: c44f2355-d98e-4897-afd3-f30c061a8e4c
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_projects_showcase.field_eyebrow
+    - field.field.paragraph.bs_projects_showcase.field_heading
+    - field.field.paragraph.bs_projects_showcase.field_heading_accent
+    - field.field.paragraph.bs_projects_showcase.field_items
+    - paragraphs.paragraphs_type.bs_projects_showcase
+id: paragraph.bs_projects_showcase.default
+targetEntityType: paragraph
+bundle: bs_projects_showcase
+mode: default
+content:
+  field_eyebrow:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading_accent:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_items:
+    type: paragraphs
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

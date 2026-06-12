@@ -1,0 +1,41 @@
+{#
+  @component project-nav-item
+  Side-navigation entry for the projects showcase.
+
+  @prop string  meta   - Year/category line, e.g. "2024 — Live Event"
+  @prop string  title  - Project title
+  @prop string  tag    - Venue/type tag
+  @prop string  accent - Accent color (default: #ff9500)
+  @prop boolean active - Highlighted state
+  @prop string  url    - Renders an <a> when set, otherwise a <button>
+  @prop integer index  - Exposed as data-index for showcase JS
+
+  Usage:
+    {{ include('solitheme:project-nav-item', {
+      meta: '2024 — Live Event',
+      title: 'ELATION WORLD TOUR',
+      tag: 'Arena',
+      accent: '#ff9500',
+      active: true,
+    }) }}
+#}
+
+{% set tag_name = url ? 'a' : 'button' %}
+
+<{{ tag_name }}
+  {% if url %}href="{{ url }}"{% else %}type="button"{% endif %}
+  class="project-nav-item{{ active ? ' is-active' }}"
+  {% if accent|default('#ff9500') != '#ff9500' %}style="--project-nav-item-accent: {{ accent }}"{% endif %}
+  {% if index is defined and index is not null %}data-index="{{ index }}"{% endif %}
+  {% if active %}aria-current="true"{% endif %}
+>
+  <span class="project-nav-item__bar" aria-hidden="true"></span>
+  <span class="project-nav-item__content">
+    {% if meta %}<span class="project-nav-item__meta">{{ meta }}</span>{% endif %}
+    <span class="project-nav-item__title">{{ title }}</span>
+    {% if tag %}<span class="project-nav-item__tag">{{ tag }}</span>{% endif %}
+  </span>
+  <span class="project-nav-item__chevron" aria-hidden="true">
+    <svg viewBox="0 0 8 14" width="8" height="14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </span>
+</{{ tag_name }}>

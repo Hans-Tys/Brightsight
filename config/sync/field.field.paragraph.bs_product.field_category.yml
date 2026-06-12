@@ -1,0 +1,19 @@
+uuid: 2632d330-9bd9-44d3-91bd-381bcfebd882
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_category
+    - paragraphs.paragraphs_type.bs_product
+id: paragraph.bs_product.field_category
+field_name: field_category
+entity_type: paragraph
+bundle: bs_product
+label: Category
+description: 'e.g. LIGHTING CONSOLE'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

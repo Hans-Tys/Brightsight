@@ -1,0 +1,19 @@
+uuid: cdccfac4-b6dc-418c-8c27-f9551133b5d6
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label
+    - paragraphs.paragraphs_type.bs_button
+id: paragraph.bs_button.field_label
+field_name: field_label
+entity_type: paragraph
+bundle: bs_button
+label: Label
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

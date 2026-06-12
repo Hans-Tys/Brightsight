@@ -1,0 +1,27 @@
+uuid: d1862c1a-c3f5-42fe-a237-fbb9e805e060
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.bs_discipline
+    - paragraphs.paragraphs_type.bs_disciplines_list
+  module:
+    - entity_reference_revisions
+id: paragraph.bs_disciplines_list.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: bs_disciplines_list
+label: Disciplines
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      bs_discipline: bs_discipline
+    negate: 0
+field_type: entity_reference_revisions

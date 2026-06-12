@@ -1,0 +1,10 @@
+uuid: d8122d81-9aa7-49bf-a1e8-e2da0d2e361d
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_projects_showcase
+label: 'BS Projects Showcase'
+icon_uuid: null
+icon_default: null
+description: '"Live Projects" section: featured panel with switching side nav.'
+behavior_plugins: {  }

@@ -1,0 +1,10 @@
+uuid: ccbf7d15-c4ed-4e84-84c9-7c6ea479fb5c
+langcode: nl
+status: true
+dependencies: {  }
+id: bs_about_stats
+label: 'BS About + Stats'
+icon_uuid: null
+icon_default: null
+description: '"Lights Are Language" about section with counters and team.'
+behavior_plugins: {  }

@@ -1,0 +1,82 @@
+name: Product Card
+description: Rental equipment card with photo, availability status, spec grid, day rate and quote link. Accent color configurable per category.
+status: experimental
+
+props:
+  type: object
+  properties:
+    image:
+      type: string
+      title: Product photo URL
+    badge:
+      type: string
+      title: Badge
+      examples:
+        - "FLAGSHIP"
+    sku:
+      type: string
+      title: SKU / stock code
+      examples:
+        - "BS-MA3-FS"
+    category:
+      type: string
+      title: Category
+      examples:
+        - "LIGHTING CONSOLE"
+    name:
+      type: string
+      title: Equipment name
+      examples:
+        - "GRANDMA3 FULL-SIZE"
+    subtitle:
+      type: string
+      title: Subtitle
+      examples:
+        - "Full MA3 Integration. 4096 Channels."
+    availability:
+      type: string
+      title: Availability
+      description: Shown as a status dot with label.
+      default: available
+      enum:
+        - available
+        - limited
+        - rented
+    stock:
+      type: string
+      title: Stock label
+      description: Optional, e.g. "3 UNITS".
+    specs:
+      type: array
+      title: Specs
+      description: Label/value pairs shown in a two-column grid.
+      items:
+        type: object
+        properties:
+          label:
+            type: string
+          value:
+            type: string
+    description:
+      type: string
+      title: Description
+    price:
+      type: string
+      title: Rate amount
+      examples:
+        - "€450"
+    price_period:
+      type: string
+      title: Rate period
+      default: "/ DAY"
+    link_text:
+      type: string
+      title: Link label
+      default: "ADD TO QUOTE"
+    link_url:
+      type: string
+      title: Link URL
+    accent:
+      type: string
+      title: Accent color
+      default: "#ff9500"

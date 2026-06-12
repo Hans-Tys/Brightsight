@@ -1,0 +1,46 @@
+{#
+  @component disciplines-list
+  "What We Control" section — header + stack of discipline rows.
+
+  @prop string eyebrow      - Section eyebrow label
+  @prop string title        - Heading first part
+  @prop string title_accent - Heading accented part
+  @prop string accent       - Accent color (default: #ff9500)
+  @prop array  items        - Rows: { number, title, tags, description };
+                              numbers are auto-generated when omitted
+  @slot rows                - Alternative row markup (e.g. a view)
+
+  Usage:
+    {{ include('solitheme:disciplines-list', {
+      eyebrow: '06 DISCIPLINES',
+      title: 'WHAT WE',
+      title_accent: 'CONTROL',
+      items: [
+        { title: 'LIVE EVENT CONTROL', tags: ['Concert', 'Festival', 'Tour'], description: '…' },
+      ],
+    }) }}
+#}
+
+<section class="disciplines-list">
+  <div class="disciplines-list__container">
+    {{ include('solitheme:section-header', {
+      eyebrow: eyebrow,
+      title: title,
+      title_accent: title_accent,
+      accent: accent|default('#ff9500'),
+    }) }}
+
+    <div class="disciplines-list__rows">
+      {% block rows %}
+        {% for item in items %}
+          {{ include('solitheme:discipline-row', {
+            number: item.number|default('%02d'|format(loop.index)),
+            title: item.title,
+            tags: item.tags|default([]),
+            description: item.description|default(''),
+          }) }}
+        {% endfor %}
+      {% endblock %}
+    </div>
+  </div>
+</section>

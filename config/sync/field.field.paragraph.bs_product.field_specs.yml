@@ -1,0 +1,19 @@
+uuid: dcf13f04-f6db-4aed-86f0-93c3a312a588
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_specs
+    - paragraphs.paragraphs_type.bs_product
+id: paragraph.bs_product.field_specs
+field_name: field_specs
+entity_type: paragraph
+bundle: bs_product
+label: Specs
+description: 'One per value as LABEL|VALUE, e.g. PARAMETERS|12288'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,25 @@
+uuid: 5526ed52-6cd6-4edb-bfe5-562979f17df2
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image
+    - media.type.image
+    - paragraphs.paragraphs_type.bs_hero
+id: paragraph.bs_hero.field_image
+field_name: field_image
+entity_type: paragraph
+bundle: bs_hero
+label: 'Background image'
+description: 'Optional, shown behind the content with a dark overlay.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    negate: 0
+field_type: entity_reference

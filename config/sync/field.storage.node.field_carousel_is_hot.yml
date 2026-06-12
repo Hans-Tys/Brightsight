@@ -1,0 +1,20 @@
+uuid: 0fd5da50-c186-4c02-9995-e0b3f9af1369
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: IfRIqbhz06YtkKKwgMf5LpyTRkJfTc3ApJ7Sa691hH4
+id: node.field_carousel_is_hot
+field_name: field_carousel_is_hot
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

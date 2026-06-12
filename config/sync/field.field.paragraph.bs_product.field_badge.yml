@@ -1,0 +1,19 @@
+uuid: 3c8bf226-c230-4eeb-a0ef-328560d725b3
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_badge
+    - paragraphs.paragraphs_type.bs_product
+id: paragraph.bs_product.field_badge
+field_name: field_badge
+entity_type: paragraph
+bundle: bs_product
+label: Badge
+description: 'e.g. FLAGSHIP'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

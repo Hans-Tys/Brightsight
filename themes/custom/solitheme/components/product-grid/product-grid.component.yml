@@ -1,0 +1,43 @@
+name: Product Grid
+description: '"The Arsenal" section: section header, responsive grid of product cards, and an optional assurances strip.'
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      examples:
+        - "OUR EQUIPMENT"
+    title:
+      type: string
+      title: Heading first part
+      examples:
+        - "THE"
+    title_accent:
+      type: string
+      title: Heading accented part
+      examples:
+        - "ARSENAL"
+    accent:
+      type: string
+      title: Accent color
+      default: "#28c8f0"
+    notes:
+      type: array
+      title: Assurance notes
+      description: Short reassurances shown beside the header, e.g. "5-YEAR WARRANTY".
+      items:
+        type: string
+    products:
+      type: array
+      title: Products
+      description: Forwarded to the product-card component.
+      items:
+        type: object
+
+slots:
+  cards:
+    title: Cards
+    description: Alternative to the products prop, e.g. a rendered view of product cards.

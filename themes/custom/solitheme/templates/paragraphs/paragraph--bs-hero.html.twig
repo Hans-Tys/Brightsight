@@ -1,0 +1,26 @@
+{# Maps the BS Hero paragraph onto the solitheme:hero component. #}
+{% set buttons = [] %}
+{% for item in paragraph.field_buttons %}
+  {% set btn = item.entity %}
+  {% set buttons = buttons|merge([{
+    text: btn.field_label.value,
+    url: btn.field_url.0 ? btn.field_url.0.url.toString() : '#',
+    variant: btn.field_variant.value|default('primary'),
+    arrow: btn.field_arrow.value == 1,
+  }]) %}
+{% endfor %}
+
+{% set bg = '' %}
+{% if paragraph.field_image.entity and paragraph.field_image.entity.field_media_image.entity %}
+  {% set bg = file_url(paragraph.field_image.entity.field_media_image.entity.uri.value) %}
+{% endif %}
+
+{{ include('solitheme:hero', {
+  eyebrow: paragraph.field_eyebrow.value,
+  title: paragraph.field_heading.value,
+  title_accent: paragraph.field_heading_accent.value,
+  tagline: paragraph.field_tagline.value,
+  text: paragraph.field_body_text.0.value|default("")|striptags|trim,
+  buttons: buttons,
+  background_image: bg,
+}) }}

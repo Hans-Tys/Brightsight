@@ -1,0 +1,19 @@
+uuid: 544698e6-36dd-4d53-9594-a04112d20111
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_attendees
+    - paragraphs.paragraphs_type.bs_event
+id: paragraph.bs_event.field_attendees
+field_name: field_attendees
+entity_type: paragraph
+bundle: bs_event
+label: Attendees
+description: 'e.g. 40K'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

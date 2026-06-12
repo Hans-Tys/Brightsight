@@ -9,6 +9,7 @@ ckeditor_stylesheets:
 
 libraries:
   - solitheme/normalize
+  - solitheme/fonts
   - solitheme/main
 
 

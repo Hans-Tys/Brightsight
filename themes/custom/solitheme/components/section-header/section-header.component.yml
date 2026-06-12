@@ -1,0 +1,39 @@
+name: Section Header
+description: Eyebrow label with diamond marker plus a two-tone uppercase heading. Used at the top of every page section.
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      description: Small mono label above the heading. The diamond (◆) is added automatically.
+      examples:
+        - "06 DISCIPLINES"
+    title:
+      type: string
+      title: Heading first part
+      examples:
+        - "WHAT WE"
+    title_accent:
+      type: string
+      title: Heading accented part
+      description: Rendered in the accent color, on its own line by default.
+      examples:
+        - "CONTROL"
+    accent:
+      type: string
+      title: Accent color
+      description: CSS color for the eyebrow and accented heading part.
+      default: "#ff9500"
+    inline:
+      type: boolean
+      title: Accent on same line
+      description: Render the accented part on the same line as the first part.
+      default: false
+    heading_level:
+      type: integer
+      title: Heading level
+      default: 2
+      enum: [1, 2, 3, 4]

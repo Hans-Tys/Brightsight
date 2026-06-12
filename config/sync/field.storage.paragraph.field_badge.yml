@@ -1,0 +1,21 @@
+uuid: 63d420ee-bb60-44a2-a56b-4e5a02d39668
+langcode: nl
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_badge
+field_name: field_badge
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

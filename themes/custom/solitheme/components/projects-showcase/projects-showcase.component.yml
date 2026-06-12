@@ -1,0 +1,56 @@
+name: Projects Showcase
+description: '"Live Projects" section: featured project image with stats strip and a side navigation that switches the featured project.'
+status: experimental
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow label
+      examples:
+        - "FIELD WORK"
+    title:
+      type: string
+      title: Heading first part
+      examples:
+        - "LIVE"
+    title_accent:
+      type: string
+      title: Heading accented part
+      examples:
+        - "PROJECTS"
+    accent:
+      type: string
+      title: Section accent color
+      default: "#f0388c"
+    projects:
+      type: array
+      title: Projects
+      items:
+        type: object
+        properties:
+          meta:
+            type: string
+          title:
+            type: string
+          tag:
+            type: string
+          accent:
+            type: string
+          image:
+            type: string
+          stats:
+            type: array
+            items:
+              type: object
+              properties:
+                label:
+                  type: string
+                value:
+                  type: string
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

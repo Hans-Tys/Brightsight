@@ -1,0 +1,56 @@
+uuid: a13cae56-cc17-40c8-a7d8-0b937d7bb939
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_product_grid.field_accent
+    - field.field.paragraph.bs_product_grid.field_eyebrow
+    - field.field.paragraph.bs_product_grid.field_heading
+    - field.field.paragraph.bs_product_grid.field_heading_accent
+    - field.field.paragraph.bs_product_grid.field_items
+    - field.field.paragraph.bs_product_grid.field_notes
+    - paragraphs.paragraphs_type.bs_product_grid
+id: paragraph.bs_product_grid.default
+targetEntityType: paragraph
+bundle: bs_product_grid
+mode: default
+content:
+  field_accent:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_eyebrow:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading_accent:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_items:
+    type: paragraphs
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_notes:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

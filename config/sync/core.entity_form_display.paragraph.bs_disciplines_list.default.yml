@@ -1,0 +1,42 @@
+uuid: 16773f9c-871c-4dd7-8ff8-516736c605d9
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_disciplines_list.field_eyebrow
+    - field.field.paragraph.bs_disciplines_list.field_heading
+    - field.field.paragraph.bs_disciplines_list.field_heading_accent
+    - field.field.paragraph.bs_disciplines_list.field_items
+    - paragraphs.paragraphs_type.bs_disciplines_list
+id: paragraph.bs_disciplines_list.default
+targetEntityType: paragraph
+bundle: bs_disciplines_list
+mode: default
+content:
+  field_eyebrow:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading_accent:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_items:
+    type: paragraphs
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,27 @@
+uuid: 842ef4d1-862f-47bc-9346-09698ad72910
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_team
+    - paragraphs.paragraphs_type.bs_about_stats
+    - paragraphs.paragraphs_type.bs_team_member
+  module:
+    - entity_reference_revisions
+id: paragraph.bs_about_stats.field_team
+field_name: field_team
+entity_type: paragraph
+bundle: bs_about_stats
+label: 'Team members'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      bs_team_member: bs_team_member
+    negate: 0
+field_type: entity_reference_revisions

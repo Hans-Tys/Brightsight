@@ -1,0 +1,35 @@
+uuid: 3853dcd4-1dc8-4856-9f10-4ab5f13d4f41
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bs_discipline.field_body_text
+    - field.field.paragraph.bs_discipline.field_heading
+    - field.field.paragraph.bs_discipline.field_tags
+    - paragraphs.paragraphs_type.bs_discipline
+id: paragraph.bs_discipline.default
+targetEntityType: paragraph
+bundle: bs_discipline
+mode: default
+content:
+  field_body_text:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_tags:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

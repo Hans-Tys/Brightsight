@@ -1,0 +1,21 @@
+{# Maps the BS Disciplines List paragraph onto solitheme:disciplines-list. #}
+{% set items = [] %}
+{% for item in paragraph.field_items %}
+  {% set row = item.entity %}
+  {% set tags = [] %}
+  {% for tag in row.field_tags %}
+    {% set tags = tags|merge([tag.value]) %}
+  {% endfor %}
+  {% set items = items|merge([{
+    title: row.field_heading.value,
+    tags: tags,
+    description: row.field_body_text.0.value|default("")|striptags|trim,
+  }]) %}
+{% endfor %}
+
+{{ include('solitheme:disciplines-list', {
+  eyebrow: paragraph.field_eyebrow.value,
+  title: paragraph.field_heading.value,
+  title_accent: paragraph.field_heading_accent.value,
+  items: items,
+}) }}

@@ -1,0 +1,25 @@
+uuid: 5bea0d00-103f-4b9d-9168-4b274cdd7ce0
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image
+    - media.type.image
+    - paragraphs.paragraphs_type.bs_event
+id: paragraph.bs_event.field_image
+field_name: field_image
+entity_type: paragraph
+bundle: bs_event
+label: Image
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    negate: 0
+field_type: entity_reference

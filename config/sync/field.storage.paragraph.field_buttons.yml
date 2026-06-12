@@ -1,0 +1,20 @@
+uuid: 2cbd4e10-de92-458c-9352-d78d17b58dfd
+langcode: nl
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+    - paragraphs
+id: paragraph.field_buttons
+field_name: field_buttons
+entity_type: paragraph
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

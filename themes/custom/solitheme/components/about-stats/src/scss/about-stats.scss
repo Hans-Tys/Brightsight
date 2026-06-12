@@ -1,0 +1,252 @@
+// about-stats — "Lights Are Language" about section.
+
+.about-stats {
+  --about-stats-accent: #ff9500;
+  --about-stats-bg: #08080b;
+  --about-stats-fg: #e8e8ec;
+  --about-stats-muted: #9a9aaa;
+  --about-stats-faint: #4a4a5a;
+
+  padding: 120px 32px;
+  background: var(--about-stats-bg);
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  &__eyebrow {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3.3px;
+    text-transform: uppercase;
+    color: var(--about-stats-accent);
+  }
+
+  &__heading {
+    margin: 0;
+    padding-top: 16px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--about-stats-fg);
+  }
+
+  &__heading-line {
+    display: block;
+
+    &--accent {
+      color: var(--about-stats-accent);
+    }
+  }
+
+  &__paragraph {
+    margin: 0;
+    padding-top: 32px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--about-stats-muted);
+  }
+
+  // System-overview console panel.
+  &__panel {
+    padding: 33px;
+    background: #111116;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  &__panel-title {
+    margin: 0;
+    padding-bottom: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.26px;
+    text-transform: uppercase;
+    color: var(--about-stats-faint);
+  }
+
+  &__slider {
+    padding-top: 16px;
+  }
+
+  &__slider-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__slider-label,
+  &__slider-percent {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+  }
+
+  &__slider-label {
+    color: var(--about-stats-faint);
+  }
+
+  &__slider-track {
+    margin-top: 8px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  &__slider-fill {
+    height: 100%;
+    width: 0;
+    opacity: 0.7;
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &__panel-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 17px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  &__panel-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.08px;
+    color: #39ff14;
+  }
+
+  &__panel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background: #39ff14;
+    opacity: 0.61;
+  }
+
+  &__panel-clock {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.8px;
+    color: var(--about-stats-faint);
+  }
+
+  &__counters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-top: 96px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    .stat-counter {
+      padding-left: 24px;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-counter:first-child {
+      padding-left: 0;
+    }
+
+    .stat-counter:last-child {
+      border-right: none;
+    }
+  }
+
+  &__team-label {
+    margin: 64px 0 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.26px;
+    text-transform: uppercase;
+    color: var(--about-stats-faint);
+  }
+
+  &__team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__member {
+    --about-stats-member-accent: #ff9500;
+
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 2px solid color-mix(in srgb, var(--about-stats-member-accent) 60%, transparent);
+  }
+
+  &__member-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid color-mix(in srgb, var(--about-stats-member-accent) 40%, transparent);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--about-stats-member-accent);
+  }
+
+  &__member-name {
+    padding-top: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1.08px;
+    text-transform: uppercase;
+    color: var(--about-stats-fg);
+  }
+
+  &__member-role {
+    padding-top: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--about-stats-muted);
+  }
+
+  &__member-cert {
+    padding-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.08px;
+    text-transform: uppercase;
+    color: var(--about-stats-member-accent);
+  }
+
+  @media (max-width: 1024px) {
+    padding: 64px 20px;
+
+    &__top {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    &__counters {
+      margin-top: 56px;
+    }
+  }
+}

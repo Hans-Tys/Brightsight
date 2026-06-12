@@ -1,0 +1,21 @@
+uuid: a456d0aa-949a-48d7-8752-d45a69c921d9
+langcode: nl
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_stock
+field_name: field_stock
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

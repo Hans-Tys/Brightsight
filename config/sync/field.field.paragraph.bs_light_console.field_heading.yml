@@ -1,0 +1,19 @@
+uuid: 57f62827-d0a1-49dd-9c1b-7e3a2ce18473
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.bs_light_console
+id: paragraph.bs_light_console.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: bs_light_console
+label: 'Heading (light part)'
+description: 'e.g. TRY THE'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

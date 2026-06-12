@@ -1,0 +1,21 @@
+uuid: 6f32fe91-636f-4551-8c38-65ce337a61c5
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_arrow
+    - paragraphs.paragraphs_type.bs_button
+id: paragraph.bs_button.field_arrow
+field_name: field_arrow
+entity_type: paragraph
+bundle: bs_button
+label: 'Trailing arrow'
+description: 'Append a → after the label.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Aan
+  off_label: Uit
+field_type: boolean
