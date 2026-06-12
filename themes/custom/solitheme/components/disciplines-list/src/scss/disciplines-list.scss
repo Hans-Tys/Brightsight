@@ -1,14 +1,10 @@
 // disciplines-list — "What We Control" section wrapper.
 .disciplines-list {
-  --disciplines-list-bg: #08080b;
+  --disciplines-list-bg: #000;
 
   position: relative;
   padding: 120px 32px;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    var(--disciplines-list-bg);
-  background-size: 80px 80px, 80px 80px, auto;
+  background: var(--disciplines-list-bg);
 
   &__container {
     max-width: 1400px;

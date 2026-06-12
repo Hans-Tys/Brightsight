@@ -2,7 +2,7 @@
 
 .contact-cta {
   --contact-cta-accent: #ff9500;
-  --contact-cta-bg: #0a0a0e;
+  --contact-cta-bg: #000;
   --contact-cta-fg: #e8e8ec;
   --contact-cta-muted: #9a9aaa;
   --contact-cta-faint: #4a4a5a;
@@ -162,7 +162,7 @@
 
   &__input {
     padding: 13px 16px;
-    background: #08080b;
+    background: #000;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0;
     font-family: 'Inter', sans-serif;
