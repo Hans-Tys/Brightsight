@@ -113,7 +113,9 @@
     background: linear-gradient(var(--beam-color, #ff9500), transparent 92%);
     filter: blur(6px) saturate(1.2);
     mix-blend-mode: screen;
-    transform-origin: 50% 0;
+    // Pivot around the head's mount point (y=20px), 20px above the beam's
+    // own top edge, so the beam emanates from where the head points.
+    transform-origin: 50% -20px;
     opacity: 0;
     transition: opacity 0.12s linear, transform 0.15s ease;
     pointer-events: none;

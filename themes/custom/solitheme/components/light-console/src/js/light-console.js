@@ -98,7 +98,12 @@
             f.beam.style.transform = 'translateX(-50%) rotate(' + angle.toFixed(1) + 'deg)';
             f.glow.style.setProperty('--beam-color', f.color);
             f.glow.style.opacity = (level * 0.7).toFixed(3);
-            var floorShift = Math.tan(angle * Math.PI / 180) * 100;
+            // Beam + head pivot at y=20px (the head mount); the floor pool sits
+            // under the beam tip. Tip horizontal offset = -sin(angle) * length,
+            // negative because CSS rotate() is clockwise.
+            var rad = angle * Math.PI / 180;
+            var beamLength = (stage.clientHeight || 420) - 20;
+            var floorShift = -Math.sin(rad) * beamLength;
             f.glow.style.marginLeft = floorShift.toFixed(1) + 'px';
             f.head.style.setProperty('--beam-color', f.color);
             f.head.style.transform = 'translateX(-50%) rotate(' + angle.toFixed(1) + 'deg)';
