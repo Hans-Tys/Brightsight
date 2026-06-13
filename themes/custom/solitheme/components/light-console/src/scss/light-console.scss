@@ -1,4 +1,7 @@
 // light-console — interactive grandMA3-style light table with live stage.
+// Skeuomorphic treatment: the desk reads as a real anodised-aluminium control
+// surface — beveled casing, recessed fader grooves, chunky depressible keycaps,
+// a sunken glass LCD and glossy gel color buttons.
 .light-console {
   --light-console-bg: #000;
   --light-console-desk: #111116;
@@ -6,17 +9,33 @@
   --light-console-fg: #e8e8ec;
   --light-console-faint: #4a4a5a;
 
+  // Reusable skeuomorphic ingredients.
+  --lc-bevel-hi: rgba(255, 255, 255, 0.14);
+  --lc-bevel-lo: rgba(0, 0, 0, 0.7);
+  --lc-metal: linear-gradient(180deg, #2c2c35 0%, #1b1b22 48%, #14141a 52%, #0d0d12 100%);
+  --lc-keycap: linear-gradient(180deg, #2a2a33 0%, #1d1d25 45%, #15151c 100%);
+
   padding: 120px 32px;
-  background: var(--light-console-bg);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, #0c0c12 0%, var(--light-console-bg) 70%);
 
   &__container {
     max-width: 1280px;
     margin: 0 auto;
   }
 
+  // Outer casing — extruded metal box that holds the stage + desk.
   &__rig {
     margin-top: 56px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: linear-gradient(180deg, #34343d, #0a0a0e);
+    padding: 3px;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.12) inset,
+      0 2px 1px rgba(0, 0, 0, 0.6),
+      0 30px 60px -20px rgba(0, 0, 0, 0.9),
+      0 8px 20px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
   }
 
   // --- Stage viewport -------------------------------------------------------
@@ -24,8 +43,12 @@
     position: relative;
     height: 420px;
     overflow: hidden;
+    border-radius: 12px 12px 0 0;
     background:
       radial-gradient(ellipse 120% 70% at 50% 115%, #16161d 0%, #050508 55%, #000 100%);
+    box-shadow:
+      0 0 30px rgba(0, 0, 0, 0.9) inset,
+      0 2px 4px rgba(0, 0, 0, 0.8) inset;
   }
 
   &__truss {
@@ -34,8 +57,10 @@
     left: 4%;
     right: 4%;
     height: 6px;
-    background: repeating-linear-gradient(90deg, #1d1d24 0 14px, #15151b 14px 28px);
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    background: repeating-linear-gradient(90deg, #2a2a33 0 14px, #131319 14px 28px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   }
 
   &__floor {
@@ -53,8 +78,11 @@
     width: 14px;
     height: 22px;
     border-radius: 3px;
-    background: #1c1c24;
-    border: 1px solid #2a2a34;
+    background: linear-gradient(180deg, #2c2c36, #14141a);
+    border: 1px solid #000;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.15) inset,
+      0 2px 4px rgba(0, 0, 0, 0.6);
     transform-origin: 50% 0;
     transition: transform 0.15s ease;
 
@@ -67,6 +95,7 @@
       height: 5px;
       border-radius: 2px;
       background: #000;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.9) inset;
     }
 
     &.is-on::after {
@@ -106,14 +135,19 @@
   }
 
   // --- Console desk ---------------------------------------------------------
+  // Brushed, slightly warm metal surface, lit from above.
   &__desk {
     display: flex;
     gap: 24px;
     padding: 32px;
     background:
-      linear-gradient(rgba(255, 255, 255, 0.02), transparent 40%),
-      var(--light-console-desk);
-    border-top: 2px solid rgba(255, 149, 0, 0.35);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 12%),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0 2px, transparent 2px 4px),
+      var(--lc-metal);
+    border-top: 2px solid rgba(255, 149, 0, 0.5);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 -20px 40px rgba(0, 0, 0, 0.5) inset;
   }
 
   &__channels {
@@ -123,14 +157,19 @@
     justify-content: space-around;
   }
 
+  // Each channel strip is a recessed bay milled into the desk.
   &__channel {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
     padding: 20px 14px;
-    background: #0c0c10;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    background: linear-gradient(180deg, #0a0a0e, #131318);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.7) inset,
+      0 1px 0 rgba(255, 255, 255, 0.06);
   }
 
   &__channel-no {
@@ -138,40 +177,70 @@
     font-size: 9px;
     letter-spacing: 1.26px;
     color: var(--light-console-faint);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
   }
 
+  // Glossy gel-cap color buttons.
   &__swatch {
+    position: relative;
     width: 30px;
     height: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     cursor: pointer;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.25) inset,
+      0 -3px 6px rgba(0, 0, 0, 0.35) inset,
+      0 2px 4px rgba(0, 0, 0, 0.6);
     transition: box-shadow 0.15s ease, transform 0.1s ease;
+
+    // Specular highlight sitting on the dome.
+    &::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 5px;
+      width: 12px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7), transparent 75%);
+      pointer-events: none;
+    }
 
     &:active {
       transform: scale(0.9);
+      box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.6) inset;
     }
   }
 
+  // Fader rail — a groove cut into the surface with a dark recessed slot.
   &__fader-frame {
     position: relative;
     width: 44px;
     height: 300px;
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    background: linear-gradient(180deg, #0a0a0e, #141419);
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.8) inset,
+      0 1px 0 rgba(255, 255, 255, 0.07);
 
-    // Center rail groove.
+    // Center rail groove — deeply inset slot the thumb rides in.
     &::before {
       content: '';
       position: absolute;
       left: 50%;
-      top: 10px;
-      bottom: 10px;
-      width: 4px;
-      margin-left: -2px;
-      background: #000;
-      border-left: 1px solid rgba(255, 255, 255, 0.06);
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      top: 12px;
+      bottom: 12px;
+      width: 6px;
+      margin-left: -3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #000, #050507 50%, #000);
+      box-shadow:
+        0 0 3px rgba(0, 0, 0, 0.9) inset,
+        1px 0 0 rgba(255, 255, 255, 0.05),
+        -1px 0 0 rgba(255, 255, 255, 0.05);
     }
 
     &--short {
@@ -205,15 +274,22 @@
       border: none;
     }
 
+    // Chunky ridged fader knob — metal cap with a center grip line.
     &::-webkit-slider-thumb {
       appearance: none;
-      width: 22px;
-      height: 38px;
-      margin-top: -17px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, #3a3a46, #23232c 45%, #15151c 50%, #23232c 55%, #3a3a46);
+      width: 26px;
+      height: 46px;
+      margin-top: -21px;
+      border-radius: 4px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 35%),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 5px),
+        linear-gradient(90deg, #44444f, #26262f 44%, #101016 50%, #26262f 56%, #44444f);
       border: 1px solid #000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.3) inset,
+        0 3px 6px rgba(0, 0, 0, 0.7),
+        0 1px 2px rgba(0, 0, 0, 0.9);
       cursor: grab;
     }
 
@@ -224,38 +300,60 @@
     }
 
     &::-moz-range-thumb {
-      width: 22px;
-      height: 38px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, #3a3a46, #23232c 45%, #15151c 50%, #23232c 55%, #3a3a46);
+      width: 26px;
+      height: 46px;
+      border-radius: 4px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 35%),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 5px),
+        linear-gradient(90deg, #44444f, #26262f 44%, #101016 50%, #26262f 56%, #44444f);
       border: 1px solid #000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.3) inset,
+        0 3px 6px rgba(0, 0, 0, 0.7);
       cursor: grab;
     }
   }
 
+  // Physical keycaps — raised, top-lit, depress on press.
   &__key {
     padding: 9px 14px;
-    background: #1a1a22;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 2px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 45%),
+      var(--lc-keycap);
+    border: 1px solid #000;
+    border-radius: 4px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 1.26px;
     color: var(--light-console-fg);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.9);
     cursor: pointer;
-    transition: all 0.1s ease;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.18) inset,
+      0 2px 3px rgba(0, 0, 0, 0.6),
+      0 4px 0 #050508;
+    transition: transform 0.06s ease, box-shadow 0.06s ease, background 0.1s ease;
 
     &:active {
-      transform: translateY(1px);
+      transform: translateY(3px);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.8) inset,
+        0 1px 0 #050508;
     }
 
     &.is-active {
-      background: var(--light-console-accent);
-      border-color: var(--light-console-accent);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 45%),
+        linear-gradient(180deg, #ffb347, var(--light-console-accent));
+      border-color: #b35f00;
       color: #08080b;
-      box-shadow: 0 0 12px rgba(255, 149, 0, 0.5);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 0 16px rgba(255, 149, 0, 0.6),
+        0 2px 3px rgba(0, 0, 0, 0.5);
     }
 
     &--mini {
@@ -264,30 +362,41 @@
     }
 
     &--flash {
-      border-color: rgba(255, 149, 0, 0.5);
       color: var(--light-console-accent);
     }
 
     &--blackout {
-      border-color: rgba(240, 80, 110, 0.5);
       color: #f0506e;
 
       &.is-active {
-        background: #f0506e;
-        border-color: #f0506e;
-        box-shadow: 0 0 12px rgba(240, 80, 110, 0.5);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 45%),
+          linear-gradient(180deg, #ff7d9b, #f0506e);
+        border-color: #a01f3c;
+        color: #fff;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.4) inset,
+          0 0 16px rgba(240, 80, 110, 0.6),
+          0 2px 3px rgba(0, 0, 0, 0.5);
       }
     }
   }
 
   // --- Master section -------------------------------------------------------
+  // Slightly raised sub-panel bolted onto the desk.
   &__master {
     display: flex;
     flex-direction: column;
     gap: 14px;
     padding: 20px 22px;
-    background: #0c0c10;
-    border: 1px solid rgba(255, 149, 0, 0.2);
+    border-radius: 8px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
+      linear-gradient(180deg, #1a1a20, #0d0d12);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.1) inset,
+      0 6px 14px rgba(0, 0, 0, 0.5);
   }
 
   &__master-label {
@@ -296,6 +405,7 @@
     font-size: 9px;
     letter-spacing: 1.62px;
     color: var(--light-console-accent);
+    text-shadow: 0 0 6px rgba(255, 149, 0, 0.4);
   }
 
   &__master-sliders {
@@ -316,6 +426,7 @@
     font-size: 8px;
     letter-spacing: 0.96px;
     color: var(--light-console-faint);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
   }
 
   &__master-buttons {
@@ -324,16 +435,24 @@
     gap: 8px;
   }
 
+  // Sunken backlit LCD strip behind glass.
   &__readout {
     margin: 0;
     padding: 8px 10px;
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    background:
+      linear-gradient(180deg, rgba(57, 255, 20, 0.06), transparent 30%),
+      #04140a;
+    border: 1px solid rgba(0, 0, 0, 0.8);
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
     letter-spacing: 1.08px;
     color: #39ff14;
+    text-shadow: 0 0 6px rgba(57, 255, 20, 0.7);
     min-height: 2.6em;
+    box-shadow:
+      0 2px 5px rgba(0, 0, 0, 0.9) inset,
+      0 0 0 1px rgba(255, 255, 255, 0.04);
   }
 
   // --- Responsive -----------------------------------------------------------
