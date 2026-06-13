@@ -26,6 +26,7 @@
   tabindex="0"
   aria-label="{{ 'Events carousel'|t }}"
   data-events="{{ events|json_encode }}"
+  data-total="{{ total|default(events|length) }}"
 >
   {# Background blur layers — JS cross-fades between them #}
   <div class="bg-blur visible" id="bgBlurA"><img alt="" aria-hidden="true" /></div>

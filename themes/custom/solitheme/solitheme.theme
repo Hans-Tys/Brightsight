@@ -55,5 +55,6 @@ function solitheme_preprocess_views_view__event_timeline(&$variables) {
   }
 
   $variables['carousel_events'] = $events;
+  $variables['carousel_total'] = $variables['view']->getPager() ? $variables['view']->getPager()->getTotalItems() : count($events);
 }
 
