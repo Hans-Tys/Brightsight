@@ -92,14 +92,18 @@
           <img src="${app.image_url}" alt="" draggable="false" loading="lazy" />
         </div>`;
 
-      root.addEventListener('click', () => goTo(i));
-      // Show More on the focused card navigates to the event detail page.
+      root.addEventListener('click', () => {
+        const focused = mod(Math.round(position), N);
+        if (focused === i && app.url) {
+          window.location.href = app.url;
+        } else {
+          goTo(i);
+        }
+      });
       const showMoreBtn = root.querySelector('.card__btn');
       showMoreBtn.addEventListener('click', e => {
         e.stopPropagation();
-        if (app.url) {
-          window.location.href = app.url;
-        }
+        if (app.url) window.location.href = app.url;
       });
       root.addEventListener('mousemove', e => {
         const r = root.getBoundingClientRect();
@@ -272,16 +276,33 @@
     }
 
     // ── Pointer drag ─────────────────────────────────────
+    // Capture is deferred until the pointer moves past DRAG_THRESHOLD so a
+    // plain click still reaches the card/button (a captured pointer retargets
+    // the click event to the section, swallowing button clicks).
+    const DRAG_THRESHOLD = 6;
+    let pointerDown   = false;
+    let pointerStartX = 0;
+    let activePointer = null;
+
     section.addEventListener('pointerdown', e => {
-      isDragging   = true;
-      lastPointerX = e.clientX;
-      velocity     = 0;
-      section.setPointerCapture(e.pointerId);
-      section.classList.add('is-dragging');
+      pointerDown   = true;
+      isDragging    = false;
+      pointerStartX = e.clientX;
+      lastPointerX  = e.clientX;
+      activePointer = e.pointerId;
+      velocity      = 0;
     });
 
     section.addEventListener('pointermove', e => {
-      if (!isDragging) return;
+      if (!pointerDown) return;
+
+      if (!isDragging) {
+        if (Math.abs(e.clientX - pointerStartX) < DRAG_THRESHOLD) return;
+        isDragging = true;
+        section.setPointerCapture(activePointer);
+        section.classList.add('is-dragging');
+      }
+
       const dx     = e.clientX - lastPointerX;
       lastPointerX = e.clientX;
       const delta  = -dx / STEP;
@@ -290,7 +311,9 @@
     });
 
     const endDrag = () => {
-      isDragging = false;
+      pointerDown = false;
+      isDragging  = false;
+      activePointer = null;
       section.classList.remove('is-dragging');
     };
     section.addEventListener('pointerup',     endDrag);

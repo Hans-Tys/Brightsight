@@ -16,7 +16,7 @@
 <header class="event-hero">
   <div class="event-hero__bar">
     {% if back_url %}
-      <a class="event-hero__back" href="{{ back_url }}">
+      <a class="event-hero__back" href="{{ back_url }}" data-back>
         <svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true"><path d="M9 2L4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
         {{ back_text|default('Back to Events'|t) }}
       </a>

@@ -58,3 +58,13 @@ function solitheme_preprocess_views_view__event_timeline(&$variables) {
   $variables['carousel_total'] = $variables['view']->getPager() ? $variables['view']->getPager()->getTotalItems() : count($events);
 }
 
+/**
+ * Implements hook_preprocess_paragraph() for bs_events_carousel.
+ *
+ * Embeds the event_timeline view so the paragraph always shows all events
+ * with lazy-loading (20 per page), rather than manually-added field items.
+ */
+function solitheme_preprocess_paragraph__bs_events_carousel(&$variables) {
+  $variables['event_timeline'] = views_embed_view('event_timeline', 'default');
+}
+
